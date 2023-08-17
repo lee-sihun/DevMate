@@ -17,7 +17,14 @@ import { CardData } from 'group-data';
 import { PositionLabel, PositionLabelWrap } from '../Label.styled';
 import { pascalToKebab } from '../../../utils/api';
 
-const Card = ({ data, link = '/' }: { data: CardData, link?: string }) => {
+/**
+ * props로 data, link는 필수값입니다.
+ * 
+ * **사용법**
+ * 
+ * `<Card data={item} link='/' />`
+ */
+const Card = ({ data, link }: { data: CardData, link: string }) => {
   const overPosition = useMemo(() => {
     return data.position.length > 2
       ? data.position.length - 2
