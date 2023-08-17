@@ -30,7 +30,7 @@ const Yunha = () => {
       {/* Your component code here */}
       {data?.data.map((item: CardData, i: number) => {
         return (<React.Fragment key={i}>
-          <Card data={item} />
+          <Card data={item} link='/' />
         </React.Fragment>);
       })}
     </TestSection>
