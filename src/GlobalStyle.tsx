@@ -196,6 +196,9 @@ const GlobalStyle = createGlobalStyle`
     --default-border: #D9D9D9;
     --seperator: #EFEFEF;
     --layout-bg: #FAFAFA;
+
+    /* Effect Color*/
+    --box-shadow: rgba(0,0,0,.3);
   }
   /* Font Style EN */
   ${FontFaceEN}
@@ -206,6 +209,9 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: Source Sans3, Noto Sans KR;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 

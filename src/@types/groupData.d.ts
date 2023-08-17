@@ -90,6 +90,29 @@ declare module 'group-data' {
     | '풀스택'
     | 'QA';
   type GropType = 'study' | 'project';
+
+  interface GroupData {
+    title: string;
+    description: string;
+    author: {
+      _id: string;
+      nickName: string;
+    };
+    imageUrl: string;
+    type: string;
+    skills: string[];
+    position: string[];
+    location: string;
+    maxMembers: number;
+    currentMembers: {
+      _id: string;
+      nickName: string;
+    }[];
+    createdAt: string;
+    dueDate: string;
+    wishCount: number;
+    viewCount: number;
+  }
   interface CardData {
     title: string;
     imageUrl: string;

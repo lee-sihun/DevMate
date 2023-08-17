@@ -1,13 +1,17 @@
-import React from 'react';
-import { CardImg } from './Card.styled';
+import React, { useEffect } from 'react';
+import { CardLayout, CardImg, CardH3 } from './Card.styled';
 import { CardData } from 'group-data';
 
-const Card = () => {
+const Card = ({ data }: { data: CardData }) => {
+  // useEffect(() => {
+  //   console.log(data);
+  // }, []);
   return (
-    <React.Fragment>
-      {/* Your component code here */}
-      <CardImg />
-    </React.Fragment>
+    <CardLayout>
+      <CardImg src={data.imageUrl} />
+      <CardH3>{data.title}</CardH3>
+
+    </CardLayout>
   );
 };
 
