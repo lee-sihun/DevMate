@@ -7,6 +7,7 @@ type ButtonProps = {
   height: string;
   reverse?: boolean; // '?'를 추가하여 선택적 프롭으로 설정
   onClick?: () => void;
+  //  onClick?: (...args: any[]) => void;
 };
 
 const Button = ({
