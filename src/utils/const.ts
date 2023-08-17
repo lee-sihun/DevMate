@@ -1,6 +1,6 @@
 export const skills = [
   {
     name: 'React',
-    src: '',
+    src: '/assets/img/skills/react.svg',
   },
 ];
