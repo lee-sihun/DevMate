@@ -8,9 +8,9 @@ const Yunha = () => {
 
   const { data, error, isLoading } = useGetDummyDataQuery();
 
-  // React.useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   if (isLoading) {
     // 데이터를 가져오는 동안 로딩 표시 등을 처리할 수 있습니다.
@@ -28,7 +28,7 @@ const Yunha = () => {
   return (
     <TestSection>
       {/* Your component code here */}
-      {data.data.map((item: CardData, i: number) => {
+      {data?.data.map((item: CardData, i: number) => {
         return (<React.Fragment key={i}>
           <Card data={item} />
         </React.Fragment>);

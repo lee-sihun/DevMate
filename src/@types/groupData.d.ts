@@ -88,7 +88,8 @@ declare module 'group-data' {
     | 'PM'
     | '퍼블리셔'
     | '풀스택'
-    | 'QA';
+    | 'QA'
+    | '전체';
   type GropType = 'study' | 'project';
 
   interface GroupData {

@@ -11,10 +11,60 @@
       "type": "project",
       "skills": [
         "React",
-        "TypeScript"
+        "TypeScript",
+        "NodeJs",
+        "Figma",
+        "Pwa",
+        "Tailwind",
+        "Eslint"
       ],
       "position": [
         "프론트엔드",
+        "백엔드",
+        "디자이너",
+        "PW",
+        "퍼블리셔"
+      ],
+      "location": "서울",
+      "maxMembers": 6,
+      "currentMembers": [
+        {
+          "_id": "ObjectId",
+          "nickName": "홍승진"
+        },
+        {
+          "_id": "ObjectId",
+          "nickName": "홍승진"
+        },
+        {
+          "_id": "ObjectId",
+          "nickName": "홍승진"
+        }
+      ],
+      "createdAt": "23-01-01",
+      "dueDate": "1달",
+      "wishCount": 1000,
+      "viewCount": 100
+    },
+    {
+      "title": "익명 랜덤 채팅 서비스",
+      "description": "안녕하세요 리액트 스터디입니다",
+      "author": {
+        "_id": "ObjectId",
+        "nickName": "홍승진"
+      },
+      "imageUrl": "/assets/img/thumbnail/thumbnail-2.png",
+      "type": "project",
+      "skills": [
+        "Figma",
+        "Html",
+        "Scss",
+        "NodeJs",
+        "Nest",
+        "TypeScript"
+      ],
+      "position": [
+        "퍼블리셔",
         "백엔드",
         "디자이너"
       ],
@@ -24,50 +74,12 @@
         {
           "_id": "ObjectId",
           "nickName": "홍승진"
-        },
-        {
-          "_id": "ObjectId",
-          "nickName": "홍승진"
-        },
-        {
-          "_id": "ObjectId",
-          "nickName": "홍승진"
         }
       ],
       "createdAt": "23-01-01",
       "dueDate": "1달",
-      "wishCount": 3,
-      "viewCount": 3
-    },
-    {
-      "title": "리액트 스터디",
-      "description": "안녕하세요 리액트 스터디입니다",
-      "author": {
-        "_id": "ObjectId",
-        "nickName": "홍승진"
-      },
-      "imageUrl": "/assets/img/thumbnail/thumbnail-2.png",
-      "type": "study",
-      "skills": [
-        "React",
-        "TypeScript"
-      ],
-      "position": [
-        "프론트엔드",
-        "디자이너"
-      ],
-      "location": "서울",
-      "maxMembers": 6,
-      "currentMembers": [
-        {
-          "_id": "ObjectId",
-          "nickName": "홍승진"
-        }
-      ],
-      "createdAt": "23-01-01",
-      "dueDate": "1달",
-      "wishCount": 3,
-      "viewCount": 3
+      "wishCount": 13,
+      "viewCount": 62
     },
     {
       "title": "리액트 스터디",
