@@ -7,7 +7,13 @@ const Sihun = () => {
       <Button color="var(--success)" height="38px">
         로그인
       </Button>
+      <Button color="var(--success)" height="38px" reverse>
+        로그인
+      </Button>
       <Button color="var(--error)" height="34px">
+        로그아웃
+      </Button>
+      <Button color="var(--error)" height="34px" reverse>
         로그아웃
       </Button>
     </>

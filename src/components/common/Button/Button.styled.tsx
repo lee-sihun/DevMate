@@ -3,7 +3,22 @@ import styled, { css } from 'styled-components';
 interface BtnProps {
   color: string;
   height: string;
+  reverse: boolean;
 }
+
+const colorStyles = css<BtnProps>`
+  ${({ reverse, color }) => {
+    return reverse
+      ? css`
+          color: ${color};
+          background-color: white;
+        `
+      : css`
+          color: white;
+          background-color: ${color};
+        `;
+  }}
+`;
 
 export const Btn = styled.button<BtnProps>`
   border: 0px;
@@ -11,11 +26,6 @@ export const Btn = styled.button<BtnProps>`
   font-weight: bold;
   font-size: 12px;
   padding: 11px 18px;
-  color: white;
-  background-color: ${({ color }) => color};
-  ${({ height }) => {
-    return css`
-      height: ${height};
-    `;
-  }}
+  height: ${({ height }) => height};
+  ${colorStyles}
 `;
