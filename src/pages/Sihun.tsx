@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../components/common/Button/Button';
+import Header from '../components/common/Header/Header';
 
 const Sihun = () => {
   const handleLoginClick = () => {
@@ -12,6 +13,7 @@ const Sihun = () => {
 
   return (
     <>
+      <Header />
       <Button color="var(--success)" height="38px" onClick={handleLoginClick}>
         로그인
       </Button>
