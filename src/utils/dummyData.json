@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "title": "리액트 스터디",
+      "description": "안녕하세요 리액트 스터디입니다",
+      "author": {
+        "_id": "ObjectId",
+        "nickName": "홍승진"
+      },
+      "imageUrl": "https://velog.velcdn.com/images/raquim47/profile/69ecb9ca-367a-4e37-9e16-c2fbd0a399cf/image.jpeg",
+      "type": "study",
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "position": [
+        "프론트엔드",
+        "디자이너"
+      ],
+      "location": "서울",
+      "maxMembers": 6,
+      "currentMembers": [
+        {
+          "_id": "ObjectId",
+          "nickName": "홍승진"
+        }
+      ],
+      "createdAt": "23-01-01",
+      "dueDate": "1달",
+      "wishCount": 3,
+      "viewCount": 3
+    }
+  ],
+  "error": null
+}

@@ -5,7 +5,7 @@ const FontFaceEN = css`
   @font-face {
       font-family: "Source Sans3";
       src: url(
-        'font/sourceSans3/SourceSans3-Light.ttf'
+        'assets/font/sourceSans3/SourceSans3-Light.ttf'
         ) format('truetype');
       font-weight: lighter;
       font-style: normal;
@@ -14,7 +14,7 @@ const FontFaceEN = css`
   @font-face {
       font-family: "Source Sans3";
       src: url(
-        'font/sourceSans3/SourceSans3-LightItalic.ttf'
+        'assets/font/sourceSans3/SourceSans3-LightItalic.ttf'
         ) format('truetype');
       font-weight: lighter;
       font-style: italic;
@@ -23,7 +23,7 @@ const FontFaceEN = css`
   @font-face {
       font-family: "Source Sans3";
       src: url(
-        'font/sourceSans3/SourceSans3-Regular.ttf'
+        'assets/font/sourceSans3/SourceSans3-Regular.ttf'
         ) format('truetype');
       font-weight: normal;
       font-style: normal;
@@ -32,7 +32,7 @@ const FontFaceEN = css`
   @font-face {
       font-family: "Source Sans3";
       src: url(
-        'font/sourceSans3/SourceSans3-SemiBold.ttf'
+        'assets/font/sourceSans3/SourceSans3-SemiBold.ttf'
         ) format('truetype');
       font-weight: 600;
       font-style: normal;
@@ -41,7 +41,7 @@ const FontFaceEN = css`
   @font-face {
       font-family: "Source Sans3";
       src: url(
-        'font/sourceSans3/SourceSans3-SemiBold.ttf'
+        'assets/font/sourceSans3/SourceSans3-SemiBold.ttf'
         ) format('truetype');
       font-weight: 600;
       font-style: italic;
@@ -50,7 +50,7 @@ const FontFaceEN = css`
   @font-face {
       font-family: "Source Sans3";
       src: url(
-        'font/sourceSans3/SourceSans3-Bold.ttf'
+        'assets/font/sourceSans3/SourceSans3-Bold.ttf'
         ) format('truetype');
       font-weight: bold;
       font-style: normal;
@@ -59,7 +59,7 @@ const FontFaceEN = css`
   @font-face {
       font-family: "Source Sans3";
       src: url(
-        'font/sourceSans3/SourceSans3-BoldItalic.ttf'
+        'assets/font/sourceSans3/SourceSans3-BoldItalic.ttf'
         ) format('truetype');
       font-weight: bold;
       font-style: italic;
@@ -70,7 +70,7 @@ const FontFaceKR = css`
   @font-face {
       font-family: "Noto Sans KR";
       src: url(
-        'font/notoSansKR/NotoSansKR-Thin.otf'
+        'assets/font/notoSansKR/NotoSansKR-Thin.otf'
         ) format('opentype');
       font-weight: 100;
       font-style: normal;
@@ -79,7 +79,7 @@ const FontFaceKR = css`
   @font-face {
       font-family: "Noto Sans KR";
       src: url(
-        'font/notoSansKR/NotoSansKR-Light.otf'
+        'assets/font/notoSansKR/NotoSansKR-Light.otf'
         ) format('opentype');
       font-weight: lighter;
       font-style: normal;
@@ -88,7 +88,7 @@ const FontFaceKR = css`
   @font-face {
       font-family: "Noto Sans KR";
       src: url(
-        'font/notoSansKR/NotoSansKR-Regular.otf'
+        'assets/font/notoSansKR/NotoSansKR-Regular.otf'
         ) format('opentype');
       font-weight: normal;
       font-style: normal;
@@ -97,7 +97,7 @@ const FontFaceKR = css`
   @font-face {
       font-family: "Noto Sans KR";
       src: url(
-        'font/notoSansKR/NotoSansKR-Medium.otf'
+        'assets/font/notoSansKR/NotoSansKR-Medium.otf'
         ) format('opentype');
       font-weight: 500;
       font-style: normal;
@@ -106,7 +106,7 @@ const FontFaceKR = css`
   @font-face {
       font-family: "Noto Sans KR";
       src: url(
-        'font/notoSansKR/NotoSansKR-Bold.otf'
+        'assets/font/notoSansKR/NotoSansKR-Bold.otf'
         ) format('opentype');
       font-weight: bold;
       font-style: normal;
@@ -115,7 +115,7 @@ const FontFaceKR = css`
   @font-face {
       font-family: "Noto Sans KR";
       src: url(
-        'font/notoSansKR/NotoSansKR-Black.otf'
+        'assets/font/notoSansKR/NotoSansKR-Black.otf'
         ) format('opentype');
       font-weight: 900;
       font-style: normal;
