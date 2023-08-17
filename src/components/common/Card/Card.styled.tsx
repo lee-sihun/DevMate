@@ -3,10 +3,10 @@ import { styled } from 'styled-components';
 export const CardImg = styled.img`
   
 `;
-export const CardH1 = styled.h1`
+export const CardH3 = styled.h3`
   
 `;
-export const CardH2 = styled.h2`
+export const CardH4 = styled.h4`
   
 `;
 export const CardSmall = styled.small`
