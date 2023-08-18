@@ -15,7 +15,6 @@ const Sihun = () => {
   return (
     <>
       <Header isLoggedIn={true} />
-      <Header isLoggedIn={false} />
       <Button color="var(--success)" height="38px" onClick={handleLoginClick}>
         로그인
       </Button>
@@ -23,7 +22,7 @@ const Sihun = () => {
         color="var(--success)"
         height="38px"
         onClick={handleLoginClick}
-        reverse
+        reverse="true"
       >
         로그인
       </Button>
@@ -34,7 +33,7 @@ const Sihun = () => {
         color="var(--error)"
         height="34px"
         onClick={handleLogoutClick}
-        reverse
+        reverse="true"
       >
         로그아웃
       </Button>

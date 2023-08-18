@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 interface BtnProps {
   color: string;
   height: string;
-  reverse: boolean;
+  reverse?: string;
 }
 
 const colorStyles = css<BtnProps>`
