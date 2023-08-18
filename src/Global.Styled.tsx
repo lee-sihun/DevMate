@@ -209,9 +209,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: Source Sans3, Noto Sans KR;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 `;
 

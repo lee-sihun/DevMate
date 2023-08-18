@@ -3,6 +3,7 @@ import Card from '../components/common/Card/Card';
 import { useGetDummyDataQuery } from '../utils/api';
 import { CardData } from 'group-data';
 import { TestSection } from '../components/common/Card/Card.styled';
+import CardSkeleton from '../components/common/Card/Card.skeleton';
 
 const Yunha = () => {
 
@@ -14,7 +15,13 @@ const Yunha = () => {
 
   if (isLoading) {
     // 데이터를 가져오는 동안 로딩 표시 등을 처리할 수 있습니다.
-    return <div>Loading...</div>;
+    return <TestSection>
+      {Array.from({ length: 8 }).map((item, i: number) => {
+        return <React.Fragment key={i}>
+          <CardSkeleton />
+        </React.Fragment>;
+      })}
+    </TestSection>;
   }
 
   if (error) {
