@@ -12,7 +12,7 @@ const defaultImg = 'https://grayround.com/common/img/default_profile.png';
 
 const ProfileCircle = ({ size, img = defaultImg, onClick }: ProfileProps) => {
   return (
-    <ProfileBox size={size} onClick={onClick}>
+    <ProfileBox size={size} onClick={onClick} hasPointer={!!onClick}>
       <ProfileImg img={img} />
     </ProfileBox>
   );

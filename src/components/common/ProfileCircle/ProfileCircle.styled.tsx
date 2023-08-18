@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ProfileBoxProps {
   size: string;
+  hasPointer?: boolean;
 }
 
 interface ProfileImgProps {
@@ -14,6 +15,11 @@ const ProfileBox = styled.div<ProfileBoxProps>`
   border: 0px;
   border-radius: 70%;
   overflow: hidden;
+  ${({ hasPointer }) =>
+    hasPointer &&
+    css`
+      cursor: pointer;
+    `}
 `;
 
 const ProfileImg = styled.div<ProfileImgProps>`
