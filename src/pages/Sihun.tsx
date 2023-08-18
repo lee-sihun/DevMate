@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from '../components/common/Button/Button';
+import Header from '../components/common/Header/Header';
+import ProfileCircle from '../components/common/ProfileCircle/ProfileCircle';
 
 const Sihun = () => {
   const handleLoginClick = () => {
@@ -12,6 +14,8 @@ const Sihun = () => {
 
   return (
     <>
+      <Header isLoggedIn={true} />
+      <Header isLoggedIn={false} />
       <Button color="var(--success)" height="38px" onClick={handleLoginClick}>
         로그인
       </Button>
@@ -34,6 +38,12 @@ const Sihun = () => {
       >
         로그아웃
       </Button>
+      <ProfileCircle size="42px" onClick={handleLoginClick} />
+      <ProfileCircle
+        size="150px"
+        img="
+        https://media.bunjang.co.kr/product/211210895_4_1674650614_w360.jpg"
+      />
     </>
   );
 };

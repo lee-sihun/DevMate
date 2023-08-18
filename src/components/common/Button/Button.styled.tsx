@@ -27,5 +27,6 @@ export const Btn = styled.button<BtnProps>`
   font-size: 12px;
   padding: 11px 18px;
   height: ${({ height }) => height};
+  cursor: pointer;
   ${colorStyles}
 `;
