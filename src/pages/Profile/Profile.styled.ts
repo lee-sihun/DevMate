@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
 export const PageHeader = styled.header`
   border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 
   strong {
     color: var(--blue-regular1);

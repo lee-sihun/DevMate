@@ -5,10 +5,10 @@ import { FieldError } from 'react-hook-form';
 interface InputFieldProps {
   label: string;
   id: string;
+  registerOptions: any;
   type?: string;
   error?: FieldError;
-  registerOptions: any;
-  clearError: () => void;
+  clearError?: () => void;
 }
 
 const InputField = ({ label, id, type = 'text', error, registerOptions, clearError }: InputFieldProps) => {
