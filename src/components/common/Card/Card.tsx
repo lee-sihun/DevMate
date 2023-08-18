@@ -35,7 +35,7 @@ const Card = ({ data, link }: { data: CardData, link: string }) => {
     <CardLink to={link}>
       <CardLayout>
         <CardType type={data.type}>{data.type}</CardType>
-        <CardImg src={data.imageUrl} alt="CardImg" />
+        <CardImg src={data.imageUrl} alt='CardImg' />
         <CardTextLayout>
           <CardH3 title={data.title}>{data.title}</CardH3>
           <CardH4>포지션</CardH4>
