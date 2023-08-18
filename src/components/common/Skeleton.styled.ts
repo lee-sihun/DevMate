@@ -23,7 +23,7 @@ export const SkeletonAnimation = css`
 
 export const CardSkeletonImg = styled.div`
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
   border-bottom: 1px solid var(--seperator);
   box-sizing: border-box;
@@ -38,13 +38,12 @@ export const CardSkeletonTitle = styled.div`
 export const CardSkeletonSubTitle = styled.div`
   width: 60px;
   height: 17px;
-  margin: 10px 0;
+  margin: 20px 0 6px 0;
   ${SkeletonAnimation};
 `;
 export const CardSkeletonLabelWrap = styled.div`
   width: 100%;
   height: 26px;
-  margin: 10px 0;
   display: flex;
   gap: 10px;
 `;

@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from '../components/common/Card/Card';
-import { useGetDummyDataQuery } from '../utils/api';
 import { CardData } from 'group-data';
 import { TestSection } from '../components/common/Card/Card.styled';
 import CardSkeleton from '../components/common/Card/Card.skeleton';
+import { useGetDummyDataQuery } from 'store/hooks';
 
 const Yunha = () => {
 
