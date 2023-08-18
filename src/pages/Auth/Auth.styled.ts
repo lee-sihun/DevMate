@@ -58,10 +58,20 @@ export const SocialBtn = styled.button`
   border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
+  
+  &:hover p {
+    color : #000
+  }
+  
+  img {
+    width: 20px;
+    height : 20px;
+  }
 
   p {
     margin-left: 10px;
     margin-top: 4px;
+    color : #919191;
   }
 
   // &:hover {
