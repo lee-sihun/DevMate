@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
-
+import { css, styled } from 'styled-components';
 
 export const TestSection = styled.section`
   width: 100%;
@@ -30,14 +29,13 @@ export const CardLayout = styled.div`
 export const CardType = styled.div<{ type: string }>`
   width: 100px;
   height: 20px;
-  background-color: ${({ type }) => type === 'study'
-    ? 'var(--blue-regular1)'
-    : 'var(--blue-semi-dark2)'};
+  background-color: ${({ type }) =>
+    type === 'study' ? 'var(--blue-regular1)' : 'var(--blue-semi-dark2)'};
   color: white;
   position: absolute;
   top: 0;
   left: 0;
-  transform: rotate(-45deg) translate(-30px,-14px);
+  transform: rotate(-45deg) translate(-30px, -14px);
   text-align: center;
   line-height: 20px;
   overflow: hidden;
@@ -103,4 +101,3 @@ export const CardCntItem = styled.div`
   align-items: center;
   gap: 10px;
 `;
-
