@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
+  margin: 0 auto;
   padding: 50px 30px;
   max-width: 500px;
   border-radius: 10px;
@@ -58,20 +59,20 @@ export const SocialBtn = styled.button`
   border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
-  
+
   &:hover p {
-    color : #000
+    color: #000;
   }
-  
+
   img {
     width: 20px;
-    height : 20px;
+    height: 20px;
   }
 
   p {
     margin-left: 10px;
     margin-top: 4px;
-    color : #919191;
+    color: #919191;
   }
 
   // &:hover {

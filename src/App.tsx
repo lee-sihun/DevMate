@@ -6,19 +6,25 @@ import SignIn from './pages/Auth/SignIn';
 import SignUp from './pages/Auth/SignUp';
 import Yunha from './pages/Yunha';
 import Sihun from './pages/Sihun';
-import { MainLayout } from './components/layout/main.styled';
 import Header from './components/common/Header/Header';
+import Main from './components/layout/Main/Main';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/test" element={<Test />} />
-      <Route path="/yunha" element={<Yunha />} />
-      <Route path="/sihun" element={<Sihun />} />
-    </Routes>
+    <>
+      <Header isLoggedIn={false}/>
+      <Main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/yunha" element={<Yunha />} />
+          <Route path="/sihun" element={<Sihun />} />
+        </Routes>
+      </Main>
+
+    </>
   );
 }
 
