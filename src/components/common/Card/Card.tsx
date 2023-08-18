@@ -15,14 +15,12 @@ import {
 } from './Card.styled';
 import { CardData } from 'group-data';
 import { PositionLabel, PositionLabelWrap } from '../Label.styled';
-import { pascalToKebab } from '../../../utils/api';
+import { pascalToKebab } from 'utils/parser';
+
 
 /**
  * props로 data, link는 필수값입니다.
  * 
- * **사용법**
- * 
- * `<Card data={item} link='/' />`
  */
 const Card = ({ data, link }: { data: CardData, link: string }) => {
   const overPosition = useMemo(() => {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 export const TestSection = styled.section`
   width: 100%;
@@ -47,14 +47,14 @@ export const CardType = styled.div<{ type: string }>`
 
 export const CardImg = styled.img`
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
   border-bottom: 1px solid var(--seperator);
   box-sizing: border-box;
 `;
 export const CardTextLayout = styled.div`
   width: 100%;
-  height: 220px;
+  height: 240px;
   box-sizing: border-box;
   padding: 20px;
 `;
@@ -67,7 +67,7 @@ export const CardH3 = styled.h3`
   font-size: 16px;
 `;
 export const CardH4 = styled.h4`
-  margin: 10px 0;
+  margin: 20px 0 6px 0;
   font-size: 13px;
 `;
 export const SkillImgWrap = styled.div`
