@@ -26,6 +26,7 @@ const LogoImg = styled.div`
   background-image: url(${logoImg});
   background-color: white;
   background-size: contain;
+  background-repeat: no-repeat;
   border: 0px;
   margin-right: 9px;
 `;
@@ -36,6 +37,7 @@ const LogoText = styled.div`
   background-image: url(${logoText});
   background-color: white;
   background-size: contain;
+  background-repeat: no-repeat;
   border: 0px;
 `;
 
