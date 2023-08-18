@@ -4,6 +4,7 @@ import Test from './pages/Test';
 import Home from './pages/Home';
 import SignIn from './pages/Auth/SignIn';
 import SignUp from './pages/Auth/SignUp';
+import Profile from './pages/Profile/Profile';
 import Yunha from './pages/Yunha';
 import Sihun from './pages/Sihun';
 import Header from './components/common/Header/Header';
@@ -20,12 +21,12 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/test" element={<Test />} />
           <Route path="/yunha" element={<Yunha />} />
           <Route path="/sihun" element={<Sihun />} />
         </Routes>
       </Main>
-
     </>
   );
 }
