@@ -93,6 +93,7 @@ declare module 'group-data' {
   type GropType = 'study' | 'project';
 
   interface GroupData {
+    _id: string;
     title: string;
     description: string;
     author: {
@@ -100,9 +101,9 @@ declare module 'group-data' {
       nickName: string;
     };
     imageUrl: string;
-    type: string;
-    skills: string[];
-    position: string[];
+    type: GropType;
+    skills: Skill[];
+    position: Position[];
     location: string;
     maxMembers: number;
     currentMembers: {

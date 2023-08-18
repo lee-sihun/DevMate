@@ -1,6 +1,7 @@
 {
   "data": [
     {
+      "_id": "testgroup1",
       "title": "너 T야? MBTI 테스트 [ 프론트 모집 ] [ 백 모집 ]",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
@@ -47,6 +48,7 @@
       "viewCount": 100
     },
     {
+      "_id": "testgroup2",
       "title": "익명 랜덤 채팅 서비스",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
@@ -82,6 +84,7 @@
       "viewCount": 62
     },
     {
+      "_id": "testgroup3",
       "title": "리액트 스터디",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
@@ -112,6 +115,7 @@
       "viewCount": 3
     },
     {
+      "_id": "testgroup4",
       "title": "리액트 스터디",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
@@ -142,6 +146,7 @@
       "viewCount": 3
     },
     {
+      "_id": "testgroup5",
       "title": "리액트 스터디",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
@@ -172,6 +177,7 @@
       "viewCount": 3
     },
     {
+      "_id": "testgroup6",
       "title": "리액트 스터디",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
@@ -202,6 +208,7 @@
       "viewCount": 3
     },
     {
+      "_id": "testgroup7",
       "title": "리액트 스터디",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
@@ -232,6 +239,7 @@
       "viewCount": 3
     },
     {
+      "_id": "testgroup8",
       "title": "리액트 스터디",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
