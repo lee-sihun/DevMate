@@ -21,14 +21,14 @@ export const Wrapper = styled.div`
   label {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 15px;
     font-size: 12px;
     color: #919191;
     pointer-events: none;
   }
 
   input {
-    padding: 30px 10px 10px 10px;
+    padding: 30px 10px 10px 15px;
     border-radius: 4px;
     border: 1px solid #ddd;
     font-size: 16px;
@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
   span {
     position: absolute;
     bottom: 0;
-    left: 10px;
+    left: 15px;
     font-size: 12px;
     color: #ff6868;
     animation: ${shake} 0.2s;

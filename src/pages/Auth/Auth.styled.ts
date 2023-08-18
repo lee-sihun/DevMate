@@ -38,15 +38,16 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const FormBtn = styled.button<{ $secondary?: boolean }>`
-  background-color: ${(props) => (props.$secondary ? '#EFEFEF' : 'var(--blue-regular1)')};
+  background-color: ${(props) => (props.$secondary ? '#FFF' : 'var(--blue-regular1)')};
   padding: 15px 0;
-  color: ${(props) => (props.$secondary ? '#000' : '#fff')};
+  color: ${(props) => (props.$secondary ? '#919191' : '#FFF')};
   border-radius: 4px;
-  border: none;
+  border: ${(props) => (props.$secondary ? '1px solid #ddd' : 'none')};
   cursor: pointer;
 
   &:hover {
-    background-color: ${(props) => (props.$secondary ? '#ccc' : 'var(--blue-regular2)')};
+    background-color: ${(props) => (props.$secondary ? '#FFF' : 'var(--blue-regular2)')};
+    color : ${(props) => (props.$secondary ? '#000' : '#FFF')};
   }
 `;
 
@@ -74,8 +75,4 @@ export const SocialBtn = styled.button`
     margin-top: 4px;
     color: #919191;
   }
-
-  // &:hover {
-  //   background-color: #ccc;
-  // }
 `;
