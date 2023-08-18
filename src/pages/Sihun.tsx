@@ -42,7 +42,6 @@ const Sihun = () => {
         size="150px"
         img="
         https://media.bunjang.co.kr/product/211210895_4_1674650614_w360.jpg"
-        onClick={handleLogoutClick}
       />
     </>
   );

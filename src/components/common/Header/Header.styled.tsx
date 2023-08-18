@@ -17,6 +17,7 @@ const Logo = styled.button`
   border: 0px;
   margin-left: 18px;
   margin-right: 40px;
+  cursor: pointer;
 `;
 
 const LogoImg = styled.div`
@@ -49,6 +50,7 @@ const NavButton = styled.button`
   background-color: white;
   font-weight: bold;
   font-size: 21px;
+  cursor: pointer;
   &:not(:last-child) {
     margin-right: 24px; /* 마지막 버튼을 제외한 모든 버튼에 간격 추가 */
   }
@@ -69,6 +71,7 @@ const Notification = styled.div`
   background-size: contain;
   border: 0px;
   margin-right: 18px;
+  cursor: pointer;
 `;
 
 export {
