@@ -14,7 +14,8 @@ const Sihun = () => {
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
+      <Header isLoggedIn={false} />
       <Button color="var(--success)" height="38px" onClick={handleLoginClick}>
         로그인
       </Button>
