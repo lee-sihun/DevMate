@@ -1,7 +1,8 @@
 import React from 'react';
-import { Form, Fieldset, FormBtn } from './AuthForm.styled';
+import { Form, Fieldset, FormBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import InputField from '../../common/InputField/InputField';
+import InputField from '../../components/common/InputField/InputField';
+import { useNavigate } from 'react-router-dom';
 
 interface IFormInput {
   email: string;
@@ -10,11 +11,8 @@ interface IFormInput {
   passwordConfirm: string;
 }
 
-interface ISignUpFormProps {
-  toggleSignUpMode: () => void;
-}
-
-const SignUpForm = ({ toggleSignUpMode }: ISignUpFormProps) => {
+const SignUpForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -86,7 +84,7 @@ const SignUpForm = ({ toggleSignUpMode }: ISignUpFormProps) => {
       <Fieldset>
         <legend>로그인 및 회원가입</legend>
         <FormBtn type="submit">회원가입</FormBtn>
-        <FormBtn type="button" $secondary onClick={toggleSignUpMode}>
+        <FormBtn type="button" $secondary onClick={() => navigate('/signin')}>
           로그인
         </FormBtn>
       </Fieldset>

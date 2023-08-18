@@ -1,26 +1,24 @@
 import React from 'react';
 import googleLogo from 'assets/img/social/google-logo.svg';
 import naverLogo from 'assets/img/social/naver-logo.svg';
-import { Form, Fieldset, FormBtn, SocialBtn } from './AuthForm.styled';
+import { Form, Fieldset, FormBtn, SocialBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import InputField from '../../common/InputField/InputField';
+import InputField from '../../components/common/InputField/InputField';
+import { useNavigate } from 'react-router-dom';
 
 interface IFormInput {
   email: string;
   password: string;
 }
 
-interface SignInFormProps {
-  toggleSignUpMode: () => void;
-}
-
-const SignInForm = ({ toggleSignUpMode }: SignInFormProps) => {
+const SignInForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrors,
-  } = useForm<IFormInput>({ mode: 'onBlur'});
+  } = useForm<IFormInput>({ mode: 'onBlur' });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
@@ -60,7 +58,7 @@ const SignInForm = ({ toggleSignUpMode }: SignInFormProps) => {
       <Fieldset>
         <legend>로그인 및 회원가입</legend>
         <FormBtn type="submit">로그인</FormBtn>
-        <FormBtn type="button" $secondary onClick={toggleSignUpMode}>
+        <FormBtn type="button" $secondary onClick={() => navigate('/signup')}>
           회원가입
         </FormBtn>
       </Fieldset>
