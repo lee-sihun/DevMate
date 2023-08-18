@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import defaultProfile from 'assets/img/default-profile.svg';
 import { Wrapper, PageHeader, ProfileContent, ProfileTop, ProfileInfo, InfoItem, TechTags } from './Profile.styled';
 
