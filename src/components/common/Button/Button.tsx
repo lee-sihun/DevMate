@@ -1,5 +1,6 @@
 import React from 'react';
 import { Btn } from './Button.styled';
+import { StyleSheetManager } from 'styled-components';
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -12,9 +13,11 @@ type ButtonProps = {
 
 const Button = ({ children, color, height, reverse, onClick }: ButtonProps) => {
   return (
-    <Btn color={color} height={height} reverse={reverse} onClick={onClick}>
-      {children}
-    </Btn>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== 'reverse'}>
+      <Btn color={color} height={height} reverse={reverse} onClick={onClick}>
+        {children}
+      </Btn>
+    </StyleSheetManager>
   );
 };
 
