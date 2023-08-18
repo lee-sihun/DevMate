@@ -1,6 +1,6 @@
 import React from 'react';
 import googleLogo from 'assets/img/social/google-logo.svg';
-import naverLogo from 'assets/img/social/naver-logo.svg';
+import githubLogo from 'assets/img/social/github-logo.svg';
 import { Form, Fieldset, FormBtn, SocialBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import InputField from '../../components/common/InputField/InputField';
@@ -70,8 +70,8 @@ const SignInForm = () => {
           <p>구글 계정으로 로그인</p>
         </SocialBtn>
         <SocialBtn type="button">
-          <img src={naverLogo} alt="네이버 로고" />
-          <p>네이버 계정으로 로그인</p>
+          <img src={githubLogo} alt="깃허브 로고" />
+          <p>깃허브 계정으로 로그인</p>
         </SocialBtn>
       </Fieldset>
     </Form>
