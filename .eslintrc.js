@@ -33,7 +33,7 @@ module.exports = {
         functions: 'ignore',
       },
     ],
-    'max-len': ['error', { code: 80 }],
+    'max-len': ['error', { code: 150 }],
   },
   settings: {
     react: {
