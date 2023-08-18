@@ -12,7 +12,7 @@ const shake = keyframes`
   }
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $hasError?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
   input {
     padding: 30px 10px 10px 15px;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 1px solid ${props => (props.$hasError ? 'var(--error)' : '#ddd')};
     font-size: 16px;
     outline: none;
   }
@@ -40,7 +40,7 @@ export const Wrapper = styled.div`
     bottom: 0;
     left: 15px;
     font-size: 12px;
-    color: #ff6868;
+    color: var(--error);
     animation: ${shake} 0.2s;
   }
 `;
