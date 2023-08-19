@@ -1,15 +1,17 @@
 import { styled } from 'styled-components';
 
-export const PositionLabelWrap = styled.div`
+export const PositionLabelWrap = styled.div<{ width?: string }>`
   display: flex;
   gap: 10px;
+  ${({ width }) => (width ? `width: ${width};` : '')}
+  flex-wrap: wrap;
 `;
 export const PositionLabel = styled.div`
-  max-width: 80px;
+  max-width: 90px;
   min-width: 40px;
   height: 26px;
   background-color: var(--blue-regular1);
-  color:white;
+  color: white;
   font-size: 13px;
   font-weight: 400;
   border-radius: 12px;

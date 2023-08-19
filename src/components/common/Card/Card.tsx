@@ -13,7 +13,7 @@ import {
   CardLink,
   CardType,
 } from './Card.styled';
-import { CardData } from 'group-data';
+import { GroupData } from 'group-data';
 import { PositionLabel, PositionLabelWrap } from '../Label.styled';
 import { CntMaxView, pascalToKebab } from 'utils/parser';
 
@@ -22,7 +22,7 @@ import { CntMaxView, pascalToKebab } from 'utils/parser';
  * props로 data, link는 필수값입니다.
  * 
  */
-const Card = ({ data, link }: { data: CardData, link: string }) => {
+const Card = ({ data, link }: { data: GroupData, link: string }) => {
   const overPosition = useMemo(() => {
     return data.position.length > 2
       ? data.position.length - 2

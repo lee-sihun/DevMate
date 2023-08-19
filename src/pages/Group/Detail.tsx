@@ -20,6 +20,7 @@ const Detail = () => {
       <DetailWrapper>
         <Title
           title={detailData.title}
+          authorId={detailData.author._id}
           name={detailData.author.nickName}
           createdAt={detailData.createdAt}
           viewCount={detailData.viewCount}
@@ -27,10 +28,12 @@ const Detail = () => {
         />
         <Info
           type={detailData.type}
+          currentMembers={detailData.currentMembers.length}
           maxMembers={detailData.maxMembers}
           dueDate={detailData.dueDate}
           position={detailData.position}
           skills={detailData.skills}
+          img={detailData.imageUrl}
         />
         <Desc />
       </DetailWrapper>

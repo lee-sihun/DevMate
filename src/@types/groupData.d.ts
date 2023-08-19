@@ -115,14 +115,5 @@ declare module 'group-data' {
     wishCount: number;
     viewCount: number;
   }
-  interface CardData {
-    title: string;
-    imageUrl: string;
-    type: GropType;
-    skills: Skill[];
-    position: Position[];
-    dueDate?: string;
-    wishCount: number;
-    viewCount: number;
-  }
+
 }

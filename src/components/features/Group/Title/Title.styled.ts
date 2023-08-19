@@ -3,10 +3,10 @@ import { styled } from 'styled-components';
 export const TitleSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   border-bottom: 1px solid var(--default-border);
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 0 0 20px 0;
 `;
 export const TitleH2 = styled.h2`
   font-size: 33px;

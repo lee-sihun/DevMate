@@ -8,7 +8,7 @@ import { CntMaxView } from 'utils/parser';
 
 interface TitleProps {
   title: string,
-  img?: string,
+  authorId: string,
   name: string,
   createdAt: string,
   viewCount: number,
@@ -16,7 +16,7 @@ interface TitleProps {
 }
 
 const Title = (
-  { title, img, name, createdAt, viewCount, wishCount }:
+  { title, authorId, name, createdAt, viewCount, wishCount }:
     TitleProps
 ) => {
   return (
