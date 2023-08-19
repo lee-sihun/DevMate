@@ -15,7 +15,7 @@ import {
 } from './Card.styled';
 import { CardData } from 'group-data';
 import { PositionLabel, PositionLabelWrap } from '../Label.styled';
-import { pascalToKebab } from 'utils/parser';
+import { CntMaxView, pascalToKebab } from 'utils/parser';
 
 
 /**
@@ -68,19 +68,11 @@ const Card = ({ data, link }: { data: CardData, link: string }) => {
             <CardCntWrap>
               <CardCntItem>
                 <img src="/assets/icon/eye.svg" alt="ViewCnt" />
-                <span>
-                  {String(data.viewCount).length > 2
-                    ? '99+'
-                    : data.viewCount}
-                </span>
+                <span>{CntMaxView(data.viewCount)}</span>
               </CardCntItem>
               <CardCntItem>
                 <img src="/assets/icon/heart.svg" alt="WishCnt" />
-                <span>
-                  {String(data.wishCount).length > 2
-                    ? '99+'
-                    : data.wishCount}
-                </span>
+                <span>{CntMaxView(data.wishCount)}</span>
               </CardCntItem>
             </CardCntWrap>
           </CardFooter>

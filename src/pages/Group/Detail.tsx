@@ -11,21 +11,27 @@ const Detail = () => {
   const { id: groupId } = useParams();
   const { data } = useGetDetailDummyDataQuery(groupId as string);
 
-  const titleData = React.useMemo(() => {
+  const detailData = React.useMemo(() => {
     return data?.data[0];
   }, [data]);
 
-  if (titleData) {
+  if (detailData) {
     return (
       <DetailWrapper>
         <Title
-          title={titleData.title}
-          name={titleData.author.nickName}
-          createdAt={titleData.createdAt}
-          viewCount={titleData.viewCount}
-          wishCount={titleData.wishCount}
+          title={detailData.title}
+          name={detailData.author.nickName}
+          createdAt={detailData.createdAt}
+          viewCount={detailData.viewCount}
+          wishCount={detailData.wishCount}
         />
-        <Info />
+        <Info
+          type={detailData.type}
+          maxMembers={detailData.maxMembers}
+          dueDate={detailData.dueDate}
+          position={detailData.position}
+          skills={detailData.skills}
+        />
         <Desc />
       </DetailWrapper>
     );

@@ -1,6 +1,10 @@
 import React from 'react';
-import { TitleSection } from './Title.styled';
+import { AuthorName, AuthorWrap, CountImg, CountWrap, TitleH2, TitleSection, TitleSemiWrap } from './Title.styled';
 import ProfileCircle from 'components/common/ProfileCircle/ProfileCircle';
+import eye from '../../../../assets/img/eye.svg';
+import heart from '../../../../assets/img/heart.svg';
+import { Boundary } from 'components/common/Boundary.styled';
+import { CntMaxView } from 'utils/parser';
 
 interface TitleProps {
   title: string,
@@ -17,18 +21,21 @@ const Title = (
 ) => {
   return (
     <TitleSection>
-      <h2>{title}</h2>
-      <div>
-        <div>
+      <TitleH2>{title}</TitleH2>
+      <TitleSemiWrap>
+        <AuthorWrap>
           <ProfileCircle size="42px" />
-          <div>{name}</div>
+          <AuthorName>{name}</AuthorName>
+          <Boundary height='16px' />
           <div>{createdAt}</div>
-        </div>
-        <div>
-          <div>{viewCount}</div>
-          <div>{wishCount}</div>
-        </div>
-      </div>
+        </AuthorWrap>
+        <CountWrap>
+          <CountImg src={eye} />
+          <div>{CntMaxView(viewCount)}</div>
+          <CountImg src={heart} />
+          <div>{CntMaxView(wishCount)}</div>
+        </CountWrap>
+      </TitleSemiWrap>
     </TitleSection>
   );
 };
