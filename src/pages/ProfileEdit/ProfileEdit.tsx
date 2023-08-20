@@ -1,9 +1,11 @@
 import SelectField from 'components/common/SelectField/SelectField';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import InputField from '../../components/common/InputField/InputField';
-import { Wrapper, PageHeader, Form, SubmitButton, ReadOnlyField } from './ProfileEdit.styled';
-
+import { Wrapper, PageHeader, Form, Buttons, ReadOnlyField, ImageField } from './ProfileEdit.styled';
+import imageEditIcon from 'assets/img/image-edit.svg';
+import defaultProfile from 'assets/img/default-profile.svg';
+import { useNavigate } from 'react-router-dom';
 type OptionType = {
   label: string;
   value: string;
@@ -15,6 +17,7 @@ interface IFormInput {
   overview?: string;
   github?: string;
   blog?: string;
+  profileImage?: FileList;
 }
 
 const ProfileEdit = () => {
@@ -29,7 +32,20 @@ const ProfileEdit = () => {
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
   };
-
+  const [profileImage, setProfileImage] = useState(defaultProfile);
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          setProfileImage(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <PageHeader>
@@ -37,6 +53,14 @@ const ProfileEdit = () => {
         <h2>내 정보 수정</h2>
       </PageHeader>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <ImageField>
+          <img className="profile-image" src={profileImage} alt="프로필 이미지" />
+          <label htmlFor="imageFile">
+            <span className="hidden">이미지 파일</span>
+            <img src={imageEditIcon} alt="" />
+          </label>
+          <input type="file" id="imageFile" {...register('profileImage')} className="hidden" onChange={handleImageChange} />
+        </ImageField>
         <ReadOnlyField>
           <span>이메일</span>
           <p>abc@gmail.com</p>
@@ -81,7 +105,12 @@ const ProfileEdit = () => {
             },
           })}
         />
-        <SubmitButton type="submit">Update</SubmitButton>
+        <Buttons>
+          <button type="button" className="cancle" onClick={() => navigate('/profile')}>
+            취소
+          </button>
+          <button type="submit">저장</button>
+        </Buttons>
       </Form>
     </Wrapper>
   );

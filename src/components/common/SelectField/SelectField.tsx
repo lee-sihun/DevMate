@@ -17,10 +17,10 @@ const customStyles: StylesConfig<OptionType | string, true> = {
   control: (provided, state) => ({
     ...provided,
     padding: '0 5px',
-    paddingTop:'5px',
-    borderColor: state.isFocused ? 'transparent' : 'transparent', // Border를 없앴습니다.
-    boxShadow: 'none', // Focus 시의 아웃라인을 없앴습니다.
-    border: 'none', // Border를 없앴습니다.
+    paddingTop: '5px',
+    borderColor: state.isFocused ? 'transparent' : 'transparent',
+    boxShadow: 'none',
+    border: 'none',
     '&:hover': {
       borderColor: 'transparent',
     },
@@ -40,6 +40,7 @@ const customStyles: StylesConfig<OptionType | string, true> = {
 };
 
 const Wrapper = styled.div`
+  width: 100%;
   background-color: #fff;
   padding: 10px 0;
   border: 1px solid #ddd;
