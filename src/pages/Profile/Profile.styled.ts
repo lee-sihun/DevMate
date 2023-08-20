@@ -48,14 +48,23 @@ export const ProfileTop = styled.div`
 
   button {
     border: none;
-    background-color: var(--blue-regular1);
+    background-color: #ddd;
     padding: 6px 10px;
-    color: #fff;
     border-radius: 4px;
     cursor: pointer;
   }
 
   button:hover {
+    background-color: #ccc;
+  }
+
+  button.blue {
+    background-color: var(--blue-regular1);
+    color: #fff;
+    margin-right: 10px;
+  }
+
+  button.blue:hover {
     background-color: var(--blue-regular2);
   }
 `;

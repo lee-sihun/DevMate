@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import defaultProfile from 'assets/img/default-profile.svg';
 import { Wrapper, PageHeader, ProfileContent, ProfileTop, ProfileInfo, InfoItem, TechTags } from './Profile.styled';
 import { useNavigate } from 'react-router-dom';
+import ResignModal from 'components/common/Modal/ResignModal/ResignModal';
 
 const Profile = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const navigate = useNavigate();
+
   return (
     <Wrapper>
+      {isModalVisible && <ResignModal onClose={() => setIsModalVisible(false)} />}
       <PageHeader>
         <strong>My Profile</strong>
         <h2>내 프로필</h2>
@@ -15,7 +19,10 @@ const Profile = () => {
         <ProfileTop>
           <img src={defaultProfile} alt="사용자 이미지" />
           <h3>사용자</h3>
-          <button onClick={() => navigate('/profile/edit')}>정보 수정</button>
+          <button className="blue" onClick={() => navigate('/profile/edit')}>
+            정보 수정
+          </button>
+          <button onClick={() => setIsModalVisible(true)}>회원 탈퇴</button>
         </ProfileTop>
         <ProfileInfo>
           <InfoItem>
