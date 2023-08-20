@@ -17,6 +17,7 @@ export const Wrapper = styled.div<{ $hasError?: boolean }>`
   display: flex;
   flex-direction: column;
   height: 80px;
+  width: 100%;
 
   label {
     position: absolute;

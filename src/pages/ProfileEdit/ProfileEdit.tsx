@@ -1,8 +1,10 @@
-import SelectField from 'components/common/SelectField/SelectField';
 import React from 'react';
+import SelectField from 'components/features/SelectField/SelectField';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import InputField from '../../components/common/InputField/InputField';
-import { Wrapper, PageHeader, Form, SubmitButton, ReadOnlyField } from './ProfileEdit.styled';
+import InputField from '../../components/features/InputField/InputField';
+import { Wrapper, PageHeader, Form, Buttons, ReadOnlyField } from './ProfileEdit.styled';
+import { useNavigate } from 'react-router-dom';
+import ImageUploadField from 'components/features/ImageUploadField/ImageUploadField';
 
 type OptionType = {
   label: string;
@@ -15,6 +17,7 @@ interface IFormInput {
   overview?: string;
   github?: string;
   blog?: string;
+  profileImage?: FileList;
 }
 
 const ProfileEdit = () => {
@@ -30,6 +33,7 @@ const ProfileEdit = () => {
     console.log(data);
   };
 
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <PageHeader>
@@ -37,6 +41,7 @@ const ProfileEdit = () => {
         <h2>내 정보 수정</h2>
       </PageHeader>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <ImageUploadField register={register('profileImage')} />
         <ReadOnlyField>
           <span>이메일</span>
           <p>abc@gmail.com</p>
@@ -52,7 +57,7 @@ const ProfileEdit = () => {
             },
           })}
           error={errors.nickName}
-          clearError={() => clearErrors('nickName')}
+          onClearError={() => clearErrors('nickName')}
         />
         <Controller
           name="skills"
@@ -70,6 +75,9 @@ const ProfileEdit = () => {
               message: '올바른 깃허브 URL을 입력해주세요.',
             },
           })}
+          error={errors.github}
+          onClearError={() => clearErrors('github')}
+          defaultValue="https://github.com/"
         />
         <InputField
           label="블로그 주소"
@@ -80,8 +88,18 @@ const ProfileEdit = () => {
               message: '올바른 URL을 입력해주세요.',
             },
           })}
+          error={errors.blog}
+          onClearError={() => clearErrors('blog')}
+          defaultValue="https://"
         />
-        <SubmitButton type="submit">Update</SubmitButton>
+        <Buttons>
+          <button type="button" className="cancle" onClick={() => navigate('/profile')}>
+            취소
+          </button>
+          <button type="submit" className="submit">
+            저장
+          </button>
+        </Buttons>
       </Form>
     </Wrapper>
   );

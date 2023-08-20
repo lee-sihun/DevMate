@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Fieldset, FormBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import InputField from '../../components/common/InputField/InputField';
+import InputField from '../../components/features/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
 
 interface IFormInput {
@@ -43,7 +43,7 @@ const SignUpForm = () => {
             },
           })}
           error={errors.email}
-          clearError={() => clearErrors('email')}
+          onClearError={() => clearErrors('email')}
         />
         <InputField
           label="닉네임"
@@ -56,7 +56,7 @@ const SignUpForm = () => {
             },
           })}
           error={errors.nickName}
-          clearError={() => clearErrors('nickName')}
+          onClearError={() => clearErrors('nickName')}
         />
         <InputField
           label="비밀번호"
@@ -66,7 +66,7 @@ const SignUpForm = () => {
             required: '비밀번호를 입력해주세요.',
           })}
           error={errors.password}
-          clearError={() => clearErrors('password')}
+          onClearError={() => clearErrors('password')}
         />
         <InputField
           label="비밀번호 확인"
@@ -77,7 +77,7 @@ const SignUpForm = () => {
             validate: (value) => value === password || '비밀번호가 일치하지 않습니다.',
           })}
           error={errors.passwordConfirm}
-          clearError={() => clearErrors('passwordConfirm')}
+          onClearError={() => clearErrors('passwordConfirm')}
         />
       </Fieldset>
 

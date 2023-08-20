@@ -207,7 +207,7 @@ const GlobalStyle = createGlobalStyle`
   /* Reset CSS */
   ${ResetCss}
 
-  body {
+  body, button {
     font-family: Source Sans3, Noto Sans KR;
   }
 `;
