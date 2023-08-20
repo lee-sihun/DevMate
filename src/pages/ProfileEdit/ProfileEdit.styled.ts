@@ -39,17 +39,24 @@ export const Buttons = styled.div`
 
   button {
     flex-grow: 1;
-    background-color: var(--blue-regular1);
-    color: #fff;
     padding: 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    background-color: #ddd;
   }
 
-  button.cancle {
-    background-color: #ddd;
-    color: #000;
+  button.submit {
+    background-color: var(--blue-regular1);
+    color: #fff;
+  }
+
+  button.cancle:hover {
+    background-color: #ccc;
+  }
+
+  button.submit:hover {
+    background-color: var(--blue-regular2);
   }
 `;
 
@@ -63,6 +70,7 @@ export const ReadOnlyField = styled.div`
   background-color: #f7f7f7;
   margin-bottom: 20px;
   box-sizing: border-box;
+  
   span {
     margin-bottom: 6px;
     font-size: 12px;
@@ -70,38 +78,4 @@ export const ReadOnlyField = styled.div`
   }
 `;
 
-export const ImageField = styled.div`
-  position: relative;
-  margin-bottom: 20px;
 
-  .profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
-
-  label {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-  }
-
-  .hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-  }
-
-  img {
-    width: 30px;
-    height: 30px;
-  }
-`;

@@ -1,67 +1,27 @@
 import React from 'react';
-import { StylesConfig } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { ControllerRenderProps } from 'react-hook-form';
-import styled from 'styled-components';
+import { Wrapper, customStyles } from './SelectField.styled';
 
 type OptionType = {
   label: string;
   value: string;
 };
 
-// interface SelectFieldProps {
-//   field: ControllerRenderProps<OptionType[], unknown>;
-// }
+interface SelectFieldProps {
+  field: {
+    onChange: (...event: any[]) => void;
+    onBlur: () => void;
+    name: string;
+    value?: OptionType[];
+  };
+}
 
-const customStyles: StylesConfig<OptionType | string, true> = {
-  control: (provided, state) => ({
-    ...provided,
-    padding: '0 5px',
-    paddingTop: '5px',
-    borderColor: state.isFocused ? 'transparent' : 'transparent',
-    boxShadow: 'none',
-    border: 'none',
-    '&:hover': {
-      borderColor: 'transparent',
-    },
-  }),
-  placeholder: (provided) => ({
-    ...provided,
-    fontSize: '16px',
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    fontSize: '16px',
-  }),
-  input: (provided) => ({
-    ...provided,
-    fontSize: '16px',
-  }),
-};
-
-const Wrapper = styled.div`
-  width: 100%;
-  background-color: #fff;
-  padding: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 15px;
-
-  span {
-    margin-bottom: 6px;
-    margin-left: 15px;
-    font-size: 12px;
-    color: #919191;
-  }
-`;
-
-const SelectField = ({ field }: any) => {
-  const { ref, ...restField } = field;
+const SelectField = ({ field }: SelectFieldProps) => {
   return (
     <Wrapper>
       <span>기술스택</span>
       <CreatableSelect
-        {...restField}
+        {...field}
         value={field.value || []}
         options={[
           { value: 'javascript', label: 'JavaScript' },

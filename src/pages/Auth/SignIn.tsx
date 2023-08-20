@@ -41,7 +41,7 @@ const SignInForm = () => {
             },
           })}
           error={errors.email}
-          clearError={() => clearErrors('email')}
+          onClearError={() => clearErrors('email')}
         />
         <InputField
           label="비밀번호"
@@ -51,7 +51,7 @@ const SignInForm = () => {
             required: '비밀번호를 입력해주세요',
           })}
           error={errors.password}
-          clearError={() => clearErrors('password')}
+          onClearError={() => clearErrors('password')}
         />
       </Fieldset>
 
