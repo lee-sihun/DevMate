@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Fieldset, FormBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import InputField from '../../components/common/InputField/InputField';
+import InputField from '../../components/features/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
 
 interface IFormInput {

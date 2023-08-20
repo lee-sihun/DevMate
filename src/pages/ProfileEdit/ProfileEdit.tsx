@@ -1,7 +1,7 @@
 import React from 'react';
-import SelectField from 'components/common/SelectField/SelectField';
+import SelectField from 'components/features/SelectField/SelectField';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import InputField from '../../components/common/InputField/InputField';
+import InputField from '../../components/features/InputField/InputField';
 import { Wrapper, PageHeader, Form, Buttons, ReadOnlyField } from './ProfileEdit.styled';
 import { useNavigate } from 'react-router-dom';
 import ImageUploadField from 'components/features/ImageUploadField/ImageUploadField';

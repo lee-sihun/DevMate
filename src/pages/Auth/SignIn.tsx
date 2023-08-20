@@ -3,7 +3,7 @@ import googleLogo from 'assets/img/social/google-logo.svg';
 import githubLogo from 'assets/img/social/github-logo.svg';
 import { Form, Fieldset, FormBtn, SocialBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import InputField from '../../components/common/InputField/InputField';
+import InputField from '../../components/features/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
 
 interface IFormInput {
