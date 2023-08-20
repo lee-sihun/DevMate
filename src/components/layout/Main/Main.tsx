@@ -1,11 +1,11 @@
 import React from 'react';
 import { Wrapper, Inner } from './Main.styled';
 
-interface IMainProps {
+interface MainProps {
   children: React.ReactNode;
 }
 
-const Main = ({ children }: IMainProps) => {
+const Main = ({ children }: MainProps) => {
   return (
     <Wrapper>
       <Inner>{children}</Inner>
