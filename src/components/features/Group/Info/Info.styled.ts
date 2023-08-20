@@ -63,4 +63,5 @@ export const GroupImg = styled.img`
   width: 270px;
   height: 160px;
   object-fit: cover;
+  box-shadow: 0 2px 2px var(--box-shadow);
 `;

@@ -11,9 +11,7 @@ const Detail = () => {
   const { id: groupId } = useParams();
   const { data } = useGetDetailDummyDataQuery(groupId as string);
 
-  const detailData = React.useMemo(() => {
-    return data?.data[0];
-  }, [data]);
+  const detailData = data?.data[0];
 
   if (detailData) {
     return (
@@ -35,7 +33,10 @@ const Detail = () => {
           skills={detailData.skills}
           img={detailData.imageUrl}
         />
-        <Desc />
+        <Desc
+          // contents={detailData.description}
+          groupId={detailData._id}
+        />
       </DetailWrapper>
     );
   }

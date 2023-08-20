@@ -5,8 +5,8 @@
       "title": "익명 랜덤 채팅 서비스",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
-        "_id": "ObjectId",
-        "nickName": "홍승진"
+        "_id": "testauthor2",
+        "nickName": "이시훈"
       },
       "imageUrl": "/assets/img/thumbnail/thumbnail-2.png",
       "type": "project",

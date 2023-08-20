@@ -12,7 +12,7 @@ import {
   SkillsWrap,
   TypeWrap,
 } from './Info.styled';
-import { GropType, Position, Skill } from 'group-data';
+import { GroupType, Position, Skill } from 'group-data';
 import Button from 'components/common/Button/Button';
 import { Boundary } from 'components/common/Boundary.styled';
 import { PositionLabel, PositionLabelWrap } from 'components/common/Label.styled';
@@ -20,7 +20,7 @@ import { SkillImg, SkillImgWrap } from 'components/common/Card/Card.styled';
 import { pascalToKebab } from 'utils/parser';
 
 interface InfoProps {
-  type: GropType,
+  type: GroupType,
   currentMembers: number,
   maxMembers: number,
   dueDate: string,

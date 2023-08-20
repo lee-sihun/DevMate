@@ -1,0 +1,24 @@
+{
+  "data": {
+    "username": "홍승진",
+    "email": "hong@example.com",
+    "profileImage": "/assets/icon/smile.png",
+    "skills": [
+      "JavaScript",
+      "React",
+      "NodeJs",
+      "Php",
+      "Nest",
+      "Next"
+    ],
+    "location": "서울",
+    "overview": "Hello I'm Hong.",
+    "links": [
+      {
+        "gitHub": "https://github.com/hong",
+        "blog": "https://hong-blog.com"
+      }
+    ]
+  },
+  "error": null
+}
