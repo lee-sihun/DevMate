@@ -12,9 +12,9 @@ import {
 import Button from '../Button/Button';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
 
-type HeaderProps = {
+interface HeaderProps {
   isLoggedIn: boolean,
-};
+}
 
 const Header = ({ isLoggedIn }: HeaderProps) => {
   return (
