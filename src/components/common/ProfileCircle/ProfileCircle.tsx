@@ -1,6 +1,5 @@
 import React from 'react';
 import { ProfileBox, ProfileImg } from './ProfileCircle.styled';
-import { StyleSheetManager } from 'styled-components';
 
 interface ProfileProps {
   size: string;
