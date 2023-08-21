@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import defaultProfile from 'assets/img/default-profile.svg';
-import { Wrapper, ProfileContent, ProfileTop, ProfileInfo, InfoItem, TechTags } from './Profile.styled';
+import { ProfileContent, ProfileTop, ProfileInfo, InfoItem, TechTags } from './Profile.styled';
 import { Link } from 'react-router-dom';
 import ResignModal from 'components/common/Modal/ResignModal/ResignModal';
-import PageTitle from 'components/common/PageTitle/PageTitle';
+import PageTemplate from 'components/common/PageTemplate/PageTemplate';
 
 const Profile = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
-    <Wrapper>
+    <PageTemplate subTitle="My Profile" mainTitle="내 프로필">
       {isModalVisible && <ResignModal onClose={() => setIsModalVisible(false)} />}
-      <PageTitle subTitle="My Profile" mainTitle="내 프로필" />
       <ProfileContent>
         <ProfileTop>
           <img src={defaultProfile} alt="사용자 이미지" />
@@ -57,7 +56,7 @@ const Profile = () => {
           </InfoItem>
         </ProfileInfo>
       </ProfileContent>
-    </Wrapper>
+    </PageTemplate>
   );
 };
 export default Profile;

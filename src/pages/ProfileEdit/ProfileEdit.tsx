@@ -2,10 +2,10 @@ import React from 'react';
 import SelectField from 'components/features/SelectField/SelectField';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import InputField from '../../components/features/InputField/InputField';
-import { Wrapper, Form, Buttons, ReadOnlyField } from './ProfileEdit.styled';
+import { Form, Buttons, ReadOnlyField } from './ProfileEdit.styled';
 import { Link } from 'react-router-dom';
 import ImageUploadField from 'components/features/ImageUploadField/ImageUploadField';
-import PageTitle from 'components/common/PageTitle/PageTitle';
+import PageTemplate from 'components/common/PageTemplate/PageTemplate';
 
 type OptionType = {
   label: string;
@@ -35,8 +35,7 @@ const ProfileEdit = () => {
   };
 
   return (
-    <Wrapper>
-      <PageTitle subTitle="Edit Profile" mainTitle="내 정보 수정" />
+    <PageTemplate subTitle="Edit Profile" mainTitle="내 정보 수정" >
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ImageUploadField register={register('profileImage')} />
         <ReadOnlyField>
@@ -100,7 +99,7 @@ const ProfileEdit = () => {
           </button>
         </Buttons>
       </Form>
-    </Wrapper>
+    </PageTemplate>
   );
 };
 

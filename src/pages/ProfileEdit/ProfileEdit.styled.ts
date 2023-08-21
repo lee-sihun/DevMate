@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
 export const Form = styled.form`
   margin-top: 20px;
   padding: 10px 0 50px;

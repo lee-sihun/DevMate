@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.header`
+export const Wrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+export const PageTitle = styled.header`
   border-bottom: 1px solid #ddd;
   padding-bottom: 15px;
 
@@ -15,4 +20,8 @@ export const Wrapper = styled.header`
     font-weight: 500;
     margin-top: 10px;
   }
+`;
+
+export const Content = styled.div`
+  padding-top: 30px;
 `;
