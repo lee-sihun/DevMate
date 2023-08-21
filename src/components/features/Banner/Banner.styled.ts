@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SliderWrap = styled.div`
   position: relative;
   .swiper {
+    cursor: pointer;
     border-radius: 30px;
     width: 1200px;
     margin-top: 30px;
