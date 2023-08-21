@@ -28,5 +28,10 @@ export const Btn = styled.button<BtnProps>`
   padding: 11px 18px;
   height: ${({ height }) => height};
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  &:hover {
+    filter: brightness(0.8);
+  }
   ${colorStyles}
 `;
