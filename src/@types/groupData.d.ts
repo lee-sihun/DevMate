@@ -79,18 +79,8 @@ declare module 'group-data' {
     | 'Webpack'
     | 'Wordpress'
     | 'Xd';
-  type Position =
-    | '프론트엔드'
-    | '백엔드'
-    | '디자이너'
-    | '기획자'
-    | '마케팅'
-    | 'PM'
-    | '퍼블리셔'
-    | '풀스택'
-    | 'QA'
-    | '전체';
-  type GropType = 'study' | 'project';
+  type Position = '프론트엔드' | '백엔드' | '디자이너' | '기획자' | '마케팅' | 'PM' | '퍼블리셔' | '풀스택' | 'QA' | '전체';
+  type GroupType = 'study' | 'project';
 
   interface GroupData {
     _id: string;
@@ -101,7 +91,7 @@ declare module 'group-data' {
       nickName: string;
     };
     imageUrl: string;
-    type: GropType;
+    type: GroupType;
     skills: Skill[];
     position: Position[];
     location: string;
@@ -112,16 +102,6 @@ declare module 'group-data' {
     }[];
     createdAt: string;
     dueDate: string;
-    wishCount: number;
-    viewCount: number;
-  }
-  interface CardData {
-    title: string;
-    imageUrl: string;
-    type: GropType;
-    skills: Skill[];
-    position: Position[];
-    dueDate?: string;
     wishCount: number;
     viewCount: number;
   }

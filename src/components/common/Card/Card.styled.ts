@@ -29,8 +29,7 @@ export const CardLayout = styled.div`
 export const CardType = styled.div<{ type: string }>`
   width: 100px;
   height: 20px;
-  background-color: ${({ type }) =>
-    type === 'study' ? 'var(--blue-regular1)' : 'var(--blue-semi-dark2)'};
+  background-color: ${({ type }) => (type === 'study' ? 'var(--blue-regular1)' : 'var(--blue-semi-dark2)')};
   color: white;
   position: absolute;
   top: 0;
@@ -70,12 +69,13 @@ export const CardH4 = styled.h4`
   margin: 20px 0 6px 0;
   font-size: 13px;
 `;
-export const SkillImgWrap = styled.div`
+export const SkillImgWrap = styled.div<{ width?: string }>`
   display: flex;
   gap: 10px;
-  width: 100%;
-  max-height: 30px;
-  overflow: hidden;
+  ${({ width }) => (width ? `width: ${width};` : '')}
+  /* max-height: 30px; */
+  flex-wrap: wrap;
+  align-items:center;
 `;
 export const SkillImg = styled.img`
   width: 30px;

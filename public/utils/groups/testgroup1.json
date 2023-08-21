@@ -5,7 +5,7 @@
       "title": "너 T야? MBTI 테스트 [ 프론트 모집 ] [ 백 모집 ]",
       "description": "안녕하세요 리액트 스터디입니다",
       "author": {
-        "_id": "ObjectId",
+        "_id": "testauthor1",
         "nickName": "홍승진"
       },
       "imageUrl": "/assets/img/thumbnail/thumbnail-1.png",

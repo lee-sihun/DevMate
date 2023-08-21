@@ -3,6 +3,7 @@ import type { TypedUseSelectorHook } from 'react-redux';
 import type { RootState, AppDispatch } from './store';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { GroupData } from 'group-data';
+import { AuthorData } from 'author-data';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => AppDispatch = useDispatch;
@@ -19,7 +20,10 @@ export const api = createApi({
     getDetailDummyData: builder.query<{ data: GroupData[]; error: 'string' | null }, string>({
       query: (groupId) => `groups/${groupId}.json`, // 실제 엔드포인트 경로에 맞게 설정
     }),
+    getDummyAuthorData: builder.query<{ data: AuthorData; error: 'string' | null }, string>({
+      query: (authorId) => `authors/${authorId}.json`, // 실제 엔드포인트 경로에 맞게 설정
+    }),
   }),
 });
 
-export const { useGetDummyDataQuery, useGetDetailDummyDataQuery } = api; // API 호출 훅 생성
+export const { useGetDummyDataQuery, useGetDetailDummyDataQuery, useGetDummyAuthorDataQuery } = api; // API 호출 훅 생성

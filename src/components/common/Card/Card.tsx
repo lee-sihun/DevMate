@@ -13,16 +13,17 @@ import {
   CardLink,
   CardType,
 } from './Card.styled';
-import { CardData } from 'group-data';
+import { GroupData } from 'group-data';
 import { PositionLabel, PositionLabelWrap } from '../Label.styled';
-import { pascalToKebab } from 'utils/parser';
+import { CntMaxView, pascalToKebab } from 'utils/parser';
 
 
 /**
- * props로 data, link는 필수값입니다.
+ * props로 data 필수값입니다.
  * 
  */
-const Card = ({ data, link }: { data: CardData, link: string }) => {
+const Card = ({ data }: { data: GroupData }) => {
+
   const overPosition = useMemo(() => {
     return data.position.length > 2
       ? data.position.length - 2
@@ -30,7 +31,7 @@ const Card = ({ data, link }: { data: CardData, link: string }) => {
   }, []);
 
   return (
-    <CardLink to={link}>
+    <CardLink to={`/detail/${data._id}`}>
       <CardLayout>
         <CardType type={data.type}>{data.type}</CardType>
         <CardImg src={data.imageUrl} alt='CardImg' />
@@ -68,19 +69,11 @@ const Card = ({ data, link }: { data: CardData, link: string }) => {
             <CardCntWrap>
               <CardCntItem>
                 <img src="/assets/icon/eye.svg" alt="ViewCnt" />
-                <span>
-                  {String(data.viewCount).length > 2
-                    ? '99+'
-                    : data.viewCount}
-                </span>
+                <span>{CntMaxView(data.viewCount)}</span>
               </CardCntItem>
               <CardCntItem>
                 <img src="/assets/icon/heart.svg" alt="WishCnt" />
-                <span>
-                  {String(data.wishCount).length > 2
-                    ? '99+'
-                    : data.wishCount}
-                </span>
+                <span>{CntMaxView(data.wishCount)}</span>
               </CardCntItem>
             </CardCntWrap>
           </CardFooter>
