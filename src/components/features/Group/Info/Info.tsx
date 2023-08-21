@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   DueDateWrap,
   GroupImg,
@@ -18,8 +18,10 @@ import { Boundary } from 'components/common/Boundary.styled';
 import { PositionLabel, PositionLabelWrap } from 'components/common/Label.styled';
 import { SkillImg, SkillImgWrap } from 'components/common/Card/Card.styled';
 import { pascalToKebab } from 'utils/parser';
+import SupportModal from 'components/common/SupportModal/SupportModal';
 
 interface InfoProps {
+  title: string,
   type: GroupType,
   currentMembers: number,
   maxMembers: number,
@@ -29,7 +31,10 @@ interface InfoProps {
   img: string
 }
 
-const Info = ({ type, currentMembers, maxMembers, dueDate, position, skills, img }: InfoProps) => {
+const Info = ({ title, type, currentMembers, maxMembers, dueDate, position, skills, img }: InfoProps) => {
+
+  const [modal, setModal] = React.useState(false);
+
   return (
     <InfoSection>
       <InfoLeft>
@@ -53,11 +58,7 @@ const Info = ({ type, currentMembers, maxMembers, dueDate, position, skills, img
           <Boundary height='20px' $alignSelf='flex-start' />
           <PositionLabelWrap width='600px'>
             {position.map((item, i) => {
-              return (
-                <React.Fragment key={i}>
-                  <PositionLabel>{item}</PositionLabel>
-                </React.Fragment>
-              );
+              return <PositionLabel key={i}>{item}</PositionLabel>;
             })}
           </PositionLabelWrap>
         </PositionsWrap>
@@ -80,9 +81,14 @@ const Info = ({ type, currentMembers, maxMembers, dueDate, position, skills, img
       </InfoLeft>
       <InfoRight>
         <GroupImg src={img} />
-        <Button color='var(--success)' height="38px">지원하러 가기!</Button>
+        <Button color='var(--success)' height="38px" onClick={() => {
+          setModal(true);
+        }}>지원하러 가기!</Button>
       </InfoRight>
-
+      {
+        modal &&
+        <SupportModal title={title} setModal={setModal} />
+      }
     </InfoSection>
   );
 };

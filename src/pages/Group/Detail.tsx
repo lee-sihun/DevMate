@@ -25,6 +25,7 @@ const Detail = () => {
           wishCount={detailData.wishCount}
         />
         <Info
+          title={detailData.title}
           type={detailData.type}
           currentMembers={detailData.currentMembers.length}
           maxMembers={detailData.maxMembers}

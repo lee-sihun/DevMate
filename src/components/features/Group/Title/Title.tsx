@@ -48,6 +48,7 @@ const Title = (
   const authorData = data?.data;
 
   const handleModal = React.useCallback(() => setModal((curr) => !curr), []);
+  const closeModal = React.useCallback(() => setModal(false), []);
 
   if (authorData) {
     return (
@@ -69,48 +70,51 @@ const Title = (
             <div>{CntMaxView(wishCount)}</div>
           </TitleCountWrap>
         </TitleSemiWrap>
-        <TitleModalWrap $modal={modal}>
-          <div>
-            <TitleAuthorWrap $cursor={false}>
-              <ProfileCircle size="42px" img={authorData.profileImage} />
-              <TitleModalAuthorInfoWrap>
-                <TitleAuthorName>{name}</TitleAuthorName>
-                <TitleAuthorName>{authorData.email}</TitleAuthorName>
-              </TitleModalAuthorInfoWrap>
-            </TitleAuthorWrap>
-            <LinkWrap>
-              {Object.entries(authorData.links[0]).map(([key, value], i) => {
-                return <Link to={value} key={i}>
-                  <LinkIcon src={`/assets/icon/${key}.svg`} size='16px' />
-                </Link>;
-              })}
-              <Link to={'/'} >
-                <LinkIcon src={'/assets/icon/profile.svg'} size='16px' />
-              </Link>
-            </LinkWrap>
-          </div>
-          <div>
-            <SkillImgWrap width='600px'>
-              {authorData.skills.map((item, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    <SkillImg
-                      src={`/assets/img/skills/${pascalToKebab(item)}.svg`}
-                    />
-                    <span>{item}</span>
-                  </React.Fragment>
-                );
-              })}
-            </SkillImgWrap>
-          </div>
-          <div>
-            <h3>소개</h3>
-            <Viewer
-              initialValue={mdText || ''}
-              plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
-            />
-          </div>
-        </TitleModalWrap>
+        {
+          modal &&
+          <TitleModalWrap onMouseLeave={closeModal}>
+            <div>
+              <TitleAuthorWrap $cursor={false}>
+                <ProfileCircle size="42px" img={authorData.profileImage} />
+                <TitleModalAuthorInfoWrap>
+                  <TitleAuthorName>{name}</TitleAuthorName>
+                  <TitleAuthorName>{authorData.email}</TitleAuthorName>
+                </TitleModalAuthorInfoWrap>
+              </TitleAuthorWrap>
+              <LinkWrap>
+                {Object.entries(authorData.links[0]).map(([key, value], i) => {
+                  return <Link to={value} key={i}>
+                    <LinkIcon src={`/assets/icon/${key}.svg`} size='16px' />
+                  </Link>;
+                })}
+                <Link to={'/'} >
+                  <LinkIcon src={'/assets/icon/profile.svg'} size='16px' />
+                </Link>
+              </LinkWrap>
+            </div>
+            <div>
+              <SkillImgWrap width='600px'>
+                {authorData.skills.map((item, i) => {
+                  return (
+                    <React.Fragment key={i}>
+                      <SkillImg
+                        src={`/assets/img/skills/${pascalToKebab(item)}.svg`}
+                      />
+                      <span>{item}</span>
+                    </React.Fragment>
+                  );
+                })}
+              </SkillImgWrap>
+            </div>
+            <div>
+              <h3>소개</h3>
+              <Viewer
+                initialValue={mdText || ''}
+                plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
+              />
+            </div>
+          </TitleModalWrap>
+        }
       </TitleSection >
     );
   }

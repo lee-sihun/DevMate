@@ -38,7 +38,7 @@ export const TitleAuthorInfoModal = styled.div`
   gap: 10px;
 `;
 
-export const TitleModalWrap = styled.div<{ $modal: boolean }>`
+export const TitleModalWrap = styled.div`
   position: absolute;
   top: calc(100% - 10px);
   left: 0;
@@ -50,8 +50,7 @@ export const TitleModalWrap = styled.div<{ $modal: boolean }>`
   overflow: hidden;
   box-sizing: border-box;
   padding: 20px;
-  display: ${({ $modal }) => ($modal ? 'flex' : 'none')};
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   gap: 10px;
   z-index: 9999;

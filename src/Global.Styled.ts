@@ -266,6 +266,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: Source Sans3, Noto Sans KR;
   }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--blue-light1);
+    }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--blue-regular1);
+    border-radius: 10px;
+  }
 `;
 
 export default GlobalStyle;

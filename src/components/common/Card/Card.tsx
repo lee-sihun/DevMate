@@ -19,10 +19,11 @@ import { CntMaxView, pascalToKebab } from 'utils/parser';
 
 
 /**
- * props로 data, link는 필수값입니다.
+ * props로 data 필수값입니다.
  * 
  */
-const Card = ({ data, link }: { data: GroupData, link: string }) => {
+const Card = ({ data }: { data: GroupData }) => {
+
   const overPosition = useMemo(() => {
     return data.position.length > 2
       ? data.position.length - 2
@@ -30,7 +31,7 @@ const Card = ({ data, link }: { data: GroupData, link: string }) => {
   }, []);
 
   return (
-    <CardLink to={link}>
+    <CardLink to={`/detail/${data._id}`}>
       <CardLayout>
         <CardType type={data.type}>{data.type}</CardType>
         <CardImg src={data.imageUrl} alt='CardImg' />
