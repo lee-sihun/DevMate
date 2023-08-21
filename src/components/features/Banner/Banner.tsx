@@ -10,9 +10,10 @@ SwiperCore.use([Navigation, Pagination, EffectFade, Autoplay]);
 
 interface BannerProps {
   children: ReactNode; // children의 타입을 ReactNode로 지정합니다.
+  onClick?: () => void;
 }
 
-const Banner = ({ children }: BannerProps) => {
+const Banner = ({ children, onClick }: BannerProps) => {
   const sliderOptions = {
     slidesPerView: 1,
     pagination: {
@@ -28,7 +29,7 @@ const Banner = ({ children }: BannerProps) => {
 
   return (
     <SliderWrap>
-      <Swiper {...sliderOptions}>{children}</Swiper>
+      <Swiper {...sliderOptions} onClick={onClick}>{children}</Swiper>
     </SliderWrap>
   );
 };

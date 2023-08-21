@@ -43,7 +43,12 @@ const Sihun = () => {
       />
       <Banner>
         {pictures.map((slide, index) => (
-          <Slide key={slide.id ? slide.id : index}>
+          <Slide
+            key={slide.id ? slide.id : index}
+            onClick={() => {
+              window.open(slide.link);
+            }}
+          >
             <img src={slide?.thumbnail} alt={slide?.title} />
           </Slide>
         ))}
