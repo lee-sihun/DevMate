@@ -18,5 +18,6 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "files": ["globals.d.ts"]
+  "files": ["globals.d.ts"],
+  "typeRoots": ["./src/assets"]
 }
