@@ -30,5 +30,8 @@ export const Btn = styled.button<BtnProps>`
   cursor: pointer;
   display: flex;
   align-items: center;
+  &:hover {
+    filter: brightness(0.8);
+  }
   ${colorStyles}
 `;
