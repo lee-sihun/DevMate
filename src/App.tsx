@@ -11,6 +11,7 @@ import Sihun from './pages/Sihun';
 import Header from './components/common/Header/Header';
 import Main from './components/layout/Main/Main';
 import Detail from 'pages/Group/Detail';
+import Footer from 'components/common/Footer/Footer';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/sihun" element={<Sihun />} />
         </Routes>
       </Main>
+      <Footer />
     </>
   );
 }
