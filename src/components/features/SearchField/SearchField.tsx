@@ -1,9 +1,10 @@
 import React from 'react';
 import SelectButton from './SelectButton/SelectButton';
+import ResetButton from './ResetButton/ResetButton';
 
 const SearchField = () => {
   const category = ['전체', '스터디', '프로젝트'];
-  const position = ['전체', '프론트엔드', '백엔드'];
+  const position = ['전체', '프론트엔드', '백엔드', '디자이너', '기획'];
   // Location 타입의 멤버를 배열로 추출
   // const location: Location[] = Object.values(Location).filter((value) => typeof value === 'string');
   const location = [
@@ -31,6 +32,7 @@ const SearchField = () => {
       <SelectButton label="유형" values={category} onChange={(v) => console.log(v)} />
       <SelectButton label="포지션" values={position} onChange={(v) => console.log(v)} />
       <SelectButton label="지역" values={location} onChange={(v) => console.log(v)} />
+      <ResetButton />
     </div>
   );
 };

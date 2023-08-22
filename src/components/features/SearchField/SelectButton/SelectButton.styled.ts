@@ -31,6 +31,10 @@ const SelectLabelButton = styled.button<{ $isSelected?: boolean}>`
 			color: white;
 			border: none;
 		`}
+	transition: all 0.4s ease 0s;
+	&:hover {
+		filter: brightness(0.8);
+	}
 `;
 
 const ArrowLogo = styled.svg`
@@ -42,9 +46,6 @@ const ArrowLogo = styled.svg`
   border: 0px;
   margin-left: 16px;
   margin-top: 5px;
-  path {
-	fill: red;
-  }
 `;
 
 const ArrowLogoWhite = styled.svg`
@@ -89,6 +90,7 @@ const DropdownItem = styled.div<DropProps>`
 			color: var(--success);
 		`}
 	&:hover, :focus, :focus:hover {
+		transition: all 0.4s ease 0s;
 		background-color: var(--success);
 		color: white;
 		outline: none;
