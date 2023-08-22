@@ -200,7 +200,7 @@ const ResetCss = css`
     display: block;
   }
   body {
-    line-height: 1;
+    line-height: 1.4;
   }
   ol,
   ul {
