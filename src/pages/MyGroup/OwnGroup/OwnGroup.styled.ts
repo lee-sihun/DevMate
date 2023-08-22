@@ -1,18 +1,24 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  padding: 0 10px;
+`;
+
+export const TypeSortTabs = styled.div`
+  display: flex;
+  gap: 30px;
+  margin: 30px 0;
+`;
+
+export const Inner = styled.div`
+  display: flex;
   border-radius: 10px;
   background: #f0f1f3;
-  display: flex;
   padding: 30px;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
   gap: 5%;
-`;
-
-export const Inner = styled.div`
-  display: flex;
 `;
 
 export const GroupInfo = styled.div`
@@ -138,6 +144,7 @@ export const JoinStatus = styled.div`
   h4 {
     display: flex;
     gap: 15px;
+    line-height: 1.5;
     margin-bottom: 15px;
   }
 `;
@@ -148,6 +155,7 @@ export const JoinRequest = styled.div`
   align-items: center;
   padding: 20px 25px;
   border-radius: 10px;
+  line-height: 1.4;
 
   & > div {
     flex: 1;
@@ -156,6 +164,7 @@ export const JoinRequest = styled.div`
     justify-content: center;
     overflow: hidden;
   }
+
   p {
     margin-top: 10px;
     font-size: 14px;

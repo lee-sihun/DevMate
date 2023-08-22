@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const TypeSortTabs = styled.div`
-  display: flex;
-  gap: 30px;
-  margin: 30px 0;
-`;
-
 export const TabMenu = styled.ul`
   display: flex;
   border-bottom: 1px solid #ddd;
