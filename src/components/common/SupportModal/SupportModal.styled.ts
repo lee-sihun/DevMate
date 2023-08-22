@@ -34,6 +34,7 @@ export const SupportModalWindow = styled.div<{ $height: string }>`
 `;
 export const SupportModalWindowTop = styled.div`
   background-color: var(--blue-regular1);
+
   width: 100%;
   height: 50px;
   overflow: hidden;
@@ -50,14 +51,6 @@ export const SupportModalWindowTitle = styled.div`
   width: 600px;
   text-align: center;
 `;
-
-// export const SupportModalWindowAuthor = styled.div`
-//   width: 100%;
-//   display: flex;
-//   justify-content: space-between;
-//   box-sizing: border-box;
-//   padding: 20px;
-// `;
 
 export const SupportModalWindowContents = styled.div`
   position: relative;
@@ -79,6 +72,8 @@ export const SupportModalWindowMsg = styled.textarea`
   outline: none;
   overflow-y: scroll;
   resize: none;
+  box-sizing: border-box;
+  padding: 20px;
   &::-webkit-scrollbar {
     height: 10px;
     cursor: default;

@@ -1,18 +1,14 @@
 import React from 'react';
 import {
-  DueDateWrap,
   GroupImg,
   InfoH3,
   InfoLeft,
   InfoRight,
   InfoSection,
   InfoSpan,
-  MaxMemberWrap,
-  PositionsWrap,
-  SkillsWrap,
-  TypeWrap,
+  InfoWrap,
 } from './Info.styled';
-import { GroupType, Position, Skill } from 'group-data';
+import { GroupType, Location, Position, Skill } from 'group-data';
 import Button from 'components/common/Button/Button';
 import { Boundary } from 'components/common/Boundary.styled';
 import { PositionLabel, PositionLabelWrap } from 'components/common/Label.styled';
@@ -23,6 +19,7 @@ import SupportModal from 'components/common/SupportModal/SupportModal';
 interface InfoProps {
   title: string,
   type: GroupType,
+  location: Location,
   currentMembers: number,
   maxMembers: number,
   dueDate: string,
@@ -31,29 +28,34 @@ interface InfoProps {
   img: string
 }
 
-const Info = ({ title, type, currentMembers, maxMembers, dueDate, position, skills, img }: InfoProps) => {
+const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, position, skills, img }: InfoProps) => {
 
   const [modal, setModal] = React.useState(false);
 
   return (
     <InfoSection>
       <InfoLeft>
-        <TypeWrap>
+        <InfoWrap>
           <InfoH3>유형</InfoH3>
           <Boundary height='20px' />
           <InfoSpan>{type === 'study' ? '스터디' : '프로젝트'}</InfoSpan>
-        </TypeWrap>
-        <MaxMemberWrap>
+        </InfoWrap>
+        <InfoWrap>
+          <InfoH3>지역</InfoH3>
+          <Boundary height='20px' />
+          <InfoSpan>{location}</InfoSpan>
+        </InfoWrap>
+        <InfoWrap>
           <InfoH3>마감 인원</InfoH3>
           <Boundary height='20px' />
           <InfoSpan>{`${currentMembers} / ${maxMembers}`}</InfoSpan>
-        </MaxMemberWrap>
-        <DueDateWrap>
+        </InfoWrap>
+        <InfoWrap>
           <InfoH3>예상 기한</InfoH3>
           <Boundary height='20px' />
           <InfoSpan>{dueDate}</InfoSpan>
-        </DueDateWrap>
-        <PositionsWrap>
+        </InfoWrap>
+        <InfoWrap>
           <InfoH3>포지션</InfoH3>
           <Boundary height='20px' $alignSelf='flex-start' />
           <PositionLabelWrap width='600px'>
@@ -61,8 +63,8 @@ const Info = ({ title, type, currentMembers, maxMembers, dueDate, position, skil
               return <PositionLabel key={i}>{item}</PositionLabel>;
             })}
           </PositionLabelWrap>
-        </PositionsWrap>
-        <SkillsWrap>
+        </InfoWrap>
+        <InfoWrap>
           <InfoH3>기술 스택</InfoH3>
           <Boundary height='20px' $alignSelf='flex-start' />
           <SkillImgWrap width='600px'>
@@ -77,7 +79,7 @@ const Info = ({ title, type, currentMembers, maxMembers, dueDate, position, skil
               );
             })}
           </SkillImgWrap>
-        </SkillsWrap>
+        </InfoWrap>
       </InfoLeft>
       <InfoRight>
         <GroupImg src={img} />
