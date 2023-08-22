@@ -2,6 +2,7 @@ import React from 'react';
 import { Wrapper, Inner, Logo, LogoImg, LogoText, NavContainer, NavButton, UserInfo, Notification } from './Header.styled';
 import Button from '../Button/Button';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 
 <<<<<<< HEAD
@@ -9,22 +10,26 @@ interface HeaderProps {
   isLoggedIn: boolean,
 }
 =======
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> 1f7d2dc (Chore : PageTitle 컴포넌트 분리)
 type HeaderProps = {
   isLoggedIn: boolean;
 };
 >>>>>>> b4b9588 (Chore : Header 수정)
 
 const Header = ({ isLoggedIn }: HeaderProps) => {
-  const navigate = useNavigate();
   return (
     <Wrapper>
       <Inner>
-        <Logo onClick={() => navigate('/')}>
-          <LogoImg />
-          <LogoText />
-        </Logo>
+        <Link to="/">
+          <Logo>
+            <LogoImg />
+            <LogoText />
+          </Logo>
+        </Link>
         <NavContainer>
-          <NavButton onClick={() => navigate('/')}>홈</NavButton>
+          <NavButton>홈</NavButton>
           <NavButton>그룹 찾기</NavButton>
           <NavButton>공지사항</NavButton>
         </NavContainer>
@@ -35,9 +40,11 @@ const Header = ({ isLoggedIn }: HeaderProps) => {
               <ProfileCircle size="42px" img="https://grayround.com/common/img/default_profile.png" />
             </>
           ) : (
-            <Button color="var(--success)" height="38px" onClick={() => navigate('/signin')}>
-              로그인
-            </Button>
+            <Link to="/signin">
+              <Button color="var(--success)" height="38px">
+                로그인
+              </Button>
+            </Link>
           )}
         </UserInfo>
       </Inner>

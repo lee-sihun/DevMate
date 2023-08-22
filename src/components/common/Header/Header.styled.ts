@@ -20,14 +20,13 @@ const Logo = styled.button`
   display: flex;
   background-color: white;
   border: 0px;
-  margin-left: 18px;
   margin-right: 40px;
   cursor: pointer;
 `;
 
 const LogoImg = styled.div`
-  width: 36.53px;
-  height: 24.95px;
+  width: 36px;
+  height: 24px;
   background-image: url(${logoImg});
   background-color: white;
   background-size: contain;
@@ -37,8 +36,8 @@ const LogoImg = styled.div`
 `;
 
 const LogoText = styled.div`
-  width: 131.55px;
-  height: 24.06px;
+  width: 130px;
+  height: 24px;
   background-image: url(${logoText});
   background-color: white;
   background-size: contain;
