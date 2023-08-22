@@ -2,7 +2,6 @@ import React from 'react';
 import { Wrapper, Inner, Logo, LogoImg, LogoText, NavContainer, NavButton, UserInfo, Notification } from './Header.styled';
 import Button from '../Button/Button';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 interface HeaderProps {
   isLoggedIn: boolean,
