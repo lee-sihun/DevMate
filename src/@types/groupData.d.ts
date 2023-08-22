@@ -82,6 +82,24 @@ declare module 'group-data' {
   type Position = '프론트엔드' | '백엔드' | '디자이너' | '기획자' | '마케팅' | 'PM' | '퍼블리셔' | '풀스택' | 'QA' | '전체';
   type GroupType = 'study' | 'project';
 
+  type Location =
+    | '서울'
+    | '부산'
+    | '대구'
+    | '인천'
+    | '광주'
+    | '대전'
+    | '울산'
+    | '강원'
+    | '경기'
+    | '경남'
+    | '경북'
+    | '전남'
+    | '전북'
+    | '충남'
+    | '충북'
+    | '제주';
+
   interface GroupData {
     _id: string;
     title: string;
@@ -94,7 +112,7 @@ declare module 'group-data' {
     type: GroupType;
     skills: Skill[];
     position: Position[];
-    location: string;
+    location: Location;
     maxMembers: number;
     currentMembers: {
       _id: string;

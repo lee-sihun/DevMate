@@ -27,6 +27,7 @@ const Detail = () => {
         <Info
           title={detailData.title}
           type={detailData.type}
+          location={detailData.location}
           currentMembers={detailData.currentMembers.length}
           maxMembers={detailData.maxMembers}
           dueDate={detailData.dueDate}
