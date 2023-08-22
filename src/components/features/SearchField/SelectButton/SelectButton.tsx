@@ -12,8 +12,8 @@ const SelectButton = ({ label, values, onChange }: SelectButtonProps) => {
   const [open, setOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleToggle = () => {
+    setOpen(!open);
   };
   const handleClose = () => {
     setOpen(false);
@@ -30,7 +30,7 @@ const SelectButton = ({ label, values, onChange }: SelectButtonProps) => {
 
   return (
     <SelectContainer>
-      <SelectLabelButton $isSelected={isSelected} onClick={handleOpen}>
+      <SelectLabelButton $isSelected={isSelected} onClick={handleToggle}>
         {currentValue !== '' ? currentValue : label}
         {!isSelected ? <ArrowLogo /> : <ArrowLogoWhite />}
       </SelectLabelButton>

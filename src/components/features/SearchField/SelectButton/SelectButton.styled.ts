@@ -82,7 +82,7 @@ const DropdownItem = styled.div<DropProps>`
 	font-size: 22px;
 	font-weight: bold;
 	color: #101112;
-	border-radius: 0.3rem;
+	border-radius: 3px;
 	cursor: pointer;
 	${({ $active }) => $active &&
 		css`
