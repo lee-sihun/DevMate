@@ -1,9 +1,12 @@
-import React from 'react';
+import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinRequestModal';
+import React, { useState } from 'react';
 import { Wrapper, InfoField, GroupInfo, JoinStatus, JoinRequest } from './OwnGroup.styled';
 
 const OwnedGroup = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <Wrapper>
+      {isModalVisible && <JoinRequestModal title="프로젝트 이름" onClose={() => setIsModalVisible(false)} />}
       <GroupInfo>
         <img src="https://velog.velcdn.com/images/raquim47/profile/69ecb9ca-367a-4e37-9e16-c2fbd0a399cf/image.jpeg" alt="" />
 
@@ -55,7 +58,7 @@ const OwnedGroup = () => {
                   지원서입니다.
                 </p>
               </div>
-              <button>지원 내용</button>
+              <button onClick={() => setIsModalVisible(true)}>지원 내용</button>
             </JoinRequest>
           ))}
       </JoinStatus>

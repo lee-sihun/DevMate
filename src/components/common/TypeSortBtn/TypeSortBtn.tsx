@@ -9,7 +9,7 @@ interface TypeSortBtnProps {
 }
 
 const TypeSortBtn = ({ type, isActive = false }: TypeSortBtnProps) => (
-  <Wrapper isActive={isActive}>
+  <Wrapper $isActive={isActive}>
     <div className="bg">
       <img src={type === 'STUDY' ? studyIcon : projectIcon} alt={`${type} 탭 보기`} />
     </div>
