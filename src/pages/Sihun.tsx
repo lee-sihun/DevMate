@@ -10,6 +10,7 @@ import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import SearchField from 'components/features/SearchField/SearchField';
 
 const Sihun = () => {
   const handleLoginClick = () => {
@@ -53,6 +54,7 @@ const Sihun = () => {
           </Slide>
         ))}
       </Banner>
+      <SearchField />
     </>
   );
 };
