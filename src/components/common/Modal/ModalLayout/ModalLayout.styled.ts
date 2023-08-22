@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
+  z-index: 10;
 `;
 
 export const Header = styled.header<{ mode: 'ALERT' | 'NOTICE' }>`

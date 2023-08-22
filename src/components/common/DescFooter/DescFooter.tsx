@@ -32,7 +32,7 @@ const DescFooter = ({ $url, groupId }: { $url: string, groupId: string }) => {
     </DescFooterWrap>
     {
       alert && <ToastAlert>
-        <strong>Copied Success:</strong> {$url}
+        <strong>신청이 완료되었습니다.</strong>
       </ToastAlert>
     }
   </>

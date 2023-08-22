@@ -4,10 +4,15 @@ import logoText from '../../../assets/img/logo-text.svg';
 import noticeOn from '../../../assets/img/notice-on.svg';
 // import noticeOff from '../../../assets/img/notice-off.svg';
 
-const HeaderContainer = styled.header`
+const Wrapper = styled.header`
+  width: 100%;
+`;
+
+const Inner = styled.div`
   display: flex;
   width: 1200px;
   height: 80px;
+  margin: 0 auto;
   align-items: center;
 `;
 
@@ -15,14 +20,13 @@ const Logo = styled.button`
   display: flex;
   background-color: white;
   border: 0px;
-  margin-left: 18px;
   margin-right: 40px;
   cursor: pointer;
 `;
 
 const LogoImg = styled.div`
-  width: 36.53px;
-  height: 24.95px;
+  width: 36px;
+  height: 24px;
   background-image: url(${logoImg});
   background-color: white;
   background-size: contain;
@@ -32,8 +36,8 @@ const LogoImg = styled.div`
 `;
 
 const LogoText = styled.div`
-  width: 131.55px;
-  height: 24.06px;
+  width: 130px;
+  height: 24px;
   background-image: url(${logoText});
   background-color: white;
   background-size: contain;
@@ -50,8 +54,8 @@ const NavButton = styled.button`
   padding: 0 0;
   color: rgba(16, 17, 18, 0.8);
   background-color: white;
-  font-weight: bold;
-  font-size: 21px;
+  font-weight: 500;
+  font-size: 18px;
   cursor: pointer;
   &:not(:last-child) {
     margin-right: 24px; /* 마지막 버튼을 제외한 모든 버튼에 간격 추가 */
@@ -76,13 +80,4 @@ const Notification = styled.div`
   cursor: pointer;
 `;
 
-export {
-  HeaderContainer,
-  Logo,
-  LogoImg,
-  LogoText,
-  NavContainer,
-  NavButton,
-  UserInfo,
-  Notification,
-};
+export { Wrapper, Inner, Logo, LogoImg, LogoText, NavContainer, NavButton, UserInfo, Notification };
