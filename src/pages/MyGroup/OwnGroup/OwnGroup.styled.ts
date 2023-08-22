@@ -23,151 +23,32 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const TypeSortTabs = styled.div`
-  display: flex;
-  gap: 30px;
-  margin: 30px 0;
-`;
-
 export const Inner = styled.div`
   display: flex;
 `;
 
-export const GroupInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  border-radius: 10px;
-  background-color: #fafafa;
-  padding: 20px 25px;
-  gap: 15px;
+export const LeftSection = styled.section`
+  width: 40%;
+  margin-right: 20px;
+`;
 
-  h3 {
-    margin-top: 12px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-  }
+export const SectionTitle = styled.h3`
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
 
-  img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .end-date {
-    font-size: 14px;
-    color: #888;
-  }
-
-  .btns {
-    display: flex;
-    gap: 10px;
-  }
-
-  .btns button {
-    width: 120px;
-    padding: 6px 10px;
-    font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--blue-regular1);
-    color: white;
-    cursor: pointer;
-  }
-
-  .btns button:hover {
-    background-color: var(--blue-regular2);
-  }
-
-  .btns button:last-child {
-    background-color: #e9e9e9;
-    color: #333;
-  }
-
-  .btns button:last-child:hover {
-    background-color: #c6c6c6;
+  span {
+    font-size: 24px;
   }
 `;
 
-export const InfoField = styled.div`
+export const JoinRequest = styled.li`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  h4 {
-    font-size: 13px;
-  }
-
-  p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    line-height: 1.5;
-    text-overflow: ellipsis;
-    font-size: 15px;
-    color: #555;
-  }
-
-  ul {
-    display: flex;
-    gap: 12px;
-  }
-
-  .position {
-    padding: 4px 12px;
-    background-color: var(--blue-regular1);
-    font-size: 14px;
-    color: #fff;
-    border-radius: 12px;
-  }
-
-  .tech img {
-    width: 24px;
-    height: 24px;
-    border-radius: 4px;
-  }
-`;
-
-export const JoinStatus = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 60%;
-  max-height: 470px;
-  padding-right: 20px;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #e1e1e1;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #888; /* 스크롤바의 색상 */
-    border-radius: 4px; /* 스크롤바 모서리 둥글게 */
-  }
-
-  h4 {
-    display: flex;
-    gap: 15px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-  }
-`;
-
-export const JoinRequest = styled.div`
-  display: flex;
-  background-color: #fafafa;
+  background-color: #fff;
   align-items: center;
-  padding: 20px 25px;
+  padding: 20px;
   border-radius: 10px;
-  line-height: 1.4;
 
   & > div {
     flex: 1;
@@ -178,7 +59,7 @@ export const JoinRequest = styled.div`
   }
 
   p {
-    margin-top: 10px;
+    margin-top: 6px;
     font-size: 14px;
     margin-right: 20px;
     color: #919191;
@@ -197,5 +78,168 @@ export const JoinRequest = styled.div`
     background-color: var(--blue-regular1);
     color: white;
     cursor: pointer;
+  }
+`;
+
+export const GroupList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 440px;
+  border-radius: 10px;
+  overflow-y: scroll;
+  padding-right: 14px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #fafafa;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #f0f1f3;
+    border-radius: 4px;
+  }
+`;
+
+export const GroupItem = styled.li<{ active: boolean }>`
+  background-color: ${({ active }) => (active ? '#f0f1f3' : '#fafafa')};
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  align-items: center;
+  border-radius: 10px;
+
+  small,
+  span {
+    font-size: 14px;
+    color: #919191;
+    font-weight: 500;
+  }
+`;
+
+export const RightSection = styled.section`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f0f1f3;
+  padding: 30px 20px;
+`;
+
+export const GroupInfo = styled.div`
+  display: flex;
+  padding-bottom: 20px;
+  border-radius: 10px;
+
+  .info {
+    flex: 1;
+    margin-right: 10px;
+
+    small {
+      color: var(--blue-regular1);
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    h4 {
+      font-size: 28px;
+      font-weight: 500;
+      color: #4b4b4b;
+    }
+  }
+
+  .position {
+    margin: 5px 0 15px;
+    display: flex;
+    gap: 12px;
+
+    span {
+      padding: 4px 10px;
+      background-color: #919191;
+      color: #fff;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+  }
+
+  .image {
+    width: 280px;
+    height: 180px;
+    border: 2px solid #f0f1f3;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tech {
+    display: flex;
+    gap: 10px;
+  }
+
+  .tech img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .btns button {
+    width: 120px;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ddd;
+    cursor: pointer;
+  }
+
+  .btns button.blue {
+    background-color: var(--blue-regular1);
+    color: #fff;
+    cursor: pointer;
+  }
+`;
+
+export const JoinStatus = styled.div`
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    height: 200px;
+    gap: 15px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #e1e1e1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+  }
+
+  h4 {
+    display: flex;
+    gap: 15px;
+    line-height: 1.5;
+    margin-bottom: 15px;
   }
 `;
