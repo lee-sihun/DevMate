@@ -2,21 +2,11 @@ import React from 'react';
 import { Wrapper, Inner, Logo, LogoImg, LogoText, NavContainer, NavButton, UserInfo, Notification } from './Header.styled';
 import Button from '../Button/Button';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
-<<<<<<< HEAD
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-<<<<<<< HEAD
 interface HeaderProps {
   isLoggedIn: boolean,
 }
-=======
-=======
-import { Link } from 'react-router-dom';
->>>>>>> 1f7d2dc (Chore : PageTitle 컴포넌트 분리)
-type HeaderProps = {
-  isLoggedIn: boolean;
-};
->>>>>>> b4b9588 (Chore : Header 수정)
 
 const Header = ({ isLoggedIn }: HeaderProps) => {
   return (
