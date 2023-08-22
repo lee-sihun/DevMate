@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
 `;
 
 export const PageTitle = styled.header`
-  border-bottom: 1px solid #ddd;
   padding-bottom: 15px;
 
   strong {
@@ -23,5 +22,4 @@ export const PageTitle = styled.header`
 `;
 
 export const Content = styled.div`
-  padding-top: 30px;
 `;

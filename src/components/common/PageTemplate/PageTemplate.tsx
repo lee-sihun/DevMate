@@ -1,6 +1,5 @@
 import React from 'react';
 import { Wrapper, PageTitle, Content } from './PageTemplate.styled';
-
 interface PageTemplateProps {
   subTitle: string;
   mainTitle: string;
