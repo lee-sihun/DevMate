@@ -55,42 +55,42 @@ const FontFaceKR = css`
   /* thin */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('assets/font/notoSansKR/NotoSansKR-Thin.otf') format('opentype');
+    src: url('./assets/font/notoSansKR/NotoSansKR-Thin.otf') format('opentype');
     font-weight: 100;
     font-style: normal;
   }
   /* light */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('assets/font/notoSansKR/NotoSansKR-Light.otf') format('opentype');
+    src: url('./assets/font/notoSansKR/NotoSansKR-Light.otf') format('opentype');
     font-weight: lighter;
     font-style: normal;
   }
   /* regular */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('assets/font/notoSansKR/NotoSansKR-Regular.otf') format('opentype');
+    src: url('./assets/font/notoSansKR/NotoSansKR-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
   }
   /* medium */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('assets/font/notoSansKR/NotoSansKR-Medium.otf') format('opentype');
+    src: url('./assets/font/notoSansKR/NotoSansKR-Medium.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
   }
   /* bold */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('assets/font/notoSansKR/NotoSansKR-Bold.otf') format('opentype');
+    src: url('./assets/font/notoSansKR/NotoSansKR-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
   }
   /* black */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('assets/font/notoSansKR/NotoSansKR-Black.otf') format('opentype');
+    src: url('./assets/font/notoSansKR/NotoSansKR-Black.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
   }
