@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const TabMenu = styled.ul`
   display: flex;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
 
   li {
     width: 150px;

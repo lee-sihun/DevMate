@@ -35,7 +35,7 @@ const ProfileEdit = () => {
   };
 
   return (
-    <PageTemplate subTitle="Edit Profile" mainTitle="내 정보 수정" >
+    <PageTemplate subTitle="Edit Profile" mainTitle="내 정보 수정">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ImageUploadField register={register('profileImage')} />
         <ReadOnlyField>

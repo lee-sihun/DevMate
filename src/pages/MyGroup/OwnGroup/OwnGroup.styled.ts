@@ -1,7 +1,26 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  padding: 0 10px;
+  padding: 30px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+  h3 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  h3 > span {
+    font-size: 16px;
+    background-color: #f0f1f3;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 10px;
+  }
 `;
 
 export const TypeSortTabs = styled.div`
@@ -12,13 +31,6 @@ export const TypeSortTabs = styled.div`
 
 export const Inner = styled.div`
   display: flex;
-  border-radius: 10px;
-  background: #f0f1f3;
-  padding: 30px;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-  gap: 5%;
 `;
 
 export const GroupInfo = styled.div`

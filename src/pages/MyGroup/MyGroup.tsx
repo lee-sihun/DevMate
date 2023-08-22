@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TabMenu } from './MyGroup.styled';
 import PageTemplate from 'components/common/PageTemplate/PageTemplate';
-import TypeSortBtn from '../../components/common/TypeSortBtn/TypeSortBtn';
 import OwnedGroup from './OwnGroup/OwnGroup';
 import ListGroup from './ListGroup/ListGroup';
 
