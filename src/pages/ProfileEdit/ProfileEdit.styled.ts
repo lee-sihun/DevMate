@@ -1,28 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
-export const PageHeader = styled.header`
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 15px;
-
-  strong {
-    color: var(--blue-regular1);
-    font-weight: 600;
-    font-size: 18px;
-  }
-
-  h2 {
-    font-size: 30px;
-    font-weight: 500;
-    margin-top: 10px;
-  }
-`;
-
 export const Form = styled.form`
   margin-top: 20px;
   padding: 10px 0 50px;

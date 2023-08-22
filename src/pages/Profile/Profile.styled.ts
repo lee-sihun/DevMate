@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
 export const PageHeader = styled.header`
   border-bottom: 1px solid #ddd;
   padding-bottom: 15px;

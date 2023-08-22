@@ -2,9 +2,10 @@ import React from 'react';
 import SelectField from 'components/features/SelectField/SelectField';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import InputField from '../../components/features/InputField/InputField';
-import { Wrapper, PageHeader, Form, Buttons, ReadOnlyField } from './ProfileEdit.styled';
-import { useNavigate } from 'react-router-dom';
+import { Form, Buttons, ReadOnlyField } from './ProfileEdit.styled';
+import { Link } from 'react-router-dom';
 import ImageUploadField from 'components/features/ImageUploadField/ImageUploadField';
+import PageTemplate from 'components/common/PageTemplate/PageTemplate';
 
 type OptionType = {
   label: string;
@@ -33,13 +34,8 @@ const ProfileEdit = () => {
     console.log(data);
   };
 
-  const navigate = useNavigate();
   return (
-    <Wrapper>
-      <PageHeader>
-        <strong>Edit Profile</strong>
-        <h2>내 정보 수정</h2>
-      </PageHeader>
+    <PageTemplate subTitle="Edit Profile" mainTitle="내 정보 수정" >
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ImageUploadField register={register('profileImage')} />
         <ReadOnlyField>
@@ -93,15 +89,17 @@ const ProfileEdit = () => {
           defaultValue="https://"
         />
         <Buttons>
-          <button type="button" className="cancle" onClick={() => navigate('/profile')}>
-            취소
-          </button>
+          <Link to="/profile">
+            <button type="button" className="cancle">
+              취소
+            </button>
+          </Link>
           <button type="submit" className="submit">
             저장
           </button>
         </Buttons>
       </Form>
-    </Wrapper>
+    </PageTemplate>
   );
 };
 

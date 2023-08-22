@@ -22,7 +22,7 @@ export const ToastAlert = styled.div<{ color?: string; backgroundColor?: string 
   box-shadow: 0 2px 2px var(--box-shadow-light);
   animation: newAlert 0.25s ease-in-out;
   & > strong {
-    font-weight: bold;
+    font-weight: 400;
   }
   @keyframes newAlert {
     from {

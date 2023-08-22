@@ -12,11 +12,12 @@ import Header from './components/common/Header/Header';
 import Main from './components/layout/Main/Main';
 import Detail from 'pages/Group/Detail';
 import Footer from 'components/common/Footer/Footer';
+import MyGroup from 'pages/MyGroup/MyGroup';
 
 function App() {
   return (
     <>
-      <Header isLoggedIn={false} />
+      <Header isLoggedIn={true} />
       <Main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,6 +26,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/mygroup" element={<MyGroup />} />
           <Route path="/test" element={<Test />} />
           <Route path="/yunha" element={<Yunha />} />
           <Route path="/sihun" element={<Sihun />} />
