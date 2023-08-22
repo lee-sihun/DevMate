@@ -25,6 +25,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/mygroup" element={<MyGroup />} />
           <Route path="/test" element={<Test />} />
           <Route path="/yunha" element={<Yunha />} />
           <Route path="/sihun" element={<Sihun />} />
