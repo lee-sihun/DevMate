@@ -1,6 +1,7 @@
 import React from 'react';
 import SelectButton from './SelectButton/SelectButton';
 import ResetButton from './ResetButton/ResetButton';
+import SearchBar from './SearchBar/SearchBar';
 
 const SearchField = () => {
   const category = ['전체', '스터디', '프로젝트'];
@@ -33,6 +34,7 @@ const SearchField = () => {
       <SelectButton label="포지션" values={position} onChange={(v) => console.log(v)} />
       <SelectButton label="지역" values={location} onChange={(v) => console.log(v)} />
       <ResetButton />
+      <SearchBar />
     </div>
   );
 };
