@@ -23,7 +23,22 @@ export const api = createApi({
     getDummyAuthorData: builder.query<{ data: AuthorData; error: 'string' | null }, string>({
       query: (authorId) => `authors/${authorId}.json`, // 실제 엔드포인트 경로에 맞게 설정
     }),
+    createGroup: builder.mutation({
+      query: (groupFormData) => ({
+        url: `${process.env.REACT_APP_API_SERVER_URL}/api/groups`,
+        method: 'POST',
+        // headers: {
+        //   'Content-Type': 'multipart/form-data', // form-data 형식 지정
+        // },
+        body: groupFormData,
+      }),
+    }),
   }),
 });
 
-export const { useGetDummyDataQuery, useGetDetailDummyDataQuery, useGetDummyAuthorDataQuery } = api; // API 호출 훅 생성
+export const { 
+  useGetDummyDataQuery, 
+  useGetDetailDummyDataQuery, 
+  useGetDummyAuthorDataQuery, 
+  useCreateGroupMutation, 
+} = api; // API 호출 훅 생성

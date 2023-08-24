@@ -83,6 +83,7 @@ declare module 'group-data' {
   type GroupType = 'study' | 'project';
 
   type Location =
+    | '전국'
     | '서울'
     | '부산'
     | '대구'
