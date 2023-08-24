@@ -6,6 +6,7 @@ export const PositionLabelWrap = styled.div<{ width?: string }>`
   ${({ width }) => (width ? `width: ${width};` : '')}
   flex-wrap: wrap;
 `;
+
 export const PositionLabel = styled.div`
   max-width: 90px;
   min-width: 40px;

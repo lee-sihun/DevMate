@@ -7,7 +7,6 @@ interface HeaderProps {
   isLoggedIn: boolean,
 }
 
-
 const Header = ({ isLoggedIn }: HeaderProps) => {
   return (
     <Wrapper>
