@@ -12,6 +12,7 @@ import Header from './components/common/Header/Header';
 import Main from './components/layout/Main/Main';
 import Detail from 'pages/Group/Detail';
 import Footer from 'components/common/Footer/Footer';
+import Create from 'pages/Create/Create';
 import MyGroup from 'pages/MyGroup/MyGroup';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
           <Route path="/mygroup" element={<MyGroup />} />

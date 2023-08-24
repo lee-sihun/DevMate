@@ -3,7 +3,6 @@ import { Wrapper, Inner, Logo, LogoImg, LogoText, NavContainer, NavButton, UserI
 import Button from '../Button/Button';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import { Link } from 'react-router-dom';
-
 interface HeaderProps {
   isLoggedIn: boolean,
 }

@@ -38,7 +38,7 @@ const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, posi
         <InfoWrap>
           <InfoH3>유형</InfoH3>
           <Boundary height='20px' />
-          <InfoSpan>{type === 'study' ? '스터디' : '프로젝트'}</InfoSpan>
+          <InfoSpan>{type === 'study' ? 'study' : 'project'}</InfoSpan>
         </InfoWrap>
         <InfoWrap>
           <InfoH3>지역</InfoH3>
