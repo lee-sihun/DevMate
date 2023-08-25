@@ -3,10 +3,11 @@ import { Form, Fieldset, FormBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import InputField from '../../components/features/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
+import { useSignUpMutation } from 'store/hooks/user.hooks';
 
 interface IFormInput {
   email: string;
-  nickName: string;
+  nickname: string;
   password: string;
   passwordConfirm: string;
 }
@@ -23,8 +24,17 @@ const SignUpForm = () => {
 
   const password = watch('password');
 
+  const [signup, { isLoading, isError, isSuccess }] = useSignUpMutation();
+
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
+    const { email, nickname, password } = data;
+    const newSignUpData = {
+      email,
+      nickname,
+      password,
+    };
+    signup(newSignUpData);
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -47,16 +57,16 @@ const SignUpForm = () => {
         />
         <InputField
           label="닉네임"
-          id="nickName"
-          registerOptions={register('nickName', {
+          id="nickname"
+          registerOptions={register('nickname', {
             required: '닉네임을 입력해주세요',
             pattern: {
               value: /^.{3,}$/,
               message: '세 글자 이상 입력해주세요.',
             },
           })}
-          error={errors.nickName}
-          onClearError={() => clearErrors('nickName')}
+          error={errors.nickname}
+          onClearError={() => clearErrors('nickname')}
         />
         <InputField
           label="비밀번호"

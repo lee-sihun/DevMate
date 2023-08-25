@@ -3,7 +3,7 @@ import Banner, { Slide } from 'components/features/Banner/Banner';
 import { pictures } from 'components/features/Banner/Pictures'; //배너 사진
 import SearchField from 'components/features/SearchField/SearchField';
 
-import { useGetHotGroupQuery, useGetGroupDataQuery } from 'store/hooks';
+import { useGetHotGroupQuery, useGetGroupDataQuery } from 'store/hooks/group.hooks';
 
 import { Title, Intro, GroupWrap } from './Home.styled';
 import Card from 'components/common/Card/Card';

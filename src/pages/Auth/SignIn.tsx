@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import googleLogo from 'assets/img/social/google-logo.svg';
 import githubLogo from 'assets/img/social/github-logo.svg';
 import { Form, Fieldset, FormBtn, SocialBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import InputField from '../../components/features/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
+import { useSignInMutation } from 'store/hooks/user.hooks';
 
 interface IFormInput {
   email: string;
@@ -20,9 +21,17 @@ const SignInForm = () => {
     clearErrors,
   } = useForm<IFormInput>({ mode: 'onBlur' });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const [singIn, { data, isLoading, isError, isSuccess }] = useSignInMutation();
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     console.log(data);
+    await singIn(data);
   };
+
+  useEffect(() => {
+    console.log(data, isLoading, isError, isSuccess);
+    // isSuccess && console.log('success');
+  }, [data, isLoading, isError, isSuccess]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>

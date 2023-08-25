@@ -16,7 +16,8 @@ src/
 |       |-- NavigationBar.styled.ts
 |
 |-- store/
-    |-- slices
+    |-- hooks/
+    |-- slices/
 |-- utils/
 |-- App.tsx
 |-- Global.Styled.tsx
