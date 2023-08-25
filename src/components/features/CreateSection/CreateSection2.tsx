@@ -5,17 +5,16 @@ import { CreateSectionProps } from 'props-type';
 import { CreateDescription, CreateTitleInput } from 'components/common/CreateForm/CreateForm';
 import Button from 'components/common/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector, useCreateGroupMutation } from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 import { ToastAlert } from 'components/common/ToastAlert.styled';
-// import { groupSubmitHandler } from 'store/slices/groupCreateSlice';
 import { validateDateRange } from 'utils/helper';
+import { useCreateGroupMutation } from 'store/hooks/group.hooks';
 
 const CreateSection2 = ({ number, title }: CreateSectionProps) => {
 
   const createGroupData = useAppSelector((state) => state.groupCreater);
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const [alert, setAlert] = React.useState(false);
 
@@ -80,12 +79,8 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
         <Button color='#fafafa' height='40px' onClick={onHistoryBack}>취소</Button>
         <Button color='var(--blue-regular1)' height='40px' onClick={
           () => {
-            // dispatch(groupSubmitHandler(onSubmit));
             onSubmit();
           }
-          // () => {
-          //   dispatch(groupSubmitHandler(onSubmit));
-          // }
         }>글 등록</Button>
       </CreateButtonWrap>
       {
