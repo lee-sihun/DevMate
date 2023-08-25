@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner, { Slide } from 'components/features/Banner/Banner';
 import { pictures } from 'components/features/Banner/Pictures'; //배너 사진
 import SearchField from 'components/features/SearchField/SearchField';
@@ -42,6 +42,10 @@ const Home = () => {
   const { data: hotGroup } = useGetHotGroupQuery();
   const { data: Group } = useGetGroupDataQuery({ page: page, perPage: 8, filter: convertQuery(filter) });
   const totalPage = Group?.data.totalPage;
+
+  useEffect(() => {
+    setPage(1);
+  }, [totalPage]);
 
   return (
     <>

@@ -114,7 +114,8 @@ const MultiSelect = ({ label, onChange }: SelectButtonProps) => {
     <SelectContainer>
       <SelectLabelButton $isSelected={isSelected} onClick={handleToggle}>
         {/* {currentValue[0] !== '' ? currentValue : label} */}
-        {label}
+        {currentValue.length !== 0 ? (currentValue.length >= 2 ? `${currentValue[0]} 외 ${currentValue.length - 1}` : currentValue[0]) : label}
+        {/* {label} */}
         {!isSelected ? <ArrowLogo /> : <ArrowLogoWhite />}
       </SelectLabelButton>
       <DropdownStyle $isVisible={open}>
