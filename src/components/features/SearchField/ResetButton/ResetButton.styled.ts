@@ -27,7 +27,7 @@ const ResetIcon = styled.svg`
   background-size: contain;
   background-repeat: no-repeat;
   border: 0px;
-  margin-right: 16px;
+  margin-right: 12px;
 `;
 
 export { Reset, ResetIcon };

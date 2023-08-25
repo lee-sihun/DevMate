@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../components/common/Button/Button';
-import Header from '../components/common/Header/Header';
 import ProfileCircle from '../components/common/ProfileCircle/ProfileCircle';
 import Banner, { Slide } from '../components/features/Banner/Banner';
 import { pictures } from 'components/features/Banner/Pictures';
@@ -54,7 +53,7 @@ const Sihun = () => {
           </Slide>
         ))}
       </Banner>
-      <SearchField />
+      {/* <SearchField /> */}
     </>
   );
 };

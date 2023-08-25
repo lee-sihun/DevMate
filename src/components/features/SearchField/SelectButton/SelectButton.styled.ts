@@ -37,7 +37,7 @@ const SelectLabelButton = styled.button<{ $isSelected?: boolean}>`
 	}
 `;
 
-const ArrowLogo = styled.svg`
+const ArrowLogo = styled.svg<{ union?: boolean}>`
   width: 20px;
   height: 17px;
   background-image: url(${arrow});
@@ -69,6 +69,7 @@ const DropdownStyle = styled.div<DropProps>`
 	border-radius: 20px;
 	background: white;
 	border: 1px solid #B3B3B3;
+	z-index: 999; /* 높은 값을 설정하여 가장 앞에 표시 */
 	${({ $isVisible }) => $isVisible !== true && 
 		css`
 			visibility: hidden;
@@ -90,7 +91,6 @@ const DropdownItem = styled.div<DropProps>`
 			color: var(--success);
 		`}
 	&:hover, :focus, :focus:hover {
-		transition: all 0.4s ease 0s;
 		background-color: var(--success);
 		color: white;
 		outline: none;

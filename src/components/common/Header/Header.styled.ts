@@ -4,6 +4,20 @@ import logoText from '../../../assets/img/logo-text.svg';
 import noticeOn from '../../../assets/img/notice-on.svg';
 // import noticeOff from '../../../assets/img/notice-off.svg';
 
+const MainContainer = styled.div`
+	width: 100%;
+	display: flex;
+	border-bottom: 1px solid rgb(240, 241, 243);
+	background-color: white;
+	justify-content: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  width: 1200px;
+  align-items: center;
+`;
+
 const HeaderContainer = styled.header`
   display: flex;
   width: 1200px;
@@ -77,6 +91,8 @@ const Notification = styled.div`
 `;
 
 export {
+  MainContainer,
+  Container,
   HeaderContainer,
   Logo,
   LogoImg,
