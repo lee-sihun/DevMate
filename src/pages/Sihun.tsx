@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../components/common/Button/Button';
-import Header from '../components/common/Header/Header';
 import ProfileCircle from '../components/common/ProfileCircle/ProfileCircle';
 import Banner, { Slide } from '../components/features/Banner/Banner';
 import { pictures } from 'components/features/Banner/Pictures';
@@ -10,6 +9,7 @@ import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import SearchField from 'components/features/SearchField/SearchField';
 
 const Sihun = () => {
   const handleLoginClick = () => {
@@ -53,6 +53,7 @@ const Sihun = () => {
           </Slide>
         ))}
       </Banner>
+      {/* <SearchField /> */}
     </>
   );
 };

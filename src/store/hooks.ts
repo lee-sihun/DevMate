@@ -5,13 +5,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { GroupData } from 'group-data';
 import { AuthorData } from 'author-data';
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: '/utils/' }), // API 엔드포인트 설정
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://34.64.179.24/api/' }), // API 엔드포인트 설정
 
   endpoints: (builder) => ({
     getDummyData: builder.query<{ data: GroupData[]; error: 'string' | null }, void>({
@@ -32,6 +31,11 @@ export const api = createApi({
         // },
         body: groupFormData,
       }),
+    getHotGroup: builder.query<{ data: any; error: 'string' | null }, void>({
+      query: () => 'groups/main/hotGroup', // 실제 엔드포인트 경로에 맞게 설정
+    }),
+    getGroupData: builder.query<{ data: any; error: 'string' | null }, { page: number; perPage: number, filter: string }>({
+      query: ({page, perPage, filter}) => `groups?page=${page}&perPage=${perPage}&${filter}`, // 실제 엔드포인트 경로에 맞게 설정
     }),
   }),
 });
@@ -42,3 +46,10 @@ export const {
   useGetDummyAuthorDataQuery, 
   useCreateGroupMutation, 
 } = api; // API 호출 훅 생성
+export const {
+  useGetDummyDataQuery,
+  useGetDetailDummyDataQuery,
+  useGetDummyAuthorDataQuery,
+  useGetHotGroupQuery, 
+  useGetGroupDataQuery,
+} = api; 
