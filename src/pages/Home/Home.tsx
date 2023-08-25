@@ -5,7 +5,7 @@ import SearchField from 'components/features/SearchField/SearchField';
 
 import { useGetHotGroupQuery, useGetGroupDataQuery } from 'store/hooks/group.hooks';
 
-import { Title, Intro, GroupWrap } from './Home.styled';
+import { Title, Intro, GroupWrap, Container } from './Home.styled';
 import Card from 'components/common/Card/Card';
 import { GroupData } from 'group-data';
 import Paging from 'components/common/Paging/Paging';
@@ -48,7 +48,7 @@ const Home = () => {
   }, [totalPage]);
 
   return (
-    <>
+    <Container>
       <Banner>
         {pictures.map((slide, index) => (
           <Slide
@@ -81,7 +81,7 @@ const Home = () => {
         ))}
       </GroupWrap>
       <Paging page={page} handlePageChange={handlePageChange} totalPage={totalPage} />
-    </>
+    </Container>
   );
 };
 
