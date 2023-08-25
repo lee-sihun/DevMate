@@ -4,9 +4,13 @@ import CreateHeaderWrap from 'components/features/CreateHeader/CreateHeaderWrap'
 
 const CreateHeader = () => {
   return (
-    <CreateHeaderLayout>
-      <CreateHeaderWrap/>
-    </CreateHeaderLayout>
+    <>
+      {/* <CreateHeaderEmpty/> */}
+      <CreateHeaderLayout>
+        <CreateHeaderWrap />
+      </CreateHeaderLayout>
+    </>
+
   );
 };
 

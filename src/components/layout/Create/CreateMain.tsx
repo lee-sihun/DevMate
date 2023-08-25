@@ -2,11 +2,8 @@ import CreateSection1 from 'components/features/CreateSection/CreateSection1';
 import CreateSection2 from 'components/features/CreateSection/CreateSection2';
 import React from 'react';
 import { CreateMainLayout } from './CreateMain.styled';
-import { useAppSelector } from 'store/hooks';
 
 const CreateMain = () => {
-
-  const createGroup = useAppSelector((state) => state.groupCreater);
 
   const sections = React.useMemo(() => {
     return [
@@ -22,9 +19,6 @@ const CreateMain = () => {
     return <CreateSection2 number={sections[1].number} title={sections[1].title} />;
   }, []);
 
-  // React.useEffect(() => {
-  //   console.log(createGroup);
-  // }, [createGroup]);
   return (
     <CreateMainLayout>
       {createSection1}

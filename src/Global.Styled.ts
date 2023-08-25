@@ -18,6 +18,7 @@ const FontFaceEN = css`
     src: url(${SourceSans3Light}) format('truetype');
     font-weight: lighter;
     font-style: normal;
+    font-display: optional;
   }
   /* regular */
   @font-face {
@@ -25,6 +26,7 @@ const FontFaceEN = css`
     src: url(${SourceSans3Regular}) format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: optional;
   }
   /* semi-bold */
   @font-face {
@@ -32,6 +34,7 @@ const FontFaceEN = css`
     src: url(${SourceSans3SemiBold}) format('truetype');
     font-weight: 600;
     font-style: normal;
+    font-display: optional;
   }
   /* bold */
   @font-face {
@@ -39,6 +42,7 @@ const FontFaceEN = css`
     src: url(${SourceSans3Bold}) format('truetype');
     font-weight: bold;
     font-style: normal;
+    font-display: optional;
   }
 `;
 const FontFaceKR = css`
@@ -48,6 +52,7 @@ const FontFaceKR = css`
     src: url(${NotoSansKR_thin}) format('opentype');
     font-weight: 100;
     font-style: normal;
+    font-display: optional;
   }
   /* light */
   @font-face {
@@ -55,6 +60,7 @@ const FontFaceKR = css`
     src: url(${NotoSansKR_light}) format('opentype');
     font-weight: lighter;
     font-style: normal;
+    font-display: optional;
   }
   /* regular */
   @font-face {
@@ -62,6 +68,7 @@ const FontFaceKR = css`
     src: url(${NotoSansKR_regular}) format('opentype');
     font-weight: normal;
     font-style: normal;
+    font-display: optional;
   }
   /* medium */
   @font-face {
@@ -69,6 +76,7 @@ const FontFaceKR = css`
     src: url(${NotoSansKR_medium}) format('opentype');
     font-weight: 500;
     font-style: normal;
+    font-display: optional;
   }
   /* bold */
   @font-face {
@@ -76,6 +84,7 @@ const FontFaceKR = css`
     src: url(${NotoSansKR_bold}) format('opentype');
     font-weight: bold;
     font-style: normal;
+    font-display: optional;
   }
   /* black */
   @font-face {
@@ -83,6 +92,7 @@ const FontFaceKR = css`
     src: url(${NotoSansKR_black}) format('opentype');
     font-weight: 900;
     font-style: normal;
+    font-display: optional;
   }
 `;
 
@@ -101,7 +111,7 @@ const ResetCss = css`
   h5,
   h6,
   p,
-  blockquote,
+  optionalquote,
   pre,
   a,
   abbr,
@@ -187,7 +197,7 @@ const ResetCss = css`
   menu,
   nav,
   section {
-    display: block;
+    display: optional;
   }
   body {
     line-height: 1.4;
@@ -196,12 +206,12 @@ const ResetCss = css`
   ul {
     list-style: none;
   }
-  blockquote,
+  optionalquote,
   q {
     quotes: none;
   }
-  blockquote:before,
-  blockquote:after,
+  optionalquote:before,
+  optionalquote:after,
   q:before,
   q:after {
     content: '';
@@ -255,8 +265,9 @@ const GlobalStyle = createGlobalStyle`
 
   body, button {
     font-family: 
+    /* Arial, Helvetica, sans-serif, */
     /* 'Source Sans3',  */
-    'Noto Sans KR';
+    Noto Sans KR;
   }
 
   ::-webkit-scrollbar-track {

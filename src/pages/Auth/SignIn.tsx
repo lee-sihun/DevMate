@@ -28,8 +28,12 @@ const SignInForm = () => {
     singIn(data);
   };
 
+  React.useEffect(() => {
+    console.log(data, isLoading, isError, isSuccess);
+  }, [data, isLoading, isError, isSuccess]);
+
   useEffect(() => {
-    isSuccess && navigate('/');
+    isSuccess && (location.href = '/');
   }, [isSuccess]);
 
   return (
