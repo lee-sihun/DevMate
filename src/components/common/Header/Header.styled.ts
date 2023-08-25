@@ -169,6 +169,10 @@ const LockSvg = styled.div`
   margin-bottom: 15px;
 `;
 
+const BtnWrap = styled.div`
+  margin-right: 16px;
+`;
+
 export {
   MainContainer,
   Container,
@@ -186,4 +190,5 @@ export {
   ShortCutLink,
   EditSvg,
   LockSvg,
+  BtnWrap,
 };

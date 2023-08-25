@@ -16,6 +16,7 @@ import {
   ShortCutLink,
   EditSvg,
   LockSvg,
+  BtnWrap,
 } from './Header.styled';
 import Button from '../Button/Button';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
@@ -39,14 +40,20 @@ const Header = ({ isLoggedIn }: HeaderProps) => {
             <LogoText />
           </Logo>
           <NavContainer>
-            <NavButton>홈</NavButton>
+            {/* <NavButton>홈</NavButton>
             <NavButton>그룹 찾기</NavButton>
-            <NavButton>공지사항</NavButton>
+            <NavButton>공지사항</NavButton> */}
           </NavContainer>
           <UserInfo>
             {isLoggedIn ? (
               <>
-                <Notification />
+                {/* <Notification /> */}
+                <BtnWrap>
+                  {' '}
+                  <Button color="var(--success)" height="38px">
+                    그룹 만들기
+                  </Button>
+                </BtnWrap>
                 <ProfileCircle size="42px" img="https://grayround.com/common/img/default_profile.png" onClick={handleToggle} />
                 <DropdownStyle $isVisible={open}>
                   <UserInfoStyle>
