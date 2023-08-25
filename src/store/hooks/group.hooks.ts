@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const groupApi = createApi({
   reducerPath: 'groupApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.REACT_APP_API_SERVER_URL}/api/`,
+    baseUrl: '/api/',
   }), // API 엔드포인트 설정
 
   endpoints: (builder) => ({
