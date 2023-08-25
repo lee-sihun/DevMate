@@ -4,15 +4,24 @@ import logoText from '../../../assets/img/logo-text.svg';
 import noticeOn from '../../../assets/img/notice-on.svg';
 // import noticeOff from '../../../assets/img/notice-off.svg';
 
-const Wrapper = styled.header`
-  width: 100%;
+const MainContainer = styled.div`
+	width: 100%;
+	display: flex;
+	border-bottom: 1px solid rgb(240, 241, 243);
+	background-color: white;
+	justify-content: center;
 `;
 
-const Inner = styled.div`
+const Container = styled.div`
+  display: flex;
+  width: 1200px;
+  align-items: center;
+`;
+
+const HeaderContainer = styled.header`
   display: flex;
   width: 1200px;
   height: 80px;
-  margin: 0 auto;
   align-items: center;
 `;
 
@@ -20,13 +29,14 @@ const Logo = styled.button`
   display: flex;
   background-color: white;
   border: 0px;
+  margin-left: 18px;
   margin-right: 40px;
   cursor: pointer;
 `;
 
 const LogoImg = styled.div`
-  width: 36px;
-  height: 24px;
+  width: 36.53px;
+  height: 24.95px;
   background-image: url(${logoImg});
   background-color: white;
   background-size: contain;
@@ -36,8 +46,8 @@ const LogoImg = styled.div`
 `;
 
 const LogoText = styled.div`
-  width: 130px;
-  height: 24px;
+  width: 131.55px;
+  height: 24.06px;
   background-image: url(${logoText});
   background-color: white;
   background-size: contain;
@@ -54,8 +64,8 @@ const NavButton = styled.button`
   padding: 0 0;
   color: rgba(16, 17, 18, 0.8);
   background-color: white;
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: bold;
+  font-size: 21px;
   cursor: pointer;
   &:not(:last-child) {
     margin-right: 24px; /* 마지막 버튼을 제외한 모든 버튼에 간격 추가 */
@@ -80,4 +90,15 @@ const Notification = styled.div`
   cursor: pointer;
 `;
 
-export { Wrapper, Inner, Logo, LogoImg, LogoText, NavContainer, NavButton, UserInfo, Notification };
+export {
+  MainContainer,
+  Container,
+  HeaderContainer,
+  Logo,
+  LogoImg,
+  LogoText,
+  NavContainer,
+  NavButton,
+  UserInfo,
+  Notification,
+};
