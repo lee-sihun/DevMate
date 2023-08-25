@@ -1,0 +1,21 @@
+{
+  "data": {
+    "username": "박상수",
+    "email": "park@example.com",
+    "profileImage": "/assets/icon/corn.png",
+    "skills": [
+      "JavaScript",
+      "Node.js",
+      "Nest"
+    ],
+    "location": "서울",
+    "overview": "Hello I'm Hong.",
+    "links": [
+      {
+        "gitHub": "https://github.com/hong",
+        "blog": "https://hong-blog.com"
+      }
+    ]
+  },
+  "error": null
+}

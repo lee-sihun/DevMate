@@ -5,13 +5,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { GroupData } from 'group-data';
 import { AuthorData } from 'author-data';
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: '/utils/' }), // API 엔드포인트 설정
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://34.64.179.24/api/' }), // API 엔드포인트 설정
 
   endpoints: (builder) => ({
     getDummyData: builder.query<{ data: GroupData[]; error: 'string' | null }, void>({
@@ -26,8 +25,4 @@ export const api = createApi({
   }),
 });
 
-export const { 
-  useGetDummyDataQuery, 
-  useGetDetailDummyDataQuery, 
-  useGetDummyAuthorDataQuery, 
-} = api; // API 호출 훅 생성
+export const { useGetDummyDataQuery, useGetDetailDummyDataQuery, useGetDummyAuthorDataQuery } = api; // API 호출 훅 생성

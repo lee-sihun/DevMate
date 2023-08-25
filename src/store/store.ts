@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './slices/counterSlice';
 import groupCreateReducer from './slices/groupCreateSlice';
-import { api } from './hooks';
 import { groupApi } from './hooks/group.hooks';
 import { userApi } from './hooks/user.hooks';
 
@@ -9,12 +8,11 @@ export const store = configureStore({
   reducer: {
     [groupApi.reducerPath]: groupApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    [api.reducerPath]: api.reducer,
     counter: counterReducer,
     groupCreater: groupCreateReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(groupApi.middleware, userApi.middleware, api.middleware),
+    getDefaultMiddleware({ serializableCheck: false }).concat(groupApi.middleware, userApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

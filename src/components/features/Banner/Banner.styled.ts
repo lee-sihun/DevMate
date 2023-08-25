@@ -6,7 +6,7 @@ export const SliderWrap = styled.div`
     cursor: pointer;
     border-radius: 30px;
     width: 1200px;
-    margin-top: 30px;
+    margin-top: -50px;
     margin-left: auto;
     margin-right: auto;
   }
