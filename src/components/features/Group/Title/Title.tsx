@@ -82,7 +82,7 @@ const Title = (
                 </TitleModalAuthorInfoWrap>
               </TitleAuthorWrap>
               <LinkWrap>
-                {Object.entries(authorData.links[0]).map(([key, value], i) => {
+                {Object.entries(authorData.links).map(([key, value], i) => {
                   return <Link to={value} key={i}>
                     <LinkIcon src={`/assets/icon/${key}.svg`} size='16px' />
                   </Link>;

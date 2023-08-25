@@ -5,7 +5,7 @@ export const CreateMainLayout = styled.section`
   height: auto;
   position: relative;
   box-sizing: border-box;
-  padding: 180px 0 100px 0;
+  padding: 230px 0 100px 0;
   display: flex;
   flex-direction: column;
   gap: 30px;

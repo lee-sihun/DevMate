@@ -28,10 +28,13 @@ const SignInForm = () => {
     singIn(data);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     console.log(data, isLoading, isError, isSuccess);
-    // isSuccess && console.log('success');
   }, [data, isLoading, isError, isSuccess]);
+
+  useEffect(() => {
+    isSuccess && (location.href = '/');
+  }, [isSuccess]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Test from './pages/Test';
 import Home from './pages/Home/Home';
 import SignIn from './pages/Auth/SignIn';
@@ -14,11 +14,27 @@ import Detail from 'pages/Group/Detail';
 import Footer from 'components/common/Footer/Footer';
 import Create from 'pages/Create/Create';
 import MyGroup from 'pages/MyGroup/MyGroup';
+import { useGetProfileQuery } from 'store/hooks/user.hooks';
 
 function App() {
+
+  const { data, error, isLoading, isSuccess } = useGetProfileQuery();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    // console.log(data, error, isLoading, isSuccess);
+  }, [data, error, isLoading, isSuccess]);
+
+  React.useEffect(() => {
+    if (error && pathname === '/create') {
+      navigate('/');
+    }
+  }, [error, pathname]);
+
   return (
     <>
-      <Header isLoggedIn={true} />
+      <Header isLoggedIn={isSuccess} userData={data?.data?.foundUser} />
       <Main>
         <Routes>
           <Route path="/" element={<Home />} />
