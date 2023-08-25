@@ -1,96 +1,86 @@
 import { createGlobalStyle, css } from 'styled-components';
+import SourceSans3Light from './assets/font/sourceSans3/SourceSans3-Light.ttf';
+import SourceSans3Regular from './assets/font/sourceSans3/SourceSans3-Light.ttf';
+import SourceSans3SemiBold from './assets/font/sourceSans3/SourceSans3-Light.ttf';
+import SourceSans3Bold from './assets/font/sourceSans3/SourceSans3-Light.ttf';
+
+import NotoSansKR_thin from './assets/font/notoSansKR/NotoSansKR-Thin.otf';
+import NotoSansKR_light from './assets/font/notoSansKR/NotoSansKR-Light.otf';
+import NotoSansKR_regular from './assets/font/notoSansKR/NotoSansKR-Regular.otf';
+import NotoSansKR_medium from './assets/font/notoSansKR/NotoSansKR-Medium.otf';
+import NotoSansKR_bold from './assets/font/notoSansKR/NotoSansKR-Bold.otf';
+import NotoSansKR_black from './assets/font/notoSansKR/NotoSansKR-Black.otf';
 
 const FontFaceEN = css`
   /* light */
   @font-face {
     font-family: 'Source Sans3';
-    src: url('assets/font/sourceSans3/SourceSans3-Light.ttf') format('truetype');
+    src: url(${SourceSans3Light}) format('truetype');
     font-weight: lighter;
     font-style: normal;
-  }
-  /* ligth-italic */
-  @font-face {
-    font-family: 'Source Sans3';
-    src: url('assets/font/sourceSans3/SourceSans3-LightItalic.ttf') format('truetype');
-    font-weight: lighter;
-    font-style: italic;
   }
   /* regular */
   @font-face {
     font-family: 'Source Sans3';
-    src: url('assets/font/sourceSans3/SourceSans3-Regular.ttf') format('truetype');
+    src: url(${SourceSans3Regular}) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
   /* semi-bold */
   @font-face {
     font-family: 'Source Sans3';
-    src: url('assets/font/sourceSans3/SourceSans3-SemiBold.ttf') format('truetype');
+    src: url(${SourceSans3SemiBold}) format('truetype');
     font-weight: 600;
     font-style: normal;
-  }
-  /* semi-bold-italic*/
-  @font-face {
-    font-family: 'Source Sans3';
-    src: url('assets/font/sourceSans3/SourceSans3-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
   }
   /* bold */
   @font-face {
     font-family: 'Source Sans3';
-    src: url('assets/font/sourceSans3/SourceSans3-Bold.ttf') format('truetype');
+    src: url(${SourceSans3Bold}) format('truetype');
     font-weight: bold;
     font-style: normal;
-  }
-  /* bold-italic */
-  @font-face {
-    font-family: 'Source Sans3';
-    src: url('assets/font/sourceSans3/SourceSans3-BoldItalic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
   }
 `;
 const FontFaceKR = css`
   /* thin */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('./assets/font/notoSansKR/NotoSansKR-Thin.otf') format('opentype');
+    src: url(${NotoSansKR_thin}) format('opentype');
     font-weight: 100;
     font-style: normal;
   }
   /* light */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('./assets/font/notoSansKR/NotoSansKR-Light.otf') format('opentype');
+    src: url(${NotoSansKR_light}) format('opentype');
     font-weight: lighter;
     font-style: normal;
   }
   /* regular */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('./assets/font/notoSansKR/NotoSansKR-Regular.otf') format('opentype');
+    src: url(${NotoSansKR_regular}) format('opentype');
     font-weight: normal;
     font-style: normal;
   }
   /* medium */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('./assets/font/notoSansKR/NotoSansKR-Medium.otf') format('opentype');
+    src: url(${NotoSansKR_medium}) format('opentype');
     font-weight: 500;
     font-style: normal;
   }
   /* bold */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('./assets/font/notoSansKR/NotoSansKR-Bold.otf') format('opentype');
+    src: url(${NotoSansKR_bold}) format('opentype');
     font-weight: bold;
     font-style: normal;
   }
   /* black */
   @font-face {
     font-family: 'Noto Sans KR';
-    src: url('./assets/font/notoSansKR/NotoSansKR-Black.otf') format('opentype');
+    src: url(${NotoSansKR_black}) format('opentype');
     font-weight: 900;
     font-style: normal;
   }
@@ -264,7 +254,9 @@ const GlobalStyle = createGlobalStyle`
   ${ResetCss}
 
   body, button {
-    font-family: 'Source Sans3', sans-serif;
+    font-family: 
+    /* 'Source Sans3',  */
+    'Noto Sans KR';
   }
 
   ::-webkit-scrollbar-track {

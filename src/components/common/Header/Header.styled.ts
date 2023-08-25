@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import logoImg from '../../../assets/img/logo-icon.svg';
 import logoText from '../../../assets/img/logo-text.svg';
 import noticeOn from '../../../assets/img/notice-on.svg';
@@ -7,18 +7,18 @@ import lock from '../../../assets/img/lock.svg';
 // import noticeOff from '../../../assets/img/notice-off.svg';
 
 interface DropProps {
-	$isVisible?: boolean;
+  $isVisible?: boolean;
 }
 
 const MainContainer = styled.div`
   position: fixed;
   top: 0;
   z-index: 10;
-	width: 100%;
-	display: flex;
-	border-bottom: 1px solid rgb(240, 241, 243);
-	background-color: white;
-	justify-content: center;
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid rgb(240, 241, 243);
+  background-color: white;
+  justify-content: center;
 `;
 
 const Container = styled.div`
@@ -86,6 +86,7 @@ const UserInfo = styled.div`
   align-items: center;
   margin-left: auto;
   margin-right: 18px;
+  position: relative;
 `;
 
 const Notification = styled.div`
@@ -100,43 +101,53 @@ const Notification = styled.div`
 `;
 
 const DropdownStyle = styled.div<DropProps>`
-	position: absolute;
+  position: absolute;
+  width: 310px;
   /* height: 228px; */
-	top: 70px;
-  left: 1017px;
-	/* padding: 15px 15px; */
-	display: flex;
-	flex-direction: column;
-	border-radius: 7px;
-	background: white;
-	border: 1px solid #B3B3B3;
-	z-index: 999; /* 높은 값을 설정하여 가장 앞에 표시 */
-	${({ $isVisible }) => $isVisible !== true && 
-		css`
-			visibility: hidden;
-		`}
+  top: 62px;
+  right: 0;
+  /* padding: 15px 15px; */
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  background: white;
+  border: 1px solid #b3b3b3;
+  z-index: 999; /* 높은 값을 설정하여 가장 앞에 표시 */
+  ${({ $isVisible }) =>
+    $isVisible !== true &&
+    css`
+      visibility: hidden;
+    `}
 `;
 
 const UserInfoStyle = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin: 15px 15px;
 
+  & > .infoWrap {
+    display: flex;
+    align-items: center;
+  }
   p {
+    width: 130px;
     cursor: pointer;
-    color: rgb(16,17,18);
+    color: rgb(16, 17, 18);
     font-size: 16px;
     font-weight: 600;
     margin-left: 15px;
-    margin-right: 62px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
   }
 `;
 
 const ShortCut = styled.div`
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #B3B3B3;
+  border-top: 1px solid #b3b3b3;
 `;
 
 const ShortCutLink = styled.div`
@@ -146,7 +157,7 @@ const ShortCutLink = styled.div`
   margin-top: 16px;
   cursor: pointer;
   p {
-    color: rgb(16,17,18);
+    color: rgb(16, 17, 18);
     font-size: 14px;
   }
 `;

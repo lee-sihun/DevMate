@@ -29,9 +29,8 @@ const SignInForm = () => {
   };
 
   useEffect(() => {
-    console.log(data, isLoading, isError, isSuccess);
-    // isSuccess && console.log('success');
-  }, [data, isLoading, isError, isSuccess]);
+    isSuccess && navigate('/');
+  }, [isSuccess]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>
