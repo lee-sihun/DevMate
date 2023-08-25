@@ -43,8 +43,6 @@ const Home = () => {
   const { data: Group } = useGetGroupDataQuery({ page: page, perPage: 8, filter: convertQuery(filter) });
   const totalPage = Group?.data.totalPage;
 
-
-
   return (
     <>
       <Banner>

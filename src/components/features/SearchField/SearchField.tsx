@@ -11,7 +11,7 @@ interface SearchProps {
 
 const SearchField = ({ handleFilterChange }: SearchProps) => {
   const category = ['전체', '스터디', '프로젝트'];
-  const position = ['전체', '프론트엔드', '백엔드', '디자이너', '기획'];
+  const position = ['전체', '프론트엔드', '백엔드', '풀스택', '디자이너', '기획자', '마케팅', 'PM', '퍼블리셔', 'QA'];
   // Location 타입의 멤버를 배열로 추출
   // const location: Location[] = Object.values(Location).filter((value) => typeof value === 'string');
   const location = [
