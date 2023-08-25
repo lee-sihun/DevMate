@@ -264,7 +264,7 @@ const GlobalStyle = createGlobalStyle`
   ${ResetCss}
 
   body, button {
-    font-family: Source Sans3, Noto Sans KR;
+    font-family: 'Source Sans3', sans-serif;
   }
 
   ::-webkit-scrollbar-track {
