@@ -4,7 +4,6 @@ import type { RootState, AppDispatch } from './store';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { GroupData } from 'group-data';
 import { AuthorData } from 'author-data';
-import { query } from 'express';
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
