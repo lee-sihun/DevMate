@@ -11,6 +11,9 @@ interface DropProps {
 }
 
 const MainContainer = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 10;
 	width: 100%;
 	display: flex;
 	border-bottom: 1px solid rgb(240, 241, 243);
@@ -121,6 +124,8 @@ const UserInfoStyle = styled.div`
   margin: 15px 15px;
 
   p {
+    cursor: pointer;
+    color: rgb(16,17,18);
     font-size: 16px;
     font-weight: 600;
     margin-left: 15px;
@@ -141,6 +146,7 @@ const ShortCutLink = styled.div`
   margin-top: 16px;
   cursor: pointer;
   p {
+    color: rgb(16,17,18);
     font-size: 14px;
   }
 `;
