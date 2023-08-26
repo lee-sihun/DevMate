@@ -1,0 +1,21 @@
+{
+  "data": {
+    "username": "강성관",
+    "email": "gang@example.com",
+    "profileImage": "/assets/icon/discord-green.png",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js"
+    ],
+    "location": "서울",
+    "overview": "Hello I'm Hong.",
+    "links": [
+      {
+        "gitHub": "https://github.com/hong",
+        "blog": "https://hong-blog.com"
+      }
+    ]
+  },
+  "error": null
+}

@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "_id": "testgroup4",
+      "title": "리액트 스터디",
+      "description": "안녕하세요 리액트 스터디입니다",
+      "author": {
+        "_id": "testauthor4",
+        "nickName": "이아현"
+      },
+      "imageUrl": "/assets/img/thumbnail/thumbnail-4.png",
+      "type": "study",
+      "skills": [
+        "React",
+        "TypeScript"
+      ],
+      "position": [
+        "프론트엔드",
+        "디자이너"
+      ],
+      "location": "서울",
+      "maxMembers": 6,
+      "currentMembers": [
+        {
+          "_id": "ObjectId",
+          "nickName": "홍승진"
+        }
+      ],
+      "createdAt": "23-01-01",
+      "dueDate": "1달",
+      "wishCount": 3,
+      "viewCount": 3
+    }
+  ],
+  "error": null
+}
