@@ -6,6 +6,7 @@ import { Form, Buttons, ReadOnlyField } from './ProfileEdit.styled';
 import { Link } from 'react-router-dom';
 import ImageUploadField from 'components/features/ImageUploadField/ImageUploadField';
 import PageTemplate from 'components/common/PageTemplate/PageTemplate';
+import { AuthorData } from 'author-data';
 
 type OptionType = {
   label: string;
@@ -21,7 +22,11 @@ interface IFormInput {
   profileImage?: FileList;
 }
 
-const ProfileEdit = () => {
+interface ProfileEditProps {
+  userData?: AuthorData;
+}
+
+const ProfileEdit = ({ userData }: ProfileEditProps) => {
   const {
     register,
     handleSubmit,
@@ -37,7 +42,7 @@ const ProfileEdit = () => {
   return (
     <PageTemplate subTitle="Edit Profile" mainTitle="내 정보 수정">
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <ImageUploadField register={register('profileImage')} />
+        <ImageUploadField register={register('profileImage')} img={userData?.profileImage} />
         <ReadOnlyField>
           <span>이메일</span>
           <p>abc@gmail.com</p>

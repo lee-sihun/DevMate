@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 50px auto;
 `;
 
 export const PageTitle = styled.header`

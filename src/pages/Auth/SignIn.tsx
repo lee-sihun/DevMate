@@ -33,7 +33,8 @@ const SignInForm = () => {
   }, [data, isLoading, isError, isSuccess]);
 
   useEffect(() => {
-    isSuccess && (location.href = '/');
+    // isSuccess && (location.reload());
+    isSuccess && (navigate('/'));
   }, [isSuccess]);
 
   return (

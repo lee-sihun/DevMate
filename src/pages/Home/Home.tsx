@@ -64,7 +64,7 @@ const Home = () => {
       <Title>🔥 지금 HOT한 그룹</Title>
       <Intro>사람들이 주목하고 있는 스터디/프로젝트에 참여해보세요</Intro>
       <GroupWrap>
-        {hotGroup?.data.getData.map((group: GroupData, i: number) => (
+        {hotGroup?.data.map((group: GroupData, i: number) => (
           <React.Fragment key={i}>
             <Card data={group} />
           </React.Fragment>

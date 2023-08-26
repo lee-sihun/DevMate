@@ -6,10 +6,11 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface ImageUploadFieldProps {
   register: UseFormRegisterReturn;
+  img?: string;
 }
 
-const ImageUploadField = ({ register }: ImageUploadFieldProps) => {
-  const [preview, setPreview] = useState<string | null>(null);
+const ImageUploadField = ({ register, img }: ImageUploadFieldProps) => {
+  const [preview, setPreview] = useState<string | null | undefined>(img);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -23,6 +24,10 @@ const ImageUploadField = ({ register }: ImageUploadFieldProps) => {
       reader.readAsDataURL(file);
     }
   };
+
+  React.useEffect(() => {
+    setPreview(img);
+  }, [img]);
 
   return (
     <ImageField>

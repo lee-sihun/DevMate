@@ -32,6 +32,7 @@ export const ProfileTop = styled.div`
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
+    box-shadow: 0 2px 2px var(--box-shadow);
   }
 
   h3 {
@@ -81,6 +82,8 @@ export const InfoItem = styled.div`
   dd {
     flex: 1;
     line-height: 1.4;
+    display: flex;
+    gap: 10px;
   }
 
   a {
@@ -92,11 +95,10 @@ export const TechTags = styled.span`
   background-color: #4d4d4d;
   color: #fff;
   border-radius: 4px;
-  padding: 5px 8px 3px;
-  font-size: 14px;
-  margin-right: 8px;
-
-  &:last-child {
-    margin-right: 0;
-  }
+  padding: 5px 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `;
