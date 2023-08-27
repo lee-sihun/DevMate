@@ -5,7 +5,7 @@ import OwnedGroup from './OwnGroup/OwnGroup';
 import ListGroup from './ListGroup/ListGroup';
 
 const MyGroup = () => {
-  const tabs = ['내 그룹', '지원 내역', '진행 내역', '관심 목록', '알림'];
+  const tabs = ['내 그룹', '지원 내역', '진행 내역', '관심 목록'];
   const [activeTab, setActiveTab] = useState('내 그룹');
 
   let content;
