@@ -104,7 +104,7 @@ export const GroupList = styled.ul`
   }
 `;
 
-export const GroupItem = styled.li<{ active: boolean }>`
+export const GroupItemStyle = styled.li<{ active: boolean }>`
   background-color: ${({ active }) => (active ? '#f0f1f3' : '#fafafa')};
   display: flex;
   justify-content: space-between;

@@ -1,9 +1,12 @@
 import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinRequestModal';
 import React, { useState } from 'react';
-import { Wrapper, Inner, LeftSection, SectionTitle, JoinRequest, GroupList, JoinStatus, RightSection, GroupInfo, GroupItem } from './OwnGroup.styled';
+import { Wrapper, Inner, LeftSection, SectionTitle, JoinRequest, GroupList, JoinStatus, RightSection, GroupInfo } from './OwnGroup.styled';
+import GroupItem from './GroupItem/GroupItem';
 
 const OwnedGroup = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
+
   return (
     <Wrapper>
       {/* {isModalVisible && <JoinRequestModal title="프로젝트 이름" onClose={() => setIsModalVisible(false)} />} */}
@@ -13,16 +16,10 @@ const OwnedGroup = () => {
             내 그룹 <span>10</span>
           </SectionTitle>
           <GroupList>
-            {Array(5)
+            {Array(10)
               .fill({})
               .map((_, idx) => (
-                <GroupItem key={idx} active={idx === 0}>
-                  <div>
-                    <small>스터디</small>
-                    <h4>리액트 짱 잘하는 스터디</h4>
-                  </div>
-                  <span>23-01-01</span>
-                </GroupItem>
+                <GroupItem key={idx} active={idx === activeIdx} setActive={() => setActiveIdx(idx)} />
               ))}
           </GroupList>
         </LeftSection>
