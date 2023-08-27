@@ -21,7 +21,11 @@ export const groupApi = createApi({
         body: groupFormData,
       }),
     }),
+
+    createdGroup: builder.query<{ data: any; error: 'string' | null }, void>({
+      query: () => 'groups/myGroup/createdGroup', // 실제 엔드포인트 경로에 맞게 설정
+    }),
   }),
 });
 
-export const { useGetHotGroupQuery, useGetGroupDataQuery, useCreateGroupMutation } = groupApi; // API 호출 훅 생성
+export const { useGetHotGroupQuery, useGetGroupDataQuery, useCreateGroupMutation, useCreatedGroupQuery } = groupApi; // API 호출 훅 생성

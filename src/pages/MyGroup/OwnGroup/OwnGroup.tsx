@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { Wrapper, Inner, LeftSection, SectionTitle, JoinRequest, GroupList, JoinStatus, RightSection, GroupInfo } from './OwnGroup.styled';
 import GroupItem from './GroupItem/GroupItem';
+import { useCreatedGroupQuery } from 'store/hooks/group.hooks';
 
 const OwnedGroup = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
+
+  const { data } = useCreatedGroupQuery();
+  React.useEffect(() => {
+    console.log(data?.data);
+  }, [data]);
 
   return (
     <Wrapper>
@@ -18,7 +24,7 @@ const OwnedGroup = () => {
             {Array(10)
               .fill({})
               .map((_, idx) => (
-                <GroupItem key={idx} active={idx === activeIdx} setActive={() => setActiveIdx(idx)} />
+                <GroupItem key={idx} index={idx} active={idx === activeIdx} setActive={() => setActiveIdx(idx)} />
               ))}
           </GroupList>
         </LeftSection>
