@@ -4,12 +4,12 @@ import { GroupItemStyle } from '../OwnGroup.styled';
 interface GroupItemProps {
   active: boolean;
   setActive: () => void;
-  key: number;
+  index: number;
 }
 
-const GroupItem = ({ active, setActive, key }: GroupItemProps) => {
+const GroupItem = ({ active, setActive, index }: GroupItemProps) => {
   return (
-    <GroupItemStyle key={key} active={active} onClick={setActive}>
+    <GroupItemStyle key={index} active={active} onClick={setActive}>
       <div>
         <small>스터디</small>
         <h4>리액트 짱 잘하는 스터디</h4>
