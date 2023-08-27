@@ -30,7 +30,7 @@ export const Btn = styled.button<BtnProps>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: all 0.4s ease 0s;
+  /* transition: all 0.4s ease 0s; */
   &:hover {
     filter: brightness(0.8);
   }

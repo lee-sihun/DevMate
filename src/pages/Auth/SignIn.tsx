@@ -24,14 +24,17 @@ const SignInForm = () => {
   const [singIn, { data, isLoading, isError, isSuccess }] = useSignInMutation();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    console.log(data);
-    await singIn(data);
+    // console.log(data);
+    singIn(data);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     console.log(data, isLoading, isError, isSuccess);
-    // isSuccess && console.log('success');
   }, [data, isLoading, isError, isSuccess]);
+
+  useEffect(() => {
+    isSuccess && (location.href = '/');
+  }, [isSuccess]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -42,6 +45,7 @@ const SignInForm = () => {
           label="이메일"
           id="email"
           type="email"
+          defaultValue='yun@yun.com'
           registerOptions={register('email', {
             required: '이메일을 입력해주세요',
             pattern: {
@@ -56,6 +60,7 @@ const SignInForm = () => {
           label="비밀번호"
           id="password"
           type="password"
+          defaultValue='yun'
           registerOptions={register('password', {
             required: '비밀번호를 입력해주세요',
           })}

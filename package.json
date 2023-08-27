@@ -2,6 +2,7 @@
   "name": "devmate-front",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://34.64.179.24:80",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
@@ -16,6 +17,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/swiper": "^6.0.0",
     "axios": "^1.4.0",
+    "http-proxy-middleware": "^2.0.6",
     "multiselect-react-dropdown": "^2.0.25",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",

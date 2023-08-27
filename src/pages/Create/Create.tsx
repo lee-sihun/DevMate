@@ -7,7 +7,6 @@ const Create = () => {
 
   const createHeader = React.useMemo(() => <CreateHeader />, []);
   const createMain = React.useMemo(() => <CreateMain />, []);
-  
 
   return (
     <React.Fragment>
