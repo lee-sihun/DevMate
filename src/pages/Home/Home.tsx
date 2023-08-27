@@ -69,6 +69,11 @@ const Home = () => {
             <Card data={group} />
           </React.Fragment>
         ))}
+        {/* {hotGroup?.data.getData.map((group: GroupData, i: number) => (
+          <React.Fragment key={i}>
+            <Card data={group} />
+          </React.Fragment>
+        ))} */}
       </GroupWrap>
       <Title>🔍 그룹 찾기</Title>
       <Intro>마음에 드는 스터디/프로젝트를 찾아보세요</Intro>

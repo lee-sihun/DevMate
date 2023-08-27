@@ -26,6 +26,7 @@ export const ProfileContent = styled.section`
 
 export const ProfileTop = styled.div`
   text-align: center;
+  position: relative;
 
   img {
     width: 120px;
@@ -62,6 +63,44 @@ export const ProfileTop = styled.div`
   button.blue:hover {
     background-color: var(--blue-regular2);
   }
+
+  .edit_btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid var(--default-border);
+  }
+  .edit_btn > label {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .edit_btn > label > img {
+    width: 20px;
+    height: 20px;
+    box-shadow: none;
+    object-fit: contain;
+    border-radius: 0;
+    cursor: pointer;
+  }
+  .edit_btn > input {
+    display: none;
+  }
+`;
+
+export const ProfileInfoWrap = styled.dl`
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export const ProfileInfo = styled.dl`
