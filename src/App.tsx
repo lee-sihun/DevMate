@@ -27,10 +27,17 @@ function App() {
   }, [data, error, isLoading, isSuccess]);
 
   React.useEffect(() => {
-    if (error && pathname === '/create') {
+    if (error && (
+      pathname === '/create' 
+      || pathname === '/mygroup' 
+      || pathname === '/profile' 
+      || pathname === '/profile/edit')) {
       navigate('/');
     }
-  }, [error, pathname]);
+    if (isSuccess && (pathname === '/signin' || pathname === '/signup')) {
+      navigate('/');
+    }
+  }, [error, isSuccess, pathname]);
 
   return (
     <>
@@ -42,8 +49,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/profile" element={<Profile userData={data?.data?.foundUser}/>} />
+          <Route path="/profile/edit" element={<ProfileEdit userData={data?.data?.foundUser}/>} />
           <Route path="/mygroup" element={<MyGroup />} />
           <Route path="/test" element={<Test />} />
           <Route path="/yunha" element={<Yunha />} />

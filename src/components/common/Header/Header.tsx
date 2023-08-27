@@ -22,6 +22,7 @@ import Button from '../Button/Button';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import { useNavigate } from 'react-router-dom';
 import { AuthorData } from 'author-data';
+import { useLogOutMutation } from 'store/hooks/user.hooks';
 interface HeaderProps {
   isLoggedIn: boolean;
   userData?: AuthorData;
@@ -31,12 +32,16 @@ const Header = ({ isLoggedIn, userData }: HeaderProps) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
+  const [logOutHandler, { isLoading, isError, isSuccess }] = useLogOutMutation();
+
   const handleToggle = () => {
     setOpen(!open);
   };
 
   const logout = () => {
     console.log('logout');
+    logOutHandler('');
+    // location.reload();
   };
 
   const navigateHandler = React.useCallback((url: string) => {

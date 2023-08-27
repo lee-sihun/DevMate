@@ -8,6 +8,8 @@ export const ImageField = styled.div`
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    box-shadow: 0 2px 2px var(--box-shadow);
+    object-fit: cover;
   }
 
   label {

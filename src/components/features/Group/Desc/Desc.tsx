@@ -1,6 +1,6 @@
 import React from 'react';
 import { DescSection } from './Desc.styled';
-import { mdText } from 'utils/const';
+import { MD_TEXT } from 'utils/const';
 import { Viewer } from '@toast-ui/react-editor';
 import 'prismjs/themes/prism.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -25,7 +25,7 @@ const Desc = ({ contents, groupId }: DescProps) => {
   return (
     <DescSection>
       <Viewer
-        initialValue={contents || mdText}
+        initialValue={contents || MD_TEXT}
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
       />
       <DescFooter $url={fullURL} groupId={groupId} />

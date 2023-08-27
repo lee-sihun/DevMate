@@ -122,4 +122,9 @@ declare module 'author-data' {
 
     notifications: (typeof Schema.Types.ObjectId)[];
   }
+
+  type OptionType = {
+    label: string;
+    value: string;
+  };
 }
