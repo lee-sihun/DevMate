@@ -18,7 +18,7 @@ import { useGetDummyAuthorDataQuery } from 'store/hooks';
 import { LinkIcon, LinkWrap } from 'components/common/LinkIcon.styled';
 import { Link } from 'react-router-dom';
 import { SkillImg, SkillImgWrap } from 'components/common/Card/Card.styled';
-import { mdText } from 'utils/const';
+import { MD_TEXT } from 'utils/const';
 import { Viewer } from '@toast-ui/react-editor';
 import 'prismjs/themes/prism.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -109,7 +109,7 @@ const Title = (
             <div>
               <h3>소개</h3>
               <Viewer
-                initialValue={mdText || ''}
+                initialValue={MD_TEXT || ''}
                 plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
               />
             </div>

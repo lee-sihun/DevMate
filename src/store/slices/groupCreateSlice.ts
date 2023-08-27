@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 import { GroupType, Location, Position, Skill } from 'group-data';
-import { mdText } from 'utils/const';
+import { MD_TEXT } from 'utils/const';
 import { MultiValue } from 'react-select';
 
 // Define a type for the slice state
@@ -28,7 +28,7 @@ const initialState: GroupCreateState = {
   position: ['PM', 'QA', '기획자'],
   location: '전국',
   imageFile: undefined,
-  description: mdText,
+  description: MD_TEXT,
 };
 
 export const groupCreateSlice = createSlice({

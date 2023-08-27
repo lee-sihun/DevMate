@@ -75,11 +75,11 @@ export const SkillImgWrap = styled.div<{ width?: string }>`
   ${({ width }) => (width ? `width: ${width};` : '')}
   /* max-height: 30px; */
   flex-wrap: wrap;
-  align-items:center;
+  align-items: center;
 `;
-export const SkillImg = styled.img`
-  width: 30px;
-  height: 30px;
+export const SkillImg = styled.img<{ $size?: string }>`
+  width: ${({ $size }) => $size ?? '30px'};
+  aspect-ratio: 1/1;
 `;
 export const CardFooter = styled.div`
   display: flex;

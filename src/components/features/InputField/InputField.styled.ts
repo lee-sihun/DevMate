@@ -31,7 +31,7 @@ export const Wrapper = styled.div<{ $hasError?: boolean }>`
   input {
     padding: 30px 10px 10px 15px;
     border-radius: 4px;
-    border: 1px solid ${props => (props.$hasError ? 'var(--error)' : '#ddd')};
+    border: 1px solid ${(props) => (props.$hasError ? 'var(--error)' : '#ddd')};
     font-size: 16px;
     outline: none;
   }
@@ -43,5 +43,31 @@ export const Wrapper = styled.div<{ $hasError?: boolean }>`
     font-size: 12px;
     color: var(--error);
     animation: ${shake} 0.2s;
+  }
+`;
+
+export const InputFieldStyleWrap = styled.div<{ $type: string }>`
+  display: flex;
+  flex-direction: column;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #888;
+    background-color: ${({ $type }) => ($type === 'email' ? '#e2e2e2' : 'white')};
+    border-radius: 10px;
+  }
+  label > div {
+    font-size: 12px;
+    color: var(--second-text);
+  }
+  label > input {
+    border: none;
+    outline: none;
   }
 `;

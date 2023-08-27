@@ -4,8 +4,16 @@ import { ProfileContent, ProfileTop, ProfileInfo, InfoItem, TechTags } from './P
 import { Link } from 'react-router-dom';
 import ResignModal from 'components/common/Modal/ResignModal/ResignModal';
 import PageTemplate from 'components/common/PageTemplate/PageTemplate';
+import { AuthorData } from 'author-data';
+import uuid from 'react-uuid';
+import { SkillImg } from 'components/common/Card/Card.styled';
+import { pascalToKebab } from 'utils/parser';
 
-const Profile = () => {
+interface ProfileProps {
+  userData?: AuthorData;
+}
+
+const Profile = ({ userData }: ProfileProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
@@ -13,8 +21,8 @@ const Profile = () => {
       <PageTemplate subTitle="My Profile" mainTitle="내 프로필">
         <ProfileContent>
           <ProfileTop>
-            <img src={defaultProfile} alt="사용자 이미지" />
-            <h3>사용자</h3>
+            <img src={userData?.profileImage ?? defaultProfile} alt="사용자 이미지" />
+            <h3>{userData?.nickname}</h3>
             <Link to="/profile/edit">
               <button className="blue">정보 수정</button>
             </Link>
@@ -23,35 +31,44 @@ const Profile = () => {
           <ProfileInfo>
             <InfoItem>
               <dt>Email</dt>
-              <dd>abc@gmail.com</dd>
+              <dd>{userData?.email}</dd>
             </InfoItem>
             <InfoItem>
               <dt>기술스택</dt>
               <dd>
-                <TechTags>#밥먹기</TechTags>
-                <TechTags>#코딩</TechTags>
-                <TechTags>#디버깅</TechTags>
+                {userData?.skills.map((skill) => {
+                  return <TechTags key={uuid()}>
+                    <SkillImg src={`/assets/img/skills/${pascalToKebab(skill)}.svg`} $size='16px' />{skill}
+                  </TechTags>;
+                })}
               </dd>
             </InfoItem>
             <InfoItem>
               <dt>소개</dt>
               <dd>
-                안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요
-                반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요
-                반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요 반갑습니다.안녕하세요
-                반갑습니다.안녕하세요 반갑습니다.
+                {userData?.overview}
               </dd>
             </InfoItem>
             <InfoItem>
               <dt>GitHub</dt>
               <dd>
-                <a href="https://github.com/">https://github.com/</a>
+                <a href={userData?.links?.gitHub ?? '#'} style={{
+                  color: userData?.links?.gitHub ? '' : 'var(--disabled-text)',
+                  textDecoration: userData?.links?.gitHub ? '' : 'none',
+                }}>
+                  {userData?.links?.gitHub ?? '등록된 깃허브 링크가 없습니다.'}
+                </a>
               </dd>
             </InfoItem>
             <InfoItem>
               <dt>블로그</dt>
               <dd>
-                <a href="https://blog.com/">https://blog.com/</a>
+                <a href={userData?.links?.blog ?? '#'} style={{
+                  color: userData?.links?.blog ? '' : 'var(--disabled-text)',
+                  textDecoration: userData?.links?.blog ? '' : 'none',
+                }}>
+                  {userData?.links?.blog ?? '등록된 블로그 링크가 없습니다.'}
+                </a>
               </dd>
             </InfoItem>
           </ProfileInfo>
