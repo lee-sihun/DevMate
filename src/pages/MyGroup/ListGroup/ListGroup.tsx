@@ -1,23 +1,31 @@
 import Card from 'components/common/Card/Card';
-import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinRequestModal';
 import TypeSortBtn from 'components/common/TypeSortBtn/TypeSortBtn';
 import { GroupData } from 'group-data';
-import React from 'react';
+import React, { useState } from 'react';
 import { useGetDummyDataQuery } from 'store/hooks';
 import { Wrapper, TypeSortTabs, Inner } from './ListGroup.styled';
 
-const ListGroup = () => {
+interface ListGroupProps {
+  groupData: string;
+}
+
+const ListGroup = ({ groupData }: ListGroupProps) => {
   const {
     data,
     // error,
     // isLoading,
   } = useGetDummyDataQuery();
+
+  const [type, setType] = useState('STUDY');
+
   return (
     <Wrapper>
       <TypeSortTabs>
-        <TypeSortBtn type="STUDY" isActive />
-        <TypeSortBtn type="PROJECT" />
+        <TypeSortBtn type="STUDY" isActive={type === 'STUDY'} onClick={() => setType('STUDY')} />
+        <TypeSortBtn type="PROJECT" isActive={type === 'PROJECT'} onClick={() => setType('PROJECT')} />
       </TypeSortTabs>
+      {groupData}
+      {type}
       <Inner>
         {data?.data.map((item: GroupData, i: number) => {
           return (

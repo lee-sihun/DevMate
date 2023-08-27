@@ -1,4 +1,3 @@
-import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinRequestModal';
 import React, { useState } from 'react';
 import { Wrapper, Inner, LeftSection, SectionTitle, JoinRequest, GroupList, JoinStatus, RightSection, GroupInfo } from './OwnGroup.styled';
 import GroupItem from './GroupItem/GroupItem';

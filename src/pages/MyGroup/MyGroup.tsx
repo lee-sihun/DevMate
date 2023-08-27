@@ -13,8 +13,11 @@ const MyGroup = () => {
     case '내 그룹':
       content = <OwnedGroup />;
       break;
-    case '지원 내역' || '진행 내역' || '관심 목록':
-      content = <ListGroup />;
+    case '지원 내역':
+      content = <ListGroup groupData='지원 내역'/>;
+      break;
+    case '진행 내역':
+      content = <ListGroup groupData='진행 내역'/>;
       break;
     // case '알림':
     //   content = <Notifications />;
