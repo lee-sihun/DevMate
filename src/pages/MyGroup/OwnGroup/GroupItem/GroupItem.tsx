@@ -7,9 +7,10 @@ interface GroupItemProps {
   setActive: () => void;
   index: number;
   data: any;
+  onClick: () => void;
 }
 
-const GroupItem = ({ active, setActive, index, data }: GroupItemProps) => {
+const GroupItem = ({ active, setActive, index, data, onClick }: GroupItemProps) => {
   const reqMembers = data;
   const originalText = reqMembers?.content;
   const truncatedText = originalText?.length > 30 ? originalText?.substring(0, 31) + '....' : originalText;
@@ -20,7 +21,7 @@ const GroupItem = ({ active, setActive, index, data }: GroupItemProps) => {
         <small>{reqMembers.nickname}님이 지원하셨습니다.</small>
         <h4>{truncatedText}</h4>
       </div>
-      <Button color="var(--success)" height="34px">
+      <Button color="var(--success)" height="34px" onClick={() => onClick()}>
         ㅤㅤ지원 내용ㅤㅤ
       </Button>
     </GroupItemStyle>

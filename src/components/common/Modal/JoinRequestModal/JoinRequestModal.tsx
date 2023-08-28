@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserInfo, Content } from './JoinRequestModal.styled';
+import { UserInfo, Content, GithubLogo, BloggerLogo, LogoWrap } from './JoinRequestModal.styled';
 import defaultProfile from 'assets/img/default-profile.svg';
 import ModalLayout from '../ModalLayout/ModalLayout';
 
@@ -18,6 +18,10 @@ const JoinRequestModal = ({ title, onClose }: JoinRequestModalProps) => {
             <h3>사용자</h3>
             <p>test@test.com</p>
           </div>
+          <LogoWrap>
+              <GithubLogo />
+              <BloggerLogo />
+            </LogoWrap>
         </UserInfo>
         <Content>
           <p>

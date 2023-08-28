@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Wrapper, Inner, LeftSection, GroupList, RightSection, BtnGroup, TextWrap } from './OwnGroup.styled';
 import GroupItem from './GroupItem/GroupItem';
 import { useCreatedGroupQuery, useGetReqMembersQuery } from 'store/hooks/group.hooks';
@@ -6,6 +6,7 @@ import Card from 'components/common/Card/Card';
 import { GroupData } from 'group-data';
 import Button from 'components/common/Button/Button';
 import CardSkeleton from 'components/common/Card/Card.skeleton';
+import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinRequestModal';
 
 const OwnedGroup = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -13,7 +14,16 @@ const OwnedGroup = () => {
 
   const { data: createdGroup } = useCreatedGroupQuery();
   const { data: reqMembers } = useGetReqMembersQuery({ groupId: createdGroup?.data.createdGroup._id });
-  React.useEffect(() => {
+  
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+  
+  useEffect(() => {
     // console.log(createdGroup?.data.createdGroup);
     // console.log(reqMembers?.data.getData);
   }, [createdGroup, reqMembers]);
@@ -21,6 +31,9 @@ const OwnedGroup = () => {
   return (
     <Wrapper>
       {/* {isModalVisible && <JoinRequestModal title="프로젝트 이름" onClose={() => setIsModalVisible(false)} />} */}
+      {isModalVisible && (
+        <JoinRequestModal title="프로젝트 이름" onClose={closeModal} />
+      )}
       <Inner>
         <LeftSection>
           {createdGroup?.data.createdGroup ? (
@@ -58,7 +71,14 @@ const OwnedGroup = () => {
               <GroupItem key={idx} index={idx} active={idx === activeIdx} setActive={() => setActiveIdx(idx)} id={id} />
             ))} */}
             {reqMembers?.data.getData.map((data: string, idx: number) => (
-              <GroupItem key={idx} index={idx} active={idx === activeIdx} setActive={() => setActiveIdx(idx)} data={data} />
+              <GroupItem 
+                key={idx} 
+                index={idx} 
+                active={idx === activeIdx} 
+                setActive={() => setActiveIdx(idx)} 
+                data={data} 
+                onClick={openModal}
+              />
             ))}
           </GroupList>
         </RightSection>
