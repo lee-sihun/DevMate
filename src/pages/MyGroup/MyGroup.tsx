@@ -5,19 +5,16 @@ import OwnedGroup from './OwnGroup/OwnGroup';
 import ListGroup from './ListGroup/ListGroup';
 
 const MyGroup = () => {
-  const tabs = ['내 그룹', '지원 내역', '진행 내역', '관심 목록'];
-  const [activeTab, setActiveTab] = useState('내 그룹');
+  const tabs = ['그룹', '모집 관리', '관심 목록'];
+  const [activeTab, setActiveTab] = useState('그룹');
 
   let content;
   switch (activeTab) {
-    case '내 그룹':
+    case '그룹':
+      content = <ListGroup groupData="지원 내역" />;
+      break;
+    case '모집 관리':
       content = <OwnedGroup />;
-      break;
-    case '지원 내역':
-      content = <ListGroup groupData='지원 내역'/>;
-      break;
-    case '진행 내역':
-      content = <ListGroup groupData='진행 내역'/>;
       break;
     // case '알림':
     //   content = <Notifications />;
