@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Fieldset, FormBtn } from './Auth.styled';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import InputField from '../../components/features/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
 import { useSignUpMutation } from 'store/hooks/user.hooks';
+import { ToastAlert } from 'components/common/ToastAlert.styled';
 
 interface IFormInput {
   email: string;
@@ -24,10 +25,15 @@ const SignUpForm = () => {
 
   const password = watch('password');
 
-  const [signup, { isLoading, isError, isSuccess }] = useSignUpMutation();
+  const [signup, { isError, isSuccess }] = useSignUpMutation();
+
+  const [alert, setAlert] = useState(false);
+
+  const [autoSignInData, setAutoSignInData] = useState<IFormInput | undefined>(undefined);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+    // console.log(data);
+    setAutoSignInData(data);
     const { email, nickname, password } = data;
     const newSignUpData = {
       email,
@@ -36,6 +42,13 @@ const SignUpForm = () => {
     };
     signup(newSignUpData);
   };
+
+  useEffect(() => {
+    isError && setAlert(true);
+    isSuccess && (() => {
+      navigate('/signup/success', { state: { data: autoSignInData, beforeUrl: 'signup' } });
+    })();
+  }, [isError, isSuccess]);
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>
       <h2>회원가입</h2>
@@ -98,6 +111,9 @@ const SignUpForm = () => {
           로그인
         </FormBtn>
       </Fieldset>
+
+      {alert && <ToastAlert color='var(--error)'>회원가입에 실패하였습니다.</ToastAlert>}
+
     </Form>
   );
 };

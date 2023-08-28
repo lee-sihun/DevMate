@@ -109,7 +109,7 @@ declare module 'author-data' {
     password: string;
     profileImage?: string;
     overview?: string;
-    skills: string[];
+    skills: Skill[];
     links: {
       gitHub?: string;
       blog?: string;

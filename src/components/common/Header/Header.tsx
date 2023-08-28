@@ -23,16 +23,19 @@ import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import { useNavigate } from 'react-router-dom';
 import { AuthorData } from 'author-data';
 import { useLogOutMutation } from 'store/hooks/user.hooks';
+import defaultProfile from 'assets/img/default-profile.svg';
+
 interface HeaderProps {
+  isFetching: boolean;
   isLoggedIn: boolean;
   userData?: AuthorData;
 }
 
-const Header = ({ isLoggedIn, userData }: HeaderProps) => {
+const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const [logOutHandler, { isLoading, isError, isSuccess }] = useLogOutMutation();
+  const [logOutHandler] = useLogOutMutation();
 
   const handleToggle = () => {
     setOpen(!open);
@@ -63,44 +66,49 @@ const Header = ({ isLoggedIn, userData }: HeaderProps) => {
             <NavButton>공지사항</NavButton> */}
           </NavContainer>
           <UserInfo>
-            {isLoggedIn ? (
-              <>
-                {/* <Notification /> */}
-                <BtnWrap>
-                  {' '}
-                  <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/create')}>
-                    그룹 만들기
-                  </Button>
-                </BtnWrap>
-                <ProfileCircle size="42px" img={userData?.profileImage} onClick={handleToggle} />
-                <DropdownStyle $isVisible={open}>
-                  <UserInfoStyle>
-                    <div className='infoWrap'>
-                      <ProfileCircle size="42px" img={userData?.profileImage} onClick={() => navigateHandler('/profile')} />
-                      <p onClick={() => navigateHandler('/profile')}>{userData?.nickname}</p>
-                    </div>
-
-                    <Button color="var(--error)" height="34px" onClick={logout}>
-                      로그아웃
+            {isLoggedIn ?
+              isFetching
+                ? <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
+                  로그인
+                </Button>
+                : 
+                (<>
+                  {/* <Notification /> */}
+                  <BtnWrap>
+                    {' '}
+                    <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/create')}>
+                      그룹 만들기
                     </Button>
-                  </UserInfoStyle>
-                  <ShortCut>
-                    <ShortCutLink onClick={() => navigateHandler('/profile/edit')}>
-                      <EditSvg />
-                      <p>회원정보 수정</p>
-                    </ShortCutLink>
-                    <ShortCutLink onClick={() => navigateHandler('/mygroup')}>
-                      <LockSvg />
-                      <p>내 그룹 관리</p>
-                    </ShortCutLink>
-                  </ShortCut>
-                </DropdownStyle>
-              </>
-            ) : (
-              <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
-                로그인
-              </Button>
-            )}
+                  </BtnWrap>
+                  <ProfileCircle size="42px" img={userData?.profileImage || defaultProfile} onClick={handleToggle} />
+                  <DropdownStyle $isVisible={open}>
+                    <UserInfoStyle>
+                      <div className='infoWrap'>
+                        <ProfileCircle size="42px" img={userData?.profileImage || defaultProfile} onClick={() => navigateHandler('/profile')} />
+                        <p onClick={() => navigateHandler('/profile')}>{userData?.nickname}</p>
+                      </div>
+
+                      <Button color="var(--error)" height="34px" onClick={logout}>
+                        로그아웃
+                      </Button>
+                    </UserInfoStyle>
+                    <ShortCut>
+                      <ShortCutLink onClick={() => navigateHandler('/profile/edit')}>
+                        <EditSvg />
+                        <p>회원정보 수정</p>
+                      </ShortCutLink>
+                      <ShortCutLink onClick={() => navigateHandler('/mygroup')}>
+                        <LockSvg />
+                        <p>내 그룹 관리</p>
+                      </ShortCutLink>
+                    </ShortCut>
+                  </DropdownStyle>
+                </>)
+              : (
+                <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
+                  로그인
+                </Button>
+              )}
           </UserInfo>
         </HeaderContainer>
       </Container>
