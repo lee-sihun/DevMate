@@ -47,7 +47,7 @@ export const ReadOnlyField = styled.div`
   background-color: #f7f7f7;
   margin-bottom: 20px;
   box-sizing: border-box;
-  
+
   span {
     margin-bottom: 6px;
     font-size: 12px;
@@ -55,4 +55,28 @@ export const ReadOnlyField = styled.div`
   }
 `;
 
-
+export const ProfileBtnWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 50px;
+  button{
+    width: 500px;
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    &.save{
+      background-color: var(--blue-regular1);
+      color: white;
+    }
+    &.cancel{
+      background-color: transparent;
+      color: var(--blue-regular1);
+    }
+    &:hover{
+      filter: brightness(110%);
+    }
+  }
+`;

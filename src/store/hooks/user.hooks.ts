@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import uuid from 'react-uuid';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -24,6 +25,14 @@ export const userApi = createApi({
         body: signInData,
       }),
     }),
+    profileUpdate: builder.mutation({
+      query: (profileData) => ({
+        url: 'profile',
+        method: 'PATCH',
+        body: profileData,
+      }),
+      invalidatesTags: [{ type: 'User', id: 'User' }],
+    }),
     logOut: builder.mutation({
       query: () => ({
         url: 'logout',
@@ -31,11 +40,11 @@ export const userApi = createApi({
       }),
       invalidatesTags: [{ type: 'User', id: 'User' }],
     }),
-    getProfile: builder.query<{ data: any; error: 'string' | null }, void>({
+    getProfile: builder.query<{ data: { foundUser: any }; error: 'string' | null }, void>({
       query: () => 'myProfile', // 실제 엔드포인트 경로에 맞게 설정
       providesTags: [{ type: 'User', id: 'User' }],
     }),
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation, useLogOutMutation, useGetProfileQuery } = userApi; // API 호출 훅 생성
+export const { useSignInMutation, useSignUpMutation, useLogOutMutation, useProfileUpdateMutation, useGetProfileQuery } = userApi; // API 호출 훅 생성
