@@ -46,10 +46,10 @@ const SearchField = ({ handleFilterChange }: SearchProps) => {
 
   return (
     <>
-      <SearchContainer>
+      {/* <SearchContainer>
         <SearchBar />
         <ResetButton />
-      </SearchContainer>
+      </SearchContainer> */}
       <FilterContainer>
         <Filter>
           <SelectButton label="유형" values={category} onChange={(value) => setSelectedType(value)} />

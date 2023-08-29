@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import github from '../../../../assets/img/github.svg';
+import blogger from '../../../../assets/img/blogger.svg';
 
 export const UserInfo = styled.div`
   display: flex;
@@ -10,8 +12,18 @@ export const UserInfo = styled.div`
     margin-right: 25px;
   }
 
+  .info {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info h3 {
+    font-size: 16px;
+    margin-bottom: 0px;
+  }
+
   .info p {
-    margin-top: 5px;
     color: #919191;
   }
 `;
@@ -49,6 +61,7 @@ export const Content = styled.div`
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin-bottom: -10px
   }
 
   .btns button {
@@ -63,15 +76,38 @@ export const Content = styled.div`
   }
 
   .btns button:hover {
-    background-color: var(--blue-regular2);
+    filter: brightness(0.8);
   }
 
   .btns button:last-child {
-    background-color: #e9e9e9;
-    color: #333;
+    background-color: var(--error);
+    color: white;
   }
+`;
 
-  .btns button:last-child:hover {
-    background-color: #c6c6c6;
-  }
+export const LogoWrap = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
+export const GithubLogo = styled.div`
+  width: 30px;
+  height: 30px;
+  background-image: url(${github});
+  background-color: rgb(250,250,250);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0px;
+  margin-right: 9px;
+`;
+
+export const BloggerLogo = styled.div`
+  width: 30px;
+  height: 30px;
+  background-image: url(${blogger});
+  background-color: rgb(250,250,250);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0px;
+  margin-right: 9px;
 `;

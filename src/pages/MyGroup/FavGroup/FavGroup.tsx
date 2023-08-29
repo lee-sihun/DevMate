@@ -4,37 +4,23 @@ import { GroupData } from 'group-data';
 import React, { useEffect, useState } from 'react';
 import { useGetDummyDataQuery } from 'store/hooks';
 import { Wrapper, TypeSortTabs, Inner, GroupImg } from './ListGroup.styled';
-import { useCreatedGroupQuery, useGetJoinReqGroupQuery, useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
+import { useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
 import NoData from 'components/common/NoData/NoData';
 
-const ListGroup = () => {
-  const {
-    data,
-    // error,
-    // isLoading,
-  } = useGetDummyDataQuery();
-
+const FavGroup = () => {
   const [type, setType] = useState('STUDY');
-  const { data: createdGroup } = useCreatedGroupQuery();
   const { data: onGroup } = useGetOngoingGroupQuery();
-  const { data: joinGroup } = useGetJoinReqGroupQuery({ page: 1, perPage: 8, type: type.toLocaleLowerCase()});
 
-  const typeText = type === 'STUDY' ? '스터디' : '프로젝트';
+  const typeText = type === 'STUDY' ? '스터디' : '프로젝트'; 
 
   useEffect(() => {
-    // console.log(createdGroup);
     console.log(onGroup);
-    // console.log(joinGroup);
-  }, [onGroup, joinGroup, createdGroup]);
+  }, [onGroup]);
 
   return (
     <Wrapper>
       <GroupImg>
-        <h2>참여중인 그룹</h2>
-      </GroupImg>
-      {onGroup === undefined ? <NoData msg="참여 중인 그룹이 없습니다" /> : <div>그룹</div>}
-      <GroupImg>
-        <h2>지원 현황</h2>
+        <h2>관심 목록</h2>
       </GroupImg>
       <TypeSortTabs>
         <TypeSortBtn type="STUDY" isActive={type === 'STUDY'} onClick={() => setType('STUDY')} />
@@ -42,7 +28,7 @@ const ListGroup = () => {
       </TypeSortTabs>
       {/* {groupData}
       {type} */}
-      {joinGroup === undefined ? <NoData msg={`참여 중인 ${typeText}가 없습니다`} /> : <div>그룹</div>}
+      {onGroup === undefined ? <NoData msg={`관심 있는 ${typeText}가 없습니다`} /> : <div>그룹</div>}
       <Inner>
         {/* {data?.data.map((item: GroupData, i: number) => {
           return (
@@ -56,4 +42,4 @@ const ListGroup = () => {
   );
 };
 
-export default ListGroup;
+export default FavGroup;

@@ -28,8 +28,23 @@ export const Inner = styled.div`
 `;
 
 export const LeftSection = styled.section`
-  width: 40%;
-  margin-right: 20px;
+  margin-right: 50px;
+  
+`;
+
+export const BtnGroup = styled.div`
+  width: 250px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-row-gap: 7px;
+  grid-column-gap: 7px;
+  margin-top: 10px;
+  margin-left: 10px;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const SectionTitle = styled.h3`
@@ -99,12 +114,12 @@ export const GroupList = styled.ul`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #f0f1f3;
+    background: #CCE2FF;
     border-radius: 4px;
   }
 `;
 
-export const GroupItem = styled.li<{ active: boolean }>`
+export const GroupItemStyle = styled.li<{ active: boolean }>`
   background-color: ${({ active }) => (active ? '#f0f1f3' : '#fafafa')};
   display: flex;
   justify-content: space-between;
@@ -126,8 +141,8 @@ export const RightSection = styled.section`
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
-  background-color: #f0f1f3;
-  padding: 30px 20px;
+  /* background-color: #f0f1f3; */
+  padding: 0 20px;
 `;
 
 export const GroupInfo = styled.div`
@@ -241,5 +256,23 @@ export const JoinStatus = styled.div`
     gap: 15px;
     line-height: 1.5;
     margin-bottom: 15px;
+  }
+`;
+
+export const TextWrap = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 26px;
+  h4 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+
+  a {
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: underline;
+    margin-left: auto;
   }
 `;

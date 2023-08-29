@@ -5,7 +5,7 @@ export const groupApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: '/api/',
   }), // API 엔드포인트 설정
-
+  tagTypes: ['Group'],
   endpoints: (builder) => ({
     getHotGroup: builder.query<{ data: any; error: 'string' | null }, void>({
       query: () => 'groups/main/hotGroup', // 실제 엔드포인트 경로에 맞게 설정
@@ -13,7 +13,6 @@ export const groupApi = createApi({
     getGroupData: builder.query<{ data: any; error: 'string' | null }, { page: number; perPage: number; filter: string }>({
       query: ({ page, perPage, filter }) => `groups?page=${page}&perPage=${perPage}&${filter}`, // 실제 엔드포인트 경로에 맞게 설정
     }),
-
     createGroup: builder.mutation({
       query: (groupFormData) => ({
         url: 'groups',
@@ -21,7 +20,58 @@ export const groupApi = createApi({
         body: groupFormData,
       }),
     }),
+    createdGroup: builder.query<{ data: any; error: 'string' | null }, void>({
+      query: () => 'groups/myGroup/createdGroup', // 실제 엔드포인트 경로에 맞게 설정
+      providesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    getReqMembers: builder.query<{ data: any; error: 'string' | null }, { groupId: string; }>({
+      query: ({ groupId }) => `groups/joinRequests/${groupId}?page=1&perPage=-1`, // 실제 엔드포인트 경로에 맞게 설정
+      providesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    getOngoingGroup: builder.query<{ data: any; error: 'string' | null }, void>({
+      query: () => 'groups/myGroup/ongoingGroup', // 실제 엔드포인트 경로에 맞게 설정
+      providesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    getJoinReqGroup: builder.query<{ data: any; error: 'string' | null }, {page: number; perPage: number; type: string}>({
+      query: ({ page, perPage, type }) => `groups/myGroup/joinRequestGroup/${type}?page=${page}&perPage=${perPage}`, // 실제 엔드포인트 경로에 맞게 설정
+      providesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+
+    patchReqMembers: builder.mutation({
+      query: (joinId) => ({
+        url: `groups/approveJoinRequest/${joinId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+
+    patchRejectReqMembers: builder.mutation({
+      query: (joinId) => ({
+        url: `groups/rejectJoinRequest/${joinId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+
+    patchDeleteAllReqMembers: builder.mutation({
+      query: (joinId) => ({
+        url: `groups/deleteAllJoinReqList/${joinId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
   }),
 });
 
-export const { useGetHotGroupQuery, useGetGroupDataQuery, useCreateGroupMutation } = groupApi; // API 호출 훅 생성
+export const { 
+  useGetHotGroupQuery,
+  useGetGroupDataQuery, 
+  useCreateGroupMutation, 
+  useCreatedGroupQuery, 
+  useGetReqMembersQuery,
+  usePatchReqMembersMutation,
+  usePatchRejectReqMembersMutation,
+  usePatchDeleteAllReqMembersMutation,
+  useGetOngoingGroupQuery,
+  useGetJoinReqGroupQuery,
+ } = groupApi; // API 호출 훅 생성

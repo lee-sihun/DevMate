@@ -45,7 +45,8 @@ const Home = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [totalPage]);
+    console.log(Group);
+  }, [totalPage, hotGroup]);
 
   return (
     <Container>
