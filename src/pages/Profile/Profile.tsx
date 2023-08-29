@@ -7,7 +7,7 @@ import PageTemplate from 'components/common/PageTemplate/PageTemplate';
 import { AuthorData } from 'author-data';
 import uuid from 'react-uuid';
 import { SkillImg } from 'components/common/Card/Card.styled';
-import { pascalToKebab } from 'utils/parser';
+import { pascalToKebab, uploadsUrlParser } from 'utils/parser';
 
 interface ProfileProps {
   userData?: AuthorData;
@@ -16,14 +16,14 @@ interface ProfileProps {
 const Profile = ({ userData }: ProfileProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <>
       <PageTemplate subTitle="My Profile" mainTitle="내 프로필">
         <ProfileContent>
           <ProfileTop>
-            <img src={userData?.profileImage || defaultProfile} alt="사용자 이미지" />
+            <img src={uploadsUrlParser(userData?.profileImage) || defaultProfile} alt="사용자 이미지" />
             <h3>{userData?.nickname}</h3>
             <Link to="/profile/edit">
               <button className="blue">정보 수정</button>

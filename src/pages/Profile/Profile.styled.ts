@@ -123,6 +123,7 @@ export const InfoItem = styled.div`
     line-height: 1.4;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
   }
 
   a {

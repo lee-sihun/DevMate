@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DescSection } from './Desc.styled';
 import { MD_TEXT } from 'utils/const';
 import { Viewer } from '@toast-ui/react-editor';
@@ -22,10 +22,14 @@ const Desc = ({ contents, groupId }: DescProps) => {
   // 전체 URL 생성
   const fullURL = `${window.location.origin}${location.pathname}${location.search}`;
 
+  useEffect(() => {
+    // console.log(contents, groupId);
+  }, [contents, groupId]);
+
   return (
     <DescSection>
       <Viewer
-        initialValue={contents || MD_TEXT}
+        initialValue={contents || ''}
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
       />
       <DescFooter $url={fullURL} groupId={groupId} />

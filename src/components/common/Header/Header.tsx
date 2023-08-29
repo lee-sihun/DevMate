@@ -24,6 +24,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthorData } from 'author-data';
 import { useLogOutMutation } from 'store/hooks/user.hooks';
 import defaultProfile from 'assets/img/default-profile.svg';
+import { urlParser } from 'utils/parser';
 
 interface HeaderProps {
   isFetching: boolean;
@@ -71,7 +72,7 @@ const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
                 ? <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
                   로그인
                 </Button>
-                : 
+                :
                 (<>
                   {/* <Notification /> */}
                   <BtnWrap>
@@ -80,11 +81,21 @@ const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
                       그룹 만들기
                     </Button>
                   </BtnWrap>
-                  <ProfileCircle size="42px" img={userData?.profileImage || defaultProfile} onClick={handleToggle} />
+                  {/* <ProfileCircle size="42px" img={userData?.profileImage
+                    ? `${process.env.REACT_APP_API_SERVER_URL}/${urlParser(userData?.profileImage)}`
+                    : defaultProfile} onClick={handleToggle} /> */}
+                  <img src={userData?.profileImage
+                    ? `/${userData?.profileImage}`
+                    : defaultProfile} alt="사용자 이미지" onClick={handleToggle} />
                   <DropdownStyle $isVisible={open}>
                     <UserInfoStyle>
                       <div className='infoWrap'>
-                        <ProfileCircle size="42px" img={userData?.profileImage || defaultProfile} onClick={() => navigateHandler('/profile')} />
+                        <img src={userData?.profileImage
+                          ? `/${userData?.profileImage}`
+                          : defaultProfile} alt="사용자 이미지" onClick={() => navigateHandler('/profile')} />
+                        {/* <ProfileCircle size="42px" img={userData?.profileImage
+                          ? `${process.env.REACT_APP_API_SERVER_URL}/${urlParser(userData?.profileImage)}`
+                          : defaultProfile} onClick={() => navigateHandler('/profile')} /> */}
                         <p onClick={() => navigateHandler('/profile')}>{userData?.nickname}</p>
                       </div>
 

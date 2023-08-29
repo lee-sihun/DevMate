@@ -130,9 +130,10 @@ import changeImg from 'assets/img/edit2.svg';
 import { InputField2 } from 'components/features/InputField/InputField';
 import { MultiValue } from 'react-select';
 import { ProfileBtnWrap } from './ProfileEdit.styled';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
 import { useProfileUpdateMutation } from 'store/hooks/user.hooks';
+import { uploadsUrlParser } from 'utils/parser';
 
 
 
@@ -148,6 +149,7 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
   useEffect(() => {
     setNewUserData({ ...userData });
   }, [userData]);
+  // console.log(newUserData);
 
   const handleFile = (e: React.ChangeEvent) => {
     const inputFile = e.target as HTMLInputElement;
@@ -157,6 +159,7 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
+        console.log(e.target?.result);
         setNewUserData((curr) => {
           const newCurr = { ...curr };
           return {
@@ -240,7 +243,11 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
     newUserData.overview && formData.append('overview', newUserData.overview);
     file && formData.append('imageFile', file);
     newUserData.links && formData.append('links', JSON.stringify(newUserData.links));
-
+    // console.log(newUserData.nickname);
+    // console.log(JSON.stringify(newUserData.skills));
+    // console.log(newUserData.overview);
+    // console.log(file);
+    // console.log(JSON.stringify(newUserData.links));
     profileUpdate(formData);
   };
   const cancelHandler = () => {
@@ -251,7 +258,10 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
     <PageTemplate subTitle="My Profile" mainTitle="내 프로필 수정">
       <ProfileContent>
         <ProfileTop>
-          <img src={newUserData?.profileImage || defaultProfile} alt="사용자 이미지" />
+          <img src={uploadsUrlParser(newUserData?.profileImage) || defaultProfile} alt="사용자 이미지" />
+          {/* <img src={newUserData?.profileImage
+            ? `/${newUserData?.profileImage}`
+            : defaultProfile} alt="사용자 이미지" /> */}
           <div className='edit_btn'>
             <label htmlFor="edit"><img src={changeImg} alt="edit" /></label>
             <input type="file" id='edit' accept="image/*" onChange={handleFile} />

@@ -10,14 +10,14 @@ import { ToastAlert } from 'components/common/ToastAlert.styled';
 import { validateDateRange } from 'utils/helper';
 import { useCreateGroupMutation } from 'store/hooks/group.hooks';
 import { Response } from 'response-data-type';
-import defaultThumbnail1 from '../../../assets/img/thumbnail/thumbnail-8.png' ;
-import defaultThumbnail2 from '../../../assets/img/thumbnail/thumbnail-9.png' ;
-import defaultThumbnail3 from '../../../assets/img/thumbnail/thumbnail-10.png' ;
-import defaultThumbnail4 from '../../../assets/img/thumbnail/thumbnail-11.png' ;
-import defaultThumbnail5 from '../../../assets/img/thumbnail/thumbnail-12.png' ;
-import defaultThumbnail6 from '../../../assets/img/thumbnail/thumbnail-13.png' ;
-import defaultThumbnail7 from '../../../assets/img/thumbnail/thumbnail-14.png' ;
-import defaultThumbnail8 from '../../../assets/img/thumbnail/thumbnail-15.png' ;
+import defaultThumbnail1 from '../../../assets/img/thumbnail/thumbnail-8.png';
+import defaultThumbnail2 from '../../../assets/img/thumbnail/thumbnail-9.png';
+import defaultThumbnail3 from '../../../assets/img/thumbnail/thumbnail-10.png';
+import defaultThumbnail4 from '../../../assets/img/thumbnail/thumbnail-11.png';
+import defaultThumbnail5 from '../../../assets/img/thumbnail/thumbnail-12.png';
+import defaultThumbnail6 from '../../../assets/img/thumbnail/thumbnail-13.png';
+import defaultThumbnail7 from '../../../assets/img/thumbnail/thumbnail-14.png';
+import defaultThumbnail8 from '../../../assets/img/thumbnail/thumbnail-15.png';
 
 const CreateSection2 = ({ number, title }: CreateSectionProps) => {
 
@@ -61,7 +61,7 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
         } else if (value instanceof File) {
           formData.append(key, value);
         } else {
-          formData.append(key, String(value));
+          value && formData.append(key, String(value));
         }
       }
       try {

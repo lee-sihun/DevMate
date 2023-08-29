@@ -44,7 +44,17 @@ export const userApi = createApi({
       query: () => 'myProfile', // 실제 엔드포인트 경로에 맞게 설정
       providesTags: [{ type: 'User', id: 'User' }],
     }),
+    getOtherProfile: builder.query<{ data: any; error: 'string' | null }, string>({
+      query: (userId) => `profile/${userId}`, // 실제 엔드포인트 경로에 맞게 설정
+    }),
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation, useLogOutMutation, useProfileUpdateMutation, useGetProfileQuery } = userApi; // API 호출 훅 생성
+export const { 
+  useSignInMutation, 
+  useSignUpMutation, 
+  useLogOutMutation, 
+  useProfileUpdateMutation, 
+  useGetProfileQuery, 
+  useGetOtherProfileQuery,
+ } = userApi; // API 호출 훅 생성

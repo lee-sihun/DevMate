@@ -87,6 +87,14 @@ const UserInfo = styled.div`
   margin-left: auto;
   margin-right: 18px;
   position: relative;
+
+  img{
+    width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 1px solid rgb(230,230,230);
+    cursor: pointer;
+  }
 `;
 
 const Notification = styled.div`
