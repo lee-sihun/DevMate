@@ -47,7 +47,7 @@ const OwnedGroup = () => {
   };
 
   useEffect(() => {
-    console.log(createdGroup?.data.createdGroup._id);
+    console.log(createdGroup?.data.createdGroup);
     // console.log(reqMembers?.data.getData);
     // console.log(modalData);
   }, [createdGroup, reqMembers, modalData]);

@@ -45,7 +45,7 @@ const Home = () => {
 
   useEffect(() => {
     setPage(1);
-    // console.log(hotGroup);
+    console.log(Group);
   }, [totalPage, hotGroup]);
 
   return (
@@ -65,16 +65,16 @@ const Home = () => {
       <Title>🔥 지금 HOT한 그룹</Title>
       <Intro>사람들이 주목하고 있는 스터디/프로젝트에 참여해보세요</Intro>
       <GroupWrap>
-        {/* {hotGroup?.data.map((group: GroupData, i: number) => (
-          <React.Fragment key={i}>
-            <Card data={group} />
-          </React.Fragment>
-        ))} */}
-        {hotGroup?.data.getData.map((group: GroupData, i: number) => (
+        {hotGroup?.data.map((group: GroupData, i: number) => (
           <React.Fragment key={i}>
             <Card data={group} />
           </React.Fragment>
         ))}
+        {/* {hotGroup?.data.getData.map((group: GroupData, i: number) => (
+          <React.Fragment key={i}>
+            <Card data={group} />
+          </React.Fragment>
+        ))} */}
       </GroupWrap>
       <Title>🔍 그룹 찾기</Title>
       <Intro>마음에 드는 스터디/프로젝트를 찾아보세요</Intro>

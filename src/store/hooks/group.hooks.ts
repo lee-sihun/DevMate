@@ -32,6 +32,10 @@ export const groupApi = createApi({
       query: () => 'groups/myGroup/ongoingGroup', // 실제 엔드포인트 경로에 맞게 설정
       providesTags: [{ type: 'Group', id: 'Group' }],
     }),
+    getJoinReqGroup: builder.query<{ data: any; error: 'string' | null }, {page: number; perPage: number; type: string}>({
+      query: ({ page, perPage, type }) => `groups/myGroup/joinRequestGroup/${type}?page=${page}&perPage=${perPage}`, // 실제 엔드포인트 경로에 맞게 설정
+      providesTags: [{ type: 'Group', id: 'Group' }],
+    }),
 
     patchReqMembers: builder.mutation({
       query: (joinId) => ({
@@ -69,4 +73,5 @@ export const {
   usePatchRejectReqMembersMutation,
   usePatchDeleteAllReqMembersMutation,
   useGetOngoingGroupQuery,
+  useGetJoinReqGroupQuery,
  } = groupApi; // API 호출 훅 생성
