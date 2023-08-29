@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   h3 {
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 500;
     margin-bottom: 20px;
   }

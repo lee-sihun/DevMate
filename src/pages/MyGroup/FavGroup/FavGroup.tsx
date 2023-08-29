@@ -4,18 +4,26 @@ import { GroupData } from 'group-data';
 import React, { useEffect, useState } from 'react';
 import { useGetDummyDataQuery } from 'store/hooks';
 import { Wrapper, TypeSortTabs, Inner, GroupImg } from './ListGroup.styled';
-import { useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
+import { useGetFavGroupQuery } from 'store/hooks/group.hooks';
 import NoData from 'components/common/NoData/NoData';
+import { GroupWrap } from 'pages/Home/Home.styled';
+import Paging from 'components/common/Paging/Paging';
 
 const FavGroup = () => {
+  const [page, setPage] = useState(1);
   const [type, setType] = useState('STUDY');
-  const { data: onGroup } = useGetOngoingGroupQuery();
 
-  const typeText = type === 'STUDY' ? '스터디' : '프로젝트'; 
+  const { data: favGroup } = useGetFavGroupQuery({ page: page, perPage: 8, type: type.toLocaleLowerCase() });
+  const totalPage = favGroup?.data.totalPage;
+  const typeText = type === 'STUDY' ? '스터디' : '프로젝트';
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
 
   useEffect(() => {
-    console.log(onGroup);
-  }, [onGroup]);
+    console.log(favGroup?.data.totalPage);
+  }, [favGroup]);
 
   return (
     <Wrapper>
@@ -26,18 +34,20 @@ const FavGroup = () => {
         <TypeSortBtn type="STUDY" isActive={type === 'STUDY'} onClick={() => setType('STUDY')} />
         <TypeSortBtn type="PROJECT" isActive={type === 'PROJECT'} onClick={() => setType('PROJECT')} />
       </TypeSortTabs>
-      {/* {groupData}
-      {type} */}
-      {onGroup === undefined ? <NoData msg={`관심 있는 ${typeText}가 없습니다`} /> : <div>그룹</div>}
-      <Inner>
-        {/* {data?.data.map((item: GroupData, i: number) => {
-          return (
-            <React.Fragment key={i}>
-              <Card data={item} />
-            </React.Fragment>
-          );
-        })} */}
-      </Inner>
+      {favGroup?.data.length === 0 ? (
+        <NoData msg={`지원 중인 ${typeText}가 없습니다`} />
+      ) : (
+        <>
+          <GroupWrap>
+            {favGroup?.data.map((group: GroupData, i: number) => (
+              <React.Fragment key={i}>
+                <Card data={group} />
+              </React.Fragment>
+            ))}
+          </GroupWrap>
+          <Paging page={page} handlePageChange={handlePageChange} totalPage={totalPage} />
+        </>
+      )}
     </Wrapper>
   );
 };
