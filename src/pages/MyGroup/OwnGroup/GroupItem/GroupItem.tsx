@@ -8,9 +8,12 @@ interface GroupItemProps {
   index: number;
   data: any;
   onClick: () => void;
+  setModalData: (data: any) => void;
+  id: string;
+  setJoinId: (data: string) => void;
 }
 
-const GroupItem = ({ active, setActive, index, data, onClick }: GroupItemProps) => {
+const GroupItem = ({ active, setActive, index, data, onClick, setModalData, id, setJoinId }: GroupItemProps) => {
   const reqMembers = data;
   const originalText = reqMembers?.content;
   const truncatedText = originalText?.length > 30 ? originalText?.substring(0, 31) + '....' : originalText;
@@ -21,7 +24,11 @@ const GroupItem = ({ active, setActive, index, data, onClick }: GroupItemProps) 
         <small>{reqMembers.nickname}님이 지원하셨습니다.</small>
         <h4>{truncatedText}</h4>
       </div>
-      <Button color="var(--success)" height="34px" onClick={() => onClick()}>
+      <Button color="var(--success)" height="34px" onClick={() => {
+        setModalData(data);
+        setJoinId(id);
+        onClick();
+        }}>
         ㅤㅤ지원 내용ㅤㅤ
       </Button>
     </GroupItemStyle>

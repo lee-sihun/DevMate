@@ -1,50 +1,38 @@
 import React from 'react';
 import { UserInfo, Content, GithubLogo, BloggerLogo, LogoWrap } from './JoinRequestModal.styled';
-import defaultProfile from 'assets/img/default-profile.svg';
 import ModalLayout from '../ModalLayout/ModalLayout';
+import ProfileCircle from 'components/common/ProfileCircle/ProfileCircle';
 
 interface JoinRequestModalProps {
   title: string;
   onClose: () => void;
+  data: any;
+  id: string;
+  approveJoin: (id: string) => void;
+  rejectJoin: (id: string) => void;
 }
 
-const JoinRequestModal = ({ title, onClose }: JoinRequestModalProps) => {
+const JoinRequestModal = ({ title, onClose, data, id, approveJoin, rejectJoin }: JoinRequestModalProps) => {
   return (
     <>
       <ModalLayout title={title} mode="NOTICE" onClose={onClose}>
         <UserInfo>
-          <img src={defaultProfile} alt="프로필 이미지" />
+          {data.userImage ? <ProfileCircle size="60px" img={data.userImage} /> 
+          : <ProfileCircle size="60px" />}
           <div className="info">
-            <h3>사용자</h3>
-            <p>test@test.com</p>
+            <h3>{data.nickname}</h3>
+            <p>{data.email}</p>
           </div>
           <LogoWrap>
-              <GithubLogo />
-              <BloggerLogo />
-            </LogoWrap>
+            <GithubLogo />
+            <BloggerLogo />
+          </LogoWrap>
         </UserInfo>
         <Content>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur maiores natus explicabo incidunt placeat minima dolorem similique?
-            Mollitia libero voluptatibus aliquam illum iure. Velit eius earum dolorum inventore labore?Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Nulla tenetur maiores natus explicabo incidunt placeat minima dolorem similique? Mollitia libero voluptatibus aliquam
-            illum iure. Velit eius earum dolorum inventore labore?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur maiores natus
-            explicabo incidunt placeat minima dolorem similique? Mollitia libero voluptatibus aliquam illum iure. Velit eius earum dolorum inventore
-            labore?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur maiores natus explicabo incidunt placeat minima dolorem
-            similique? Mollitia libero voluptatibus aliquam illum iure. Velit eius earum dolorum inventore labore?Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Nulla tenetur maiores natus explicabo incidunt placeat minima dolorem similique? Mollitia libero
-            voluptatibus aliquam illum iure. Velit eius earum dolorum inventore labore?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-            tenetur maiores natus explicabo incidunt placeat minima dolorem similique? Mollitia libero voluptatibus aliquam illum iure. Velit eius
-            earum dolorum inventore labore?Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tenetur maiores natus explicabo incidunt
-            placeat minima dolorem similique? Mollitia libero voluptatibus aliquam illum iure. Velit eius earum dolorum inventore labore?Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Nulla tenetur maiores natus explicabo incidunt placeat minima dolorem similique? Mollitia
-            libero voluptatibus aliquam illum iure. Velit eius earum dolorum inventore labore?Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Nulla tenetur maiores natus explicabo incidunt placeat minima dolorem similique? Mollitia libero voluptatibus aliquam illum iure. Velit
-            eius earum dolorum inventore labore?
-          </p>
+          <p>{data.content}</p>
           <div className="btns">
-            <button>수락</button>
-            <button>거절</button>
+            <button onClick={()=> approveJoin(id)}>수락</button>
+            <button onClick={()=> rejectJoin(id)}>거절</button>
           </div>
         </Content>
       </ModalLayout>

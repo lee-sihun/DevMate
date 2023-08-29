@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Wrapper, Inner, LeftSection, GroupList, RightSection, BtnGroup, TextWrap } from './OwnGroup.styled';
 import GroupItem from './GroupItem/GroupItem';
-import { useCreatedGroupQuery, useGetReqMembersQuery } from 'store/hooks/group.hooks';
+import { 
+  useCreatedGroupQuery, 
+  useGetReqMembersQuery, 
+  usePatchDeleteAllReqMembersMutation, 
+  usePatchRejectReqMembersMutation, 
+  usePatchReqMembersMutation } from 'store/hooks/group.hooks';
 import Card from 'components/common/Card/Card';
 import { GroupData } from 'group-data';
 import Button from 'components/common/Button/Button';
@@ -11,28 +16,54 @@ import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinReque
 const OwnedGroup = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [modalData, setModalData] = useState({});
+  const [joinId, setJoinId] = useState('');
 
   const { data: createdGroup } = useCreatedGroupQuery();
   const { data: reqMembers } = useGetReqMembersQuery({ groupId: createdGroup?.data.createdGroup._id });
-  
+  const [approve] = usePatchReqMembersMutation();
+  const [reject] = usePatchRejectReqMembersMutation();
+  const [deleteAllReq] = usePatchDeleteAllReqMembersMutation();
+
   const openModal = () => {
     setIsModalVisible(true);
   };
-
   const closeModal = () => {
     setIsModalVisible(false);
   };
-  
+
+  const approveJoin = (id: string) => {
+    approve(id);
+    closeModal();
+  };
+
+  const rejectJoin = (id: string) => {
+    reject(id);
+    closeModal();
+  };
+
+  const handleRejectAll = (id: string) => {
+    deleteAllReq(id);
+  };
+
   useEffect(() => {
-    // console.log(createdGroup?.data.createdGroup);
+    console.log(createdGroup?.data.createdGroup._id);
     // console.log(reqMembers?.data.getData);
-  }, [createdGroup, reqMembers]);
+    // console.log(modalData);
+  }, [createdGroup, reqMembers, modalData]);
 
   return (
     <Wrapper>
       {/* {isModalVisible && <JoinRequestModal title="프로젝트 이름" onClose={() => setIsModalVisible(false)} />} */}
       {isModalVisible && (
-        <JoinRequestModal title="프로젝트 이름" onClose={closeModal} />
+        <JoinRequestModal
+          title={createdGroup?.data.createdGroup.title}
+          onClose={closeModal}
+          data={modalData}
+          id={joinId}
+          approveJoin={approveJoin}
+          rejectJoin={rejectJoin}
+        />
       )}
       <Inner>
         <LeftSection>
@@ -64,20 +95,23 @@ const OwnedGroup = () => {
             <h4>
               모집현황 - {createdGroup?.data.createdGroup.currentMembers.length}/{createdGroup?.data.createdGroup.maxMembers}
             </h4>
-            <a>전체 삭제</a>
+            <a onClick={() => handleRejectAll(createdGroup?.data.createdGroup._id)}>전체 거절</a>
           </TextWrap>
           <GroupList>
             {/* {createdGroup?.data.createdGroup.joinReqList.map((id: string, idx: number) => (
               <GroupItem key={idx} index={idx} active={idx === activeIdx} setActive={() => setActiveIdx(idx)} id={id} />
             ))} */}
             {reqMembers?.data.getData.map((data: string, idx: number) => (
-              <GroupItem 
-                key={idx} 
-                index={idx} 
-                active={idx === activeIdx} 
-                setActive={() => setActiveIdx(idx)} 
-                data={data} 
+              <GroupItem
+                key={idx}
+                index={idx}
+                active={idx === activeIdx}
+                setActive={() => setActiveIdx(idx)}
+                data={data}
                 onClick={openModal}
+                setModalData={setModalData}
+                id={createdGroup?.data.createdGroup.joinReqList[idx]}
+                setJoinId={setJoinId}
               />
             ))}
           </GroupList>

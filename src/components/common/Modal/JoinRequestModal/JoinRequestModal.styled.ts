@@ -13,6 +13,7 @@ export const UserInfo = styled.div`
   }
 
   .info {
+    margin-left: 15px;
     display: flex;
     flex-direction: column;
   }

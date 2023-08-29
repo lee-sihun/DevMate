@@ -270,6 +270,7 @@ export const TextWrap = styled.div`
   }
 
   a {
+    cursor: pointer;
     font-size: 13px;
     text-decoration: underline;
     margin-left: auto;
