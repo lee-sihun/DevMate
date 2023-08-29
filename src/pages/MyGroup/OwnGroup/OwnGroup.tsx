@@ -1,86 +1,120 @@
+import React, { useEffect, useState } from 'react';
+import { Wrapper, Inner, LeftSection, GroupList, RightSection, BtnGroup, TextWrap } from './OwnGroup.styled';
+import GroupItem from './GroupItem/GroupItem';
+import { 
+  useCreatedGroupQuery, 
+  useGetReqMembersQuery, 
+  usePatchDeleteAllReqMembersMutation, 
+  usePatchRejectReqMembersMutation, 
+  usePatchReqMembersMutation } from 'store/hooks/group.hooks';
+import Card from 'components/common/Card/Card';
+import { GroupData } from 'group-data';
+import Button from 'components/common/Button/Button';
+import CardSkeleton from 'components/common/Card/Card.skeleton';
 import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinRequestModal';
-import React, { useState } from 'react';
-import { Wrapper, Inner, LeftSection, SectionTitle, JoinRequest, GroupList, JoinStatus, RightSection, GroupInfo, GroupItem } from './OwnGroup.styled';
 
 const OwnedGroup = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [modalData, setModalData] = useState({});
+  const [joinId, setJoinId] = useState('');
+
+  const { data: createdGroup } = useCreatedGroupQuery();
+  const { data: reqMembers } = useGetReqMembersQuery({ groupId: createdGroup?.data.createdGroup._id });
+  const [approve] = usePatchReqMembersMutation();
+  const [reject] = usePatchRejectReqMembersMutation();
+  const [deleteAllReq] = usePatchDeleteAllReqMembersMutation();
+
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const approveJoin = (id: string) => {
+    approve(id);
+    closeModal();
+  };
+
+  const rejectJoin = (id: string) => {
+    reject(id);
+    closeModal();
+  };
+
+  const handleRejectAll = (id: string) => {
+    deleteAllReq(id);
+  };
+
+  useEffect(() => {
+    console.log(createdGroup?.data.createdGroup);
+    // console.log(reqMembers?.data.getData);
+    // console.log(modalData);
+  }, [createdGroup, reqMembers, modalData]);
+
   return (
     <Wrapper>
       {/* {isModalVisible && <JoinRequestModal title="프로젝트 이름" onClose={() => setIsModalVisible(false)} />} */}
+      {isModalVisible && (
+        <JoinRequestModal
+          title={createdGroup?.data.createdGroup.title}
+          onClose={closeModal}
+          data={modalData}
+          id={joinId}
+          approveJoin={approveJoin}
+          rejectJoin={rejectJoin}
+        />
+      )}
       <Inner>
         <LeftSection>
-          <SectionTitle>
-            내 그룹 <span>10</span>
-          </SectionTitle>
-          <GroupList>
-            {Array(5)
-              .fill({})
-              .map((_, idx) => (
-                <GroupItem key={idx} active={idx === 0}>
-                  <div>
-                    <small>스터디</small>
-                    <h4>리액트 짱 잘하는 스터디</h4>
-                  </div>
-                  <span>23-01-01</span>
-                </GroupItem>
-              ))}
-          </GroupList>
+          {createdGroup?.data.createdGroup ? (
+            <>
+              <Card data={createdGroup.data.createdGroup} />
+            </>
+          ) : (
+            <CardSkeleton />
+          )}
+          <BtnGroup>
+            <Button color="var(--success)" height="34px">
+              상세 페이지
+            </Button>
+            <Button color="var(--success)" height="34px">
+              수정하기
+            </Button>
+            <Button color="#41E3B6" height="34px">
+              모집 완료
+            </Button>
+            <Button color="var(--error)" height="34px">
+              삭제
+            </Button>
+          </BtnGroup>
         </LeftSection>
         <RightSection>
-          <GroupInfo>
-            <div className="info">
-              <small>스터디</small>
-              <h4>리액트 짱 잘하는 스터디</h4>
-              <div className="position">
-                <span>#프론트엔드</span>
-                <span>#디자이너</span>
-              </div>
-              <ul className="tech">
-                <li>
-                  <img src="/assets/img/skills/css.svg" alt="" />
-                </li>
-                <li>
-                  <img src="/assets/img/skills/docker.svg" alt="" />
-                </li>
-                <li>
-                  <img src="/assets/img/skills/css.svg" alt="" />
-                </li>
-                <li>
-                  <img src="/assets/img/skills/docker.svg" alt="" />
-                </li>
-              </ul>
-              <div className="btns">
-                <button className="blue">상세 내용</button>
-                <button>그룹 수정</button>
-              </div>
-            </div>
-            <div className="image">
-              <img src="https://velog.velcdn.com/images/raquim47/profile/69ecb9ca-367a-4e37-9e16-c2fbd0a399cf/image.jpeg" alt="" />
-            </div>
-          </GroupInfo>
-          <JoinStatus>
+          <TextWrap>
+            <h4>지원자 수 - {createdGroup?.data.createdGroup.joinReqList.length}</h4>
             <h4>
-              <span>지원 수 5</span>
-              <span>모집 현황 3/5</span>
+              모집현황 - {createdGroup?.data.createdGroup.currentMembers.length}/{createdGroup?.data.createdGroup.maxMembers}
             </h4>
-
-            <ul>
-              {Array(10)
-                .fill(0)
-                .map((_, idx) => (
-                  <JoinRequest key={idx}>
-                    <div>
-                      <strong>게코젤리님이 지원하셨습니다.</strong>
-                      <p>
-                        안녕하세요 지원서입니다.안녕하세요 지원서입니다.안녕하세요 지원서입니다.안녕하세요 지원서입니다.안녕하세요
-                        지원서입니다.안녕하세요 지원서입니다.
-                      </p>
-                    </div>
-                    <button onClick={() => setIsModalVisible(true)}>지원 내용</button>
-                  </JoinRequest>
-                ))}
-            </ul>
-          </JoinStatus>
+            <a onClick={() => handleRejectAll(createdGroup?.data.createdGroup._id)}>전체 거절</a>
+          </TextWrap>
+          <GroupList>
+            {/* {createdGroup?.data.createdGroup.joinReqList.map((id: string, idx: number) => (
+              <GroupItem key={idx} index={idx} active={idx === activeIdx} setActive={() => setActiveIdx(idx)} id={id} />
+            ))} */}
+            {reqMembers?.data.getData.map((data: string, idx: number) => (
+              <GroupItem
+                key={idx}
+                index={idx}
+                active={idx === activeIdx}
+                setActive={() => setActiveIdx(idx)}
+                data={data}
+                onClick={openModal}
+                setModalData={setModalData}
+                id={createdGroup?.data.createdGroup.joinReqList[idx]}
+                setJoinId={setJoinId}
+              />
+            ))}
+          </GroupList>
         </RightSection>
       </Inner>
     </Wrapper>

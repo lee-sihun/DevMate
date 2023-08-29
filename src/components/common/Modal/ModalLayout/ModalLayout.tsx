@@ -18,12 +18,12 @@ const Modal = ({ title, children, mode, onClose }: ModalProps) => {
   };
 
   useEffect(() => {
-    // document.body.style.overflow = 'hidden';
-    // document.addEventListener('mousedown', handleClickOutside);
-    // return () => {
-    //   document.removeEventListener('mousedown', handleClickOutside);
-    //   document.body.style.overflow = '';
-    // };
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = '';
+    };
   }, []);
 
   return (
