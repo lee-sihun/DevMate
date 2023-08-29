@@ -4,8 +4,9 @@ import { GroupData } from 'group-data';
 import React, { useEffect, useState } from 'react';
 import { useGetDummyDataQuery } from 'store/hooks';
 import { Wrapper, TypeSortTabs, Inner, GroupImg } from './ListGroup.styled';
-import { useCreatedGroupQuery, useGetJoinReqGroupQuery, useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
+import { useGetJoinReqGroupQuery, useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
 import NoData from 'components/common/NoData/NoData';
+import { GroupWrap } from 'pages/Home/Home.styled';
 
 const ListGroup = () => {
   const {
@@ -15,24 +16,33 @@ const ListGroup = () => {
   } = useGetDummyDataQuery();
 
   const [type, setType] = useState('STUDY');
-  const { data: createdGroup } = useCreatedGroupQuery();
   const { data: onGroup } = useGetOngoingGroupQuery();
-  const { data: joinGroup } = useGetJoinReqGroupQuery({ page: 1, perPage: 8, type: type.toLocaleLowerCase()});
+  const { data: joinGroup } = useGetJoinReqGroupQuery({ page: 1, perPage: 8, type: type.toLocaleLowerCase() });
 
   const typeText = type === 'STUDY' ? '스터디' : '프로젝트';
 
   useEffect(() => {
     // console.log(createdGroup);
-    console.log(onGroup);
+    console.log(joinGroup);
     // console.log(joinGroup);
-  }, [onGroup, joinGroup, createdGroup]);
+  }, [onGroup, joinGroup]);
 
   return (
     <Wrapper>
       <GroupImg>
         <h2>참여중인 그룹</h2>
       </GroupImg>
-      {onGroup === undefined ? <NoData msg="참여 중인 그룹이 없습니다" /> : <div>그룹</div>}
+      {onGroup?.data.length === 0 ? (
+        <NoData msg="참여 중인 그룹이 없습니다" />
+      ) : (
+        <GroupWrap>
+          {onGroup?.data.map((group: GroupData, i: number) => (
+            <React.Fragment key={i}>
+              <Card data={group} />
+            </React.Fragment>
+          ))}
+        </GroupWrap>
+      )}
       <GroupImg>
         <h2>지원 현황</h2>
       </GroupImg>
@@ -42,16 +52,17 @@ const ListGroup = () => {
       </TypeSortTabs>
       {/* {groupData}
       {type} */}
-      {joinGroup === undefined ? <NoData msg={`참여 중인 ${typeText}가 없습니다`} /> : <div>그룹</div>}
-      <Inner>
-        {/* {data?.data.map((item: GroupData, i: number) => {
-          return (
+      {joinGroup?.data.length === 0 ? (
+        <NoData msg={`지원 중인 ${typeText}가 없습니다`} />
+      ) : (
+        <GroupWrap>
+          {joinGroup?.data.map((group: GroupData, i: number) => (
             <React.Fragment key={i}>
-              <Card data={item} />
+              <Card data={group} />
             </React.Fragment>
-          );
-        })} */}
-      </Inner>
+          ))}
+        </GroupWrap>
+      )}
     </Wrapper>
   );
 };

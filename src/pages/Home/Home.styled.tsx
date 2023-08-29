@@ -25,4 +25,5 @@ export const GroupWrap = styled.div`
   grid-row-gap: 30px;
   grid-column-gap: 40px;
   margin-top: 18px;
+  margin-bottom: 18px;
 `;

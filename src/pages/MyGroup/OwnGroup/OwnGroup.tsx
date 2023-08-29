@@ -20,7 +20,7 @@ const OwnedGroup = () => {
   const [joinId, setJoinId] = useState('');
 
   const { data: createdGroup } = useCreatedGroupQuery();
-  const { data: reqMembers } = useGetReqMembersQuery({ groupId: createdGroup?.data.createdGroup._id });
+  const { data: reqMembers } = useGetReqMembersQuery({ groupId: createdGroup?.data._id });
   const [approve] = usePatchReqMembersMutation();
   const [reject] = usePatchRejectReqMembersMutation();
   const [deleteAllReq] = usePatchDeleteAllReqMembersMutation();
@@ -47,17 +47,17 @@ const OwnedGroup = () => {
   };
 
   useEffect(() => {
-    console.log(createdGroup?.data.createdGroup);
+    console.log(createdGroup?.data);
     // console.log(reqMembers?.data.getData);
     // console.log(modalData);
-  }, [createdGroup, reqMembers, modalData]);
+  }, [createdGroup, modalData]);
 
   return (
     <Wrapper>
       {/* {isModalVisible && <JoinRequestModal title="프로젝트 이름" onClose={() => setIsModalVisible(false)} />} */}
       {isModalVisible && (
         <JoinRequestModal
-          title={createdGroup?.data.createdGroup.title}
+          title={createdGroup?.data.title}
           onClose={closeModal}
           data={modalData}
           id={joinId}
@@ -67,9 +67,9 @@ const OwnedGroup = () => {
       )}
       <Inner>
         <LeftSection>
-          {createdGroup?.data.createdGroup ? (
+          {createdGroup?.data ? (
             <>
-              <Card data={createdGroup.data.createdGroup} />
+              <Card data={createdGroup.data} />
             </>
           ) : (
             <CardSkeleton />
@@ -91,11 +91,11 @@ const OwnedGroup = () => {
         </LeftSection>
         <RightSection>
           <TextWrap>
-            <h4>지원자 수 - {createdGroup?.data.createdGroup.joinReqList.length}</h4>
+            <h4>지원자 수 - {createdGroup?.data.joinReqList.length}</h4>
             <h4>
-              모집현황 - {createdGroup?.data.createdGroup.currentMembers.length}/{createdGroup?.data.createdGroup.maxMembers}
+              모집현황 - {createdGroup?.data.currentMembers.length}/{createdGroup?.data.maxMembers}
             </h4>
-            <a onClick={() => handleRejectAll(createdGroup?.data.createdGroup._id)}>전체 거절</a>
+            <a onClick={() => handleRejectAll(createdGroup?.data._id)}>전체 거절</a>
           </TextWrap>
           <GroupList>
             {/* {createdGroup?.data.createdGroup.joinReqList.map((id: string, idx: number) => (
@@ -110,7 +110,7 @@ const OwnedGroup = () => {
                 data={data}
                 onClick={openModal}
                 setModalData={setModalData}
-                id={createdGroup?.data.createdGroup.joinReqList[idx]}
+                id={createdGroup?.data.joinReqList[idx]}
                 setJoinId={setJoinId}
               />
             ))}
