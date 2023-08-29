@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DetailWrapper } from './Detail.styled';
 import Title from 'components/features/Group/Title/Title';
 import Info from 'components/features/Group/Info/Info';
 import Desc from 'components/features/Group/Desc/Desc';
-import { useGetDetailDummyDataQuery } from 'store/hooks';
+// import { useGetDetailDummyDataQuery } from 'store/hooks';
 import { useParams } from 'react-router-dom';
+import { useGetDetailDataQuery } from 'store/hooks/groupDetail.hooks';
+import { AuthorData } from 'author-data';
 
-const Detail = () => {
+interface DetailProps {
+  userData?: AuthorData
+}
+
+const Detail = ({ userData }: DetailProps) => {
 
   const { id: groupId } = useParams();
-  const { data } = useGetDetailDummyDataQuery(groupId as string);
+  const { data } = useGetDetailDataQuery(groupId);
 
-  const detailData = data?.data[0];
+  useEffect(() => {
+    console.log(userData?._id);
+  }, [userData]);
+
+  const detailData = data?.data;
 
   if (detailData) {
     return (
@@ -34,9 +44,11 @@ const Detail = () => {
           position={detailData.position}
           skills={detailData.skills}
           img={detailData.imageUrl}
+          authorId={detailData.author._id}
+          userData={userData}
         />
         <Desc
-          // contents={detailData.description}
+          contents={detailData.description}
           groupId={detailData._id}
         />
       </DetailWrapper>

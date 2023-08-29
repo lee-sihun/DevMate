@@ -22,6 +22,15 @@ export const TitleAuthorWrap = styled.div<{ $cursor?: boolean }>`
   align-items: center;
   gap: 10px;
   cursor: ${({ $cursor = true }) => ($cursor ? 'pointer' : 'default')};
+
+  img{
+    width: 42px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgb(230,230,230);
+    cursor: pointer;
+  }
 `;
 export const TitleAuthorName = styled.div`
   font-weight: bold;
@@ -43,7 +52,7 @@ export const TitleModalWrap = styled.div`
   top: calc(100% - 10px);
   left: 0;
   width: 400px;
-  height: 400px;
+  height: 300px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 2px var(--box-shadow);
@@ -56,7 +65,7 @@ export const TitleModalWrap = styled.div`
   z-index: 9999;
 
   & > div {
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-bottom: 10px;
     border-bottom: 1px solid var(--default-border);
   }
@@ -67,6 +76,10 @@ export const TitleModalWrap = styled.div`
     box-sizing: border-box;
   }
   & > div:nth-child(2) {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    overflow-y: hidden;
     overflow-x: scroll;
     &::-webkit-scrollbar {
       height: 10px;
@@ -77,6 +90,9 @@ export const TitleModalWrap = styled.div`
     &::-webkit-scrollbar-thumb {
       background-color: var(--blue-regular1);
       border-radius: 10px;
+    }
+    div{
+      flex-wrap: nowrap;
     }
   }
   & > div:nth-child(3) {
@@ -95,7 +111,7 @@ export const TitleModalWrap = styled.div`
     }
     & > h3 {
       font-weight: bold;
-      font-size: 30px;
+      font-size: 20px;
     }
   }
 `;

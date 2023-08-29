@@ -6,7 +6,7 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   React.useEffect(() => {
-    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 1);
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }, [pathname]);
 
   return null;

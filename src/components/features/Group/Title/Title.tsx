@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   TitleAuthorName,
   TitleAuthorWrap,
@@ -13,7 +13,7 @@ import ProfileCircle from 'components/common/ProfileCircle/ProfileCircle';
 import eye from '../../../../assets/img/eye.svg';
 import heart from '../../../../assets/img/heart.svg';
 import { Boundary } from 'components/common/Boundary.styled';
-import { CntMaxView, pascalToKebab } from 'utils/parser';
+import { CntMaxView, formatDateToYYMMDD, pascalToKebab, uploadsUrlParser } from 'utils/parser';
 import { useGetDummyAuthorDataQuery } from 'store/hooks';
 import { LinkIcon, LinkWrap } from 'components/common/LinkIcon.styled';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,8 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 import Prism from 'prismjs';
-
+import { useGetOtherProfileQuery } from 'store/hooks/user.hooks';
+import defaultProfile from 'assets/img/default-profile.svg';
 
 interface TitleProps {
   title: string,
@@ -41,16 +42,21 @@ const Title = (
     TitleProps
 ) => {
 
-  const { data } = useGetDummyAuthorDataQuery(authorId as string);
+  const { data } = useGetOtherProfileQuery(authorId as string);
 
   const [modal, setModal] = React.useState(false);
 
-  const authorData = data?.data;
+  const authorData = data?.data.foundUser;
+
+  useEffect(() => {
+    // console.log(title, authorId, name, createdAt, viewCount, wishCount);
+  }, [title, authorId, name, createdAt, viewCount, wishCount]);
 
   const handleModal = React.useCallback(() => setModal((curr) => !curr), []);
   const closeModal = React.useCallback(() => setModal(false), []);
 
   if (authorData) {
+
     return (
       <TitleSection>
         <TitleH2>{title}</TitleH2>
@@ -58,10 +64,11 @@ const Title = (
           <TitleAuthorWrap
             onClick={handleModal}
           >
-            <ProfileCircle size="42px" img={authorData.profileImage} />
-            <TitleAuthorName>{name}</TitleAuthorName>
+            {/* <ProfileCircle size="42px" img={authorData.profileImage} /> */}
+            <img src={uploadsUrlParser(authorData?.profileImage) || defaultProfile} alt="사용자 이미지" />
+            <TitleAuthorName>{authorData.nickname || ''}</TitleAuthorName>
             <Boundary height='16px' />
-            <div>{createdAt}</div>
+            <div>{formatDateToYYMMDD(new Date(createdAt))}</div>
           </TitleAuthorWrap>
           <TitleCountWrap>
             <img src={eye} />
@@ -75,26 +82,29 @@ const Title = (
           <TitleModalWrap onMouseLeave={closeModal}>
             <div>
               <TitleAuthorWrap $cursor={false}>
-                <ProfileCircle size="42px" img={authorData.profileImage} />
+                {/* <ProfileCircle size="42px" img={authorData.profileImage} /> */}
+                <img src={uploadsUrlParser(authorData?.profileImage) || defaultProfile} alt="사용자 이미지" />
                 <TitleModalAuthorInfoWrap>
-                  <TitleAuthorName>{name}</TitleAuthorName>
-                  <TitleAuthorName>{authorData.email}</TitleAuthorName>
+                  <TitleAuthorName>{authorData.nickname || ''}</TitleAuthorName>
+                  <TitleAuthorName>{authorData.email || ''}</TitleAuthorName>
                 </TitleModalAuthorInfoWrap>
               </TitleAuthorWrap>
               <LinkWrap>
-                {Object.entries(authorData.links).map(([key, value], i) => {
-                  return <Link to={value} key={i}>
-                    <LinkIcon src={`/assets/icon/${key}.svg`} size='16px' />
-                  </Link>;
-                })}
-                <Link to={'/'} >
+                {
+                  authorData.links && Object.entries(authorData.links).map(([key, value], i) => {
+                    return <Link to={value as string} key={i}>
+                      <LinkIcon src={`/assets/icon/${key}.svg`} size='16px' />
+                    </Link>;
+                  })
+                }
+                {/* <Link to={'/'} >
                   <LinkIcon src={'/assets/icon/profile.svg'} size='16px' />
-                </Link>
+                </Link> */}
               </LinkWrap>
             </div>
             <div>
               <SkillImgWrap width='600px'>
-                {authorData.skills.map((item, i) => {
+                {authorData.skills && authorData.skills.map((item: any, i: number) => {
                   return (
                     <React.Fragment key={i}>
                       <SkillImg
@@ -109,7 +119,7 @@ const Title = (
             <div>
               <h3>소개</h3>
               <Viewer
-                initialValue={MD_TEXT || ''}
+                initialValue={authorData.overview || ''}
                 plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
               />
             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   GroupImg,
   InfoH3,
@@ -13,8 +13,11 @@ import Button from 'components/common/Button/Button';
 import { Boundary } from 'components/common/Boundary.styled';
 import { PositionLabel, PositionLabelWrap } from 'components/common/Label.styled';
 import { SkillImg, SkillImgWrap } from 'components/common/Card/Card.styled';
-import { pascalToKebab } from 'utils/parser';
+import { pascalToKebab, uploadsUrlParser } from 'utils/parser';
 import SupportModal from 'components/common/SupportModal/SupportModal';
+import { useGetOtherProfileQuery } from 'store/hooks/user.hooks';
+import { AuthorData } from 'author-data';
+import { useNavigate } from 'react-router-dom';
 
 interface InfoProps {
   title: string,
@@ -25,12 +28,24 @@ interface InfoProps {
   dueDate: string,
   position: Position[],
   skills: Skill[],
-  img: string
+  img: string,
+  authorId: string,
+  userData?: AuthorData,
 }
 
-const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, position, skills, img }: InfoProps) => {
+const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, position, skills, img, authorId, userData }: InfoProps) => {
 
   const [modal, setModal] = React.useState(false);
+
+  const { data } = useGetOtherProfileQuery(authorId as string);
+
+  const authorData = data?.data.foundUser;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // console.log(title, type, location, currentMembers, maxMembers, dueDate, position, skills, img);
+  }, [title, type, location, currentMembers, maxMembers, dueDate, position, skills, img]);
 
   return (
     <InfoSection>
@@ -38,7 +53,7 @@ const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, posi
         <InfoWrap>
           <InfoH3>유형</InfoH3>
           <Boundary height='20px' />
-          <InfoSpan>{type === 'study' ? 'study' : 'project'}</InfoSpan>
+          <InfoSpan>{type === 'study' ? '스터디' : '프로젝트'}</InfoSpan>
         </InfoWrap>
         <InfoWrap>
           <InfoH3>지역</InfoH3>
@@ -82,10 +97,27 @@ const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, posi
         </InfoWrap>
       </InfoLeft>
       <InfoRight>
-        <GroupImg src={img} />
-        <Button color='var(--success)' height="38px" onClick={() => {
-          setModal(true);
-        }}>지원하러 가기!</Button>
+        <GroupImg src={uploadsUrlParser(img)} />
+        {
+          authorData?._id === userData?._id
+            ? <>
+              <Button color='var(--success)' height="38px" onClick={() => {
+                navigate('/mygroup');
+              }}>관리 페이지 이동</Button>
+              <Button color='var(--success)' height="38px" onClick={() => {
+                navigate('/mygroup');
+              }}>수정하기</Button>
+              <Button color='var(--error)' height="38px" onClick={() => {
+                // setModal(true);
+              }}>삭제하기</Button>
+            </>
+            : <>
+              <Button color='var(--success)' height="38px" onClick={() => {
+                setModal(true);
+              }}>지원하러 가기!</Button>
+            </>
+        }
+
       </InfoRight>
       {
         modal &&

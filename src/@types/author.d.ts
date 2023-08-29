@@ -104,6 +104,7 @@ declare module 'author-data' {
   };
 
   interface AuthorData {
+    _id?: string;
     email: string;
     nickname: string;
     password: string;

@@ -51,7 +51,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/success" element={<SignUpSuccess />} />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/detail/:id" element={<Detail userData={data?.data?.foundUser}/>} />
           <Route path="/create" element={<Create />} />
           <Route path="/create/success" element={<CreateSuccess />} />
           <Route path="/profile" element={<Profile userData={data?.data?.foundUser} />} />

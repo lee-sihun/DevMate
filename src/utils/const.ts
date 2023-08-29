@@ -87,7 +87,7 @@ export const SELECT_SKILLS_LIST = [
   'Babel',
   'BootStrap',
   'Cpp',
-  'C#',
+  'Cs',
   'Css',
   'Diango',
   'Docker',
