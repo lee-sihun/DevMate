@@ -43,7 +43,7 @@ export const groupCreateSlice = createSlice({
       state.type = action.payload;
     },
     maxMembersChange: (state, action: PayloadAction<number>) => {
-      state.maxMembers = action.payload;
+      state.maxMembers = action.payload < 1 ? 1 : action.payload;
     },
     skillsChange: (state, action: PayloadAction<MultiValue<{ value: Skill; label: Skill }>>) => {
       const { payload } = action;

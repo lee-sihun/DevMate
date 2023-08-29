@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import googleLogo from 'assets/img/social/google-logo.svg';
 import githubLogo from 'assets/img/social/github-logo.svg';
 import { Form, Fieldset, FormBtn, SocialBtn } from './Auth.styled';
@@ -6,6 +6,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import InputField from '../../components/features/InputField/InputField';
 import { useNavigate } from 'react-router-dom';
 import { useSignInMutation } from 'store/hooks/user.hooks';
+import { ToastAlert } from 'components/common/ToastAlert.styled';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
 interface IFormInput {
   email: string;
@@ -23,19 +26,21 @@ const SignInForm = () => {
 
   const [singIn, { data, isLoading, isError, isSuccess }] = useSignInMutation();
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    // console.log(data);
-    singIn(data);
+  const [alert, setAlert] = useState(false);
+
+  const onSubmit: SubmitHandler<IFormInput> = async (submitData) => {
+    const res: { [key: string]: any } = await singIn(submitData);
+    if (res.error) {
+      setAlert(true);
+      setTimeout(() => setAlert(false), 3000);
+    }
   };
 
   React.useEffect(() => {
-    console.log(data, isLoading, isError, isSuccess);
-  }, [data, isLoading, isError, isSuccess]);
-
-  useEffect(() => {
-    // isSuccess && (location.reload());
-    isSuccess && (navigate('/'));
-  }, [isSuccess]);
+    // console.log(data, isLoading, isError, isSuccess);
+    // isError && setAlert(true);
+    // alert && setTimeout(() => setAlert(false), 3000);
+  }, [data, isLoading, isError, isSuccess, alert]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -78,7 +83,7 @@ const SignInForm = () => {
         </FormBtn>
       </Fieldset>
 
-      <Fieldset>
+      {/* <Fieldset>
         <legend>소셜 로그인</legend>
         <SocialBtn type="button">
           <img src={googleLogo} alt="구글 로고" />
@@ -88,7 +93,8 @@ const SignInForm = () => {
           <img src={githubLogo} alt="깃허브 로고" />
           <p>깃허브 계정으로 로그인</p>
         </SocialBtn>
-      </Fieldset>
+      </Fieldset> */}
+      {alert && <ToastAlert color='var(--error)'>로그인에 실패하였습니다</ToastAlert>}
     </Form>
   );
 };

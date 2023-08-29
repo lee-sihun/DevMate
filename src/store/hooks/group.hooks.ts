@@ -15,7 +15,7 @@ export const groupApi = createApi({
     }),
     createGroup: builder.mutation({
       query: (groupFormData) => ({
-        url: `${process.env.REACT_APP_API_SERVER_URL}/api/groups`,
+        url: 'groups',
         method: 'POST',
         body: groupFormData,
       }),

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  margin: 0 auto;
+  margin: 80px auto;
   padding: 50px 30px;
   max-width: 500px;
   border-radius: 10px;
@@ -47,7 +47,7 @@ export const FormBtn = styled.button<{ $secondary?: boolean }>`
 
   &:hover {
     background-color: ${(props) => (props.$secondary ? '#FFF' : 'var(--blue-regular2)')};
-    color : ${(props) => (props.$secondary ? '#000' : '#FFF')};
+    color: ${(props) => (props.$secondary ? '#000' : '#FFF')};
   }
 `;
 
@@ -74,5 +74,35 @@ export const SocialBtn = styled.button`
     margin-left: 10px;
     margin-top: 4px;
     color: #919191;
+  }
+`;
+
+export const SignUpSuccessWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 480px;
+  aspect-ratio: 16/9;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 2px var(--box-shadow);
+  border-radius: 10px;
+  margin: 80px auto;
+  div {
+    font-size: 32px;
+  }
+  button {
+    width: 100px;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: var(--blue-regular1);
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(110%);
+    }
   }
 `;

@@ -121,27 +121,61 @@
 
 // export default ProfileEdit;
 
-import { AuthorData } from 'author-data';
+import { AuthorData, Skill } from 'author-data';
 import PageTemplate from 'components/common/PageTemplate/PageTemplate';
 import { ProfileContent, ProfileInfoWrap, ProfileTop } from 'pages/Profile/Profile.styled';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import defaultProfile from 'assets/img/default-profile.svg';
 import changeImg from 'assets/img/edit2.svg';
 import { InputField2 } from 'components/features/InputField/InputField';
+import { MultiValue } from 'react-select';
+import { ProfileBtnWrap } from './ProfileEdit.styled';
+import { useNavigate } from 'react-router-dom';
+import uuid from 'react-uuid';
+import { useProfileUpdateMutation } from 'store/hooks/user.hooks';
+
 
 
 const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
   const [newUserData, setNewUserData] = useState({ ...userData });
+  const [file, setFile] = useState<File | undefined>();
+  const [nicknameValidate, setNicknameValidate] = useState<string | undefined>();
+  const navigate = useNavigate();
+
+  const [profileUpdate, { data, isLoading, isError, isSuccess }] = useProfileUpdateMutation();
+
 
   useEffect(() => {
     setNewUserData({ ...userData });
   }, [userData]);
+
+  const handleFile = (e: React.ChangeEvent) => {
+    const inputFile = e.target as HTMLInputElement;
+    const file = inputFile.files?.[0];
+    setFile(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        setNewUserData((curr) => {
+          const newCurr = { ...curr };
+          return {
+            ...newCurr,
+            profileImage: e.target?.result as string,
+          };
+        });
+      };
+    }
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>, labelName?: string) => {
     setNewUserData((curr) => {
       const newCurr = { ...curr };
       switch (true) {
         case labelName === '닉네임':
+          if (e.target.value !== '') {
+            setNicknameValidate(undefined);
+          }
           return {
             ...newCurr,
             nickname: e.target.value,
@@ -166,12 +200,14 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
             ...newCurr,
             links: {
               gitHub: e.target.value,
+              blog: newCurr.links?.blog,
             },
           };
         case labelName === 'Blog':
           return {
             ...newCurr,
             links: {
+              gitHub: newCurr.links?.gitHub,
               blog: e.target.value,
             },
           };
@@ -180,26 +216,59 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
     });
   };
 
+  const SkillsChange = (
+    newValue: MultiValue<{ value: Skill; label: Skill }>) => {
+    setNewUserData((curr) => {
+      const newCurr = { ...curr };
+      return {
+        ...newCurr,
+        skills: newValue.map((item) => {
+          return item.value;
+        }),
+      };
+    });
+  };
+
+  const saveHandler = () => {
+    if (newUserData.nickname === '') {
+      return setNicknameValidate(uuid());
+    }
+    // console.log(file);
+    const formData = new FormData();
+    newUserData.nickname && formData.append('nickname', newUserData.nickname);
+    newUserData.skills && formData.append('skills', JSON.stringify(newUserData.skills));
+    newUserData.overview && formData.append('overview', newUserData.overview);
+    file && formData.append('imageFile', file);
+    newUserData.links && formData.append('links', JSON.stringify(newUserData.links));
+
+    profileUpdate(formData);
+  };
+  const cancelHandler = () => {
+    navigate(-1);
+  };
+
   return (
     <PageTemplate subTitle="My Profile" mainTitle="내 프로필 수정">
       <ProfileContent>
         <ProfileTop>
-          <img src={newUserData?.profileImage ?? defaultProfile} alt="사용자 이미지" />
+          <img src={newUserData?.profileImage || defaultProfile} alt="사용자 이미지" />
           <div className='edit_btn'>
             <label htmlFor="edit"><img src={changeImg} alt="edit" /></label>
-            <input type="file" id='edit' />
+            <input type="file" id='edit' accept="image/*" onChange={handleFile} />
           </div>
         </ProfileTop>
         <ProfileInfoWrap>
-          <InputField2 labelName='닉네임' value={newUserData?.nickname} onChange={onChange} />
+          <InputField2 validate={nicknameValidate} labelName='닉네임' value={newUserData?.nickname} onChange={onChange} />
           <InputField2 labelName='이메일' type='email' value={newUserData?.email} onChange={onChange} />
-          <InputField2 labelName='비밀번호' type='password' value={newUserData?.password} onChange={onChange} />
-          <InputField2 labelName='비밀번호 확인' type='password' />
-          <InputField2 labelName='사용 기술' />
+          <InputField2 labelName='사용 기술' value={newUserData.skills} skillChange={SkillsChange} />
           <InputField2 labelName='소개글' value={newUserData?.overview} onChange={onChange} />
           <InputField2 labelName='Github' value={newUserData?.links?.gitHub} onChange={onChange} />
           <InputField2 labelName='Blog' value={newUserData?.links?.blog} onChange={onChange} />
         </ProfileInfoWrap>
+        <ProfileBtnWrap>
+          <button className='save' onClick={saveHandler}>저장</button>
+          <button className='cancel' onClick={cancelHandler}>취소</button>
+        </ProfileBtnWrap>
 
       </ProfileContent>
     </PageTemplate>
