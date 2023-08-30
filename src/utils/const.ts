@@ -77,6 +77,14 @@ example code box
 
 `;
 
+export const GUIDE_TEXT = `
+  # 이곳에 주제를 적어주세요
+
+  
+
+
+`;
+
 export const SELECT_SKILLS_LIST = [
   'Adobe',
   'Android',

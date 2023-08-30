@@ -18,8 +18,10 @@ import SupportModal from 'components/common/SupportModal/SupportModal';
 import { useGetOtherProfileQuery } from 'store/hooks/user.hooks';
 import { AuthorData } from 'author-data';
 import { useNavigate } from 'react-router-dom';
+import GroupDeleteModal from 'components/common/GroupDeleteModal/GroupDeleteModal';
 
 interface InfoProps {
+  detailData: any,
   title: string,
   type: GroupType,
   location: Location,
@@ -33,9 +35,10 @@ interface InfoProps {
   userData?: AuthorData,
 }
 
-const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, position, skills, img, authorId, userData }: InfoProps) => {
+const Info = ({ detailData, title, type, location, currentMembers, maxMembers, dueDate, position, skills, img, authorId, userData }: InfoProps) => {
 
   const [modal, setModal] = React.useState(false);
+  const [deleteModal, setDeleteModal] = React.useState(false);
 
   const { data } = useGetOtherProfileQuery(authorId as string);
 
@@ -105,10 +108,13 @@ const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, posi
                 navigate('/mygroup');
               }}>관리 페이지 이동</Button>
               <Button color='var(--success)' height="38px" onClick={() => {
-                navigate('/mygroup');
+                navigate('/mygroup/update', { state: { beforeUrl: 'detail', detailData } });
               }}>수정하기</Button>
               <Button color='var(--error)' height="38px" onClick={() => {
                 // setModal(true);
+                // navigate('/mygroup/update');
+                setDeleteModal(true);
+                // console.log('delete');
               }}>삭제하기</Button>
             </>
             : <>
@@ -122,6 +128,10 @@ const Info = ({ title, type, location, currentMembers, maxMembers, dueDate, posi
       {
         modal &&
         <SupportModal title={title} setModal={setModal} />
+      }
+      {
+        deleteModal &&
+        <GroupDeleteModal title={title} setModal={setDeleteModal} />
       }
     </InfoSection>
   );

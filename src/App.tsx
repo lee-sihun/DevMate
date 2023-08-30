@@ -17,6 +17,8 @@ import MyGroup from 'pages/MyGroup/MyGroup';
 import { useGetProfileQuery } from 'store/hooks/user.hooks';
 import SignUpSuccess from 'pages/Auth/SignUpSuccess';
 import CreateSuccess from 'pages/Create/CreateSuccess';
+import Update from 'pages/Group/Update';
+import UpdateSuccess from 'pages/Group/UpdateSuccess';
 
 function App() {
 
@@ -51,12 +53,14 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/success" element={<SignUpSuccess />} />
-          <Route path="/detail/:id" element={<Detail userData={data?.data?.foundUser}/>} />
+          <Route path="/detail/:id" element={<Detail userData={data?.data?.foundUser} />} />
           <Route path="/create" element={<Create />} />
           <Route path="/create/success" element={<CreateSuccess />} />
           <Route path="/profile" element={<Profile userData={data?.data?.foundUser} />} />
           <Route path="/profile/edit" element={<ProfileEdit userData={data?.data?.foundUser} />} />
           <Route path="/mygroup" element={<MyGroup />} />
+          <Route path="/mygroup/update" element={<Update />} />
+          <Route path="/mygroup/update/success" element={<UpdateSuccess />} />
           <Route path="/test" element={<Test />} />
           <Route path="/yunha" element={<Yunha />} />
           <Route path="/sihun" element={<Sihun />} />

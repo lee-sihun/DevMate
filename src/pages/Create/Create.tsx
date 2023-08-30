@@ -9,10 +9,10 @@ const Create = () => {
   const createMain = React.useMemo(() => <CreateMain />, []);
 
   return (
-    <React.Fragment>
+    <>
       {createHeader}
       {createMain}
-    </React.Fragment>
+    </>
   );
 };
 

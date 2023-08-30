@@ -270,6 +270,19 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--blue-regular1);
     border-radius: 10px;
   }
+  html{
+    scroll-behavior: smooth;
+  }
+  html::-webkit-scrollbar {
+    /* width:10px; */
+  }
+  html::-webkit-scrollbar-track {
+    background-color: var(--blue-light1);
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: var(--blue-regular1);
+    border-radius: 10px;
+  }
 `;
 
 // body, button {
