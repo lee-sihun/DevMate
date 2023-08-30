@@ -1,5 +1,34 @@
 import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
+import { styled, css } from 'styled-components';
+
+interface BtnProps {
+  bottom: string;
+}
+
+interface LayoutProps {
+  $hoverOn: boolean;
+}
+
+export const CardButton = styled.button<BtnProps>`
+  border: 0px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 21px;
+  width: 130px;
+  height: 50px;
+  background-color: var(--success);
+  color: white;
+  &:hover {
+    filter: brightness(0.8);
+  }
+
+  display: none; /* 기본적으로 숨김 */
+  position: absolute;
+  bottom: ${({ bottom }) => bottom};
+  right: 70px;
+  cursor: pointer;
+  z-index: 2; /* 배경 위에 버튼 표시 */
+`;
 
 export const TestSection = styled.section`
   width: 100%;
@@ -16,7 +45,7 @@ export const CardLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const CardLayout = styled.div`
+export const CardLayout = styled.div<LayoutProps>`
   width: 270px;
   height: 400px;
   box-shadow: 0 2px 2px var(--box-shadow);
@@ -24,6 +53,27 @@ export const CardLayout = styled.div`
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  overflow: hidden;
+
+  ${({ $hoverOn }) =>
+    $hoverOn &&
+    css`
+      &:hover {
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 1;
+        }
+        ${CardButton} {
+          display: block; /* 마우스 호버 시 버튼 보이기 */
+        }
+      }
+    `}
 `;
 
 export const CardType = styled.div<{ type: string }>`

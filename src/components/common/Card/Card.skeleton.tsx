@@ -12,7 +12,7 @@ import {
 
 const CardSkeleton = () => {
   return (
-    <CardLayout>
+    <CardLayout $hoverOn={false}>
       <CardSkeletonImg />
       <CardTextLayout>
         <CardSkeletonTitle />

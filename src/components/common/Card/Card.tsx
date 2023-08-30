@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   CardLayout,
   CardImg,
@@ -12,29 +12,40 @@ import {
   CardCntItem,
   CardLink,
   CardType,
+  CardButton,
 } from './Card.styled';
 import { GroupData } from 'group-data';
 import { PositionLabel, PositionLabelWrap } from '../Label.styled';
 import { CntMaxView, pascalToKebab } from 'utils/parser';
+import { Link } from 'react-router-dom';
 
+interface CardProps {
+  data: GroupData;
+  hoverOn?: boolean; // '?'를 추가하여 선택적 프롭으로 설정
+  //  onClick?: (...args: any[]) => void;
+}
 
-/**
- * props로 data 필수값입니다.
- * 
- */
-const Card = ({ data }: { data: GroupData }) => {
+const Card = ({ data, hoverOn = false }: CardProps) => {
+  const [hover, setHover] = useState(false);
+  const CardLinkProps = hoverOn
+    ? {
+        to: hover ? '' : `/detail/${data._id}`,
+        onMouseEnter: () => setHover(true),
+        onMouseLeave: () => setHover(false),
+      }
+    : {
+        to: `/detail/${data._id}`,
+      };
 
   const overPosition = useMemo(() => {
-    return data.position.length > 2
-      ? data.position.length - 2
-      : undefined;
+    return data.position.length > 2 ? data.position.length - 2 : undefined;
   }, []);
 
   return (
-    <CardLink to={`/detail/${data._id}`}>
-      <CardLayout>
+    <CardLink {...CardLinkProps}>
+      <CardLayout $hoverOn={hoverOn} >
         <CardType type={data.type}>{data.type}</CardType>
-        <CardImg src={data.imageUrl} alt='CardImg' />
+        <CardImg src={data.imageUrl} alt="CardImg" />
         <CardTextLayout>
           <CardH3 title={data.title}>{data.title}</CardH3>
           <CardH4>포지션</CardH4>
@@ -56,9 +67,7 @@ const Card = ({ data }: { data: GroupData }) => {
               if (i < 6) {
                 return (
                   <React.Fragment key={i}>
-                    <SkillImg
-                      src={`/assets/img/skills/${pascalToKebab(item)}.svg`}
-                    />
+                    <SkillImg src={`/assets/img/skills/${pascalToKebab(item)}.svg`} />
                   </React.Fragment>
                 );
               }
@@ -78,6 +87,16 @@ const Card = ({ data }: { data: GroupData }) => {
             </CardCntWrap>
           </CardFooter>
         </CardTextLayout>
+        {hoverOn && (
+          <>
+            <Link to={`/detail/${data._id}`}>
+              <CardButton bottom="216px">상세 페이지</CardButton>
+            </Link>
+            <CardButton bottom="136px" onClick={() => console.log('test')}>
+              탈퇴
+            </CardButton>
+          </>
+        )}
       </CardLayout>
     </CardLink>
   );

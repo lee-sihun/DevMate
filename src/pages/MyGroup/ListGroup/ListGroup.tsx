@@ -44,7 +44,7 @@ const ListGroup = () => {
         <GroupWrap>
           {onGroup?.data.map((group: GroupData, i: number) => (
             <React.Fragment key={i}>
-              <Card data={group} />
+              <Card data={group} hoverOn={true} />
             </React.Fragment>
           ))}
         </GroupWrap>
@@ -65,7 +65,7 @@ const ListGroup = () => {
           <GroupWrap>
             {joinGroup?.data.map((group: GroupData, i: number) => (
               <React.Fragment key={i}>
-                <Card data={group} />
+                <Card data={group} hoverOn={true} />
               </React.Fragment>
             ))}
           </GroupWrap>
