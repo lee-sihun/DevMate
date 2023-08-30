@@ -5,8 +5,9 @@ import Info from 'components/features/Group/Info/Info';
 import Desc from 'components/features/Group/Desc/Desc';
 // import { useGetDetailDummyDataQuery } from 'store/hooks';
 import { useParams } from 'react-router-dom';
-import { useGetDetailDataQuery } from 'store/hooks/groupDetail.hooks';
+// import { useGetDetailDataQuery } from 'store/hooks/groupDetail.hooks';
 import { AuthorData } from 'author-data';
+import { useGetDetailDataQuery } from 'store/hooks/group.hooks';
 
 interface DetailProps {
   userData?: AuthorData
@@ -35,6 +36,7 @@ const Detail = ({ userData }: DetailProps) => {
           wishCount={detailData.wishCount}
         />
         <Info
+          detailData={detailData}
           title={detailData.title}
           type={detailData.type}
           location={detailData.location}

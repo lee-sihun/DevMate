@@ -31,3 +31,24 @@ export const validateDateRange = (input: string | undefined): boolean => {
       return false; // 유효한 단위가 아님
   }
 };
+
+/**
+ * window.scrollTo() 메서드에 속도 적용
+ * @param y Y위치 값으로 스크롤 이동
+ * @param duration 해당 위치로 이동하는 총 시간
+ */
+export const durationScrollTo = (y: number, duration = 10) => {
+  const stepY = (y - window.scrollY) / duration;
+  const currentY = window.scrollY;
+  const startTime = new Date().getTime();
+
+  const scrollInterval = setInterval(() => {
+    const now = new Date().getTime() - startTime;
+
+    window.scrollTo({ top: currentY + stepY * now });
+
+    if (duration <= now) {
+      clearInterval(scrollInterval);
+    }
+  }, 1);
+};
