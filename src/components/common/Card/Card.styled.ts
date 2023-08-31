@@ -80,7 +80,7 @@ export const CardLayout = styled.div<LayoutProps>`
 export const CardType = styled.div<{ type: string }>`
   width: 100px;
   height: 20px;
-  background-color: ${({ type }) => (type === 'study' ? 'var(--blue-regular1)' : 'var(--blue-semi-dark2)')};
+  background-color: ${({ type }) => (type === 'study' ? 'var(--blue-regular1)' : 'var(--blue-dark1)')};
   color: white;
   position: absolute;
   top: 0;
@@ -117,10 +117,15 @@ export const CardH3 = styled.h3`
   font-size: 16px;
 `;
 export const CardH4 = styled.h4`
-  margin: 20px 0 6px 0;
   font-size: 13px;
+  margin-bottom: 4px;
+`;
+export const LabelLayout = styled.div`
+  min-height: 55px;
+  margin-top: 12px;
 `;
 export const SkillImgWrap = styled.div<{ width?: string }>`
+  min-height: 30px;
   display: flex;
   gap: 10px;
   ${({ width }) => (width ? `width: ${width};` : '')}

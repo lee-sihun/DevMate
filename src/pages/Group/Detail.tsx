@@ -25,6 +25,7 @@ const Detail = ({ userData }: DetailProps) => {
   }, [userData]);
 
   if (detailData) {
+    // console.log(detailData);
     return (
       <DetailWrapper>
         <Title

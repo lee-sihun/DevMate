@@ -32,6 +32,11 @@ export const Content = styled.div`
     line-height: 1.5;
     color: #acacac;
     font-weight: 400;
+    strong{
+      font-size: 12px;
+      color: black;
+      text-decoration: underline;
+    }
   }
 `;
 

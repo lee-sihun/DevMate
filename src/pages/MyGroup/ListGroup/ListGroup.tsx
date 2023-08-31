@@ -61,7 +61,7 @@ const ListGroup = () => {
         <GroupWrap>
           {onGroup?.data.map((group: GroupData, i: number) => (
             <React.Fragment key={i}>
-              <Card data={group} hoverOn={true} red={true} btnTxt="탈퇴" id={createdGroup?.data._id} onChange={handleExitGroup} />
+              <Card data={group} hoverOn={true} red={true} btnTxt="탈퇴" id={createdGroup?.data?._id} onChange={handleExitGroup} />
             </React.Fragment>
           ))}
         </GroupWrap>

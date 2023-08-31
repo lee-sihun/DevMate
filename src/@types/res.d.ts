@@ -8,4 +8,9 @@ declare module 'response-data-type' {
     status: number;
     data: DataSet;
   }
+
+  interface Error {
+    data?: DataSet;
+    status: number;
+  }
 }

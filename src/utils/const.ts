@@ -1,3 +1,12 @@
+import thumbnail8 from 'assets/img/thumbnail/thumbnail-8.png';
+import thumbnail9 from 'assets/img/thumbnail/thumbnail-9.png';
+import thumbnail10 from 'assets/img/thumbnail/thumbnail-10.png';
+import thumbnail11 from 'assets/img/thumbnail/thumbnail-11.png';
+import thumbnail12 from 'assets/img/thumbnail/thumbnail-12.png';
+import thumbnail13 from 'assets/img/thumbnail/thumbnail-13.png';
+import thumbnail14 from 'assets/img/thumbnail/thumbnail-14.png';
+import thumbnail15 from 'assets/img/thumbnail/thumbnail-15.png';
+
 export const MD_TEXT = `
 ## 머리말 (Header)
   * # H1 입니다.
@@ -213,3 +222,5 @@ export const SELECT_SKILLS_LIST = [
   'Wordpress',
   'Xd',
 ];
+
+export const THUMNAIL_BOX = [thumbnail8, thumbnail9, thumbnail10, thumbnail11, thumbnail12, thumbnail13, thumbnail14, thumbnail15];
