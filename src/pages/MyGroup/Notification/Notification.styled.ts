@@ -49,3 +49,21 @@ export const NotiContainer = styled.div`
     justify-content: center;
   }
 `;
+
+export const TextWrap = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 80px;
+  h4 {
+    font-weight: bold;
+    font-size: 27px;
+    margin-right: 10px;
+  }
+
+  a {
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: underline;
+    margin-left: auto;
+  }
+`;
