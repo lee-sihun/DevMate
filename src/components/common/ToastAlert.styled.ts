@@ -11,16 +11,16 @@ export const ToastAlert = styled.div<{ color?: string; backgroundColor?: string 
   border: 1px solid var(--default-border);
   border-radius: 20px;
   position: fixed;
-  bottom: 50px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   z-index: 99999;
   color: ${({ color }) => color ?? 'var(--second-text)'};
   background-color: ${({ backgroundColor }) => backgroundColor ?? 'var(--layout-bg)'};
-
   box-shadow: 0 2px 2px var(--box-shadow-light);
   animation: newAlert 0.25s ease-in-out;
+  font-size: 30px;
   & > strong {
     font-weight: 400;
   }
