@@ -11,6 +11,7 @@ export const pascalToKebab = (str: string) => {
 /**
  * @param str 는 string이나 number타입인 숫자를 전달해주면 2자리 이상이 될 경우 '99+'로 반환
  * @returns
+ * 
  */
 export const CntMaxView = (str: string | number) => {
   return String(str).length > 2 ? '99+' : str;

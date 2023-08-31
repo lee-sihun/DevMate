@@ -13,6 +13,8 @@ import down from '../../../assets/img/down.svg';
 import Button from '../Button/Button';
 import CheckAnimation from '../CheckAnimation/CheckAnimation';
 import { ToastAlert } from '../ToastAlert.styled';
+import { useGroupJoinRequestMutation } from 'store/hooks/group.hooks';
+import { useParams } from 'react-router-dom';
 
 interface SupportModalProps {
   title: string,
@@ -24,6 +26,13 @@ const SupportModal = ({ title, setModal }: SupportModalProps) => {
   const [support, setSupport] = React.useState(false);
   const [supportContents, setSupportContents] = React.useState<string>('');
   const [alert, setAlert] = React.useState(false);
+  const { id: groupId } = useParams();
+
+
+  const [
+    groupJoinRequest,
+    { isSuccess },
+  ] = useGroupJoinRequestMutation();
 
   React.useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -39,10 +48,17 @@ const SupportModal = ({ title, setModal }: SupportModalProps) => {
     }
   }, [alert]);
 
+  React.useEffect(() => {
+    if (isSuccess) {
+      setSupport(true);
+    }
+  }, [isSuccess]);
+
   const closeModal = React.useCallback(() => setModal(false), []);
   const submitSupport = React.useCallback(() => {
     if (supportContents) {
-      setSupport(true);
+      // console.log(supportContents);
+      groupJoinRequest({ groupId, content: supportContents });
     } else {
       setAlert(true);
     }
@@ -69,7 +85,7 @@ const SupportModal = ({ title, setModal }: SupportModalProps) => {
                   placeholder='그룹장에게 보낼 지원 메시지를 적으세요.'
                   value={supportContents}
                   onChange={(e) => {
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     setSupportContents(e.target.value);
                   }}
                 ></SupportModalWindowMsg>

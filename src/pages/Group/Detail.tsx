@@ -18,11 +18,11 @@ const Detail = ({ userData }: DetailProps) => {
   const { id: groupId } = useParams();
   const { data } = useGetDetailDataQuery(groupId);
 
-  useEffect(() => {
-    console.log(userData?._id);
-  }, [userData]);
-
   const detailData = data?.data;
+
+  useEffect(() => {
+    // console.log(userData);
+  }, [userData]);
 
   if (detailData) {
     return (
@@ -52,6 +52,7 @@ const Detail = ({ userData }: DetailProps) => {
         <Desc
           contents={detailData.description}
           groupId={detailData._id}
+          userData={userData}
         />
       </DetailWrapper>
     );
