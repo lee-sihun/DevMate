@@ -5,8 +5,9 @@ import Info from 'components/features/Group/Info/Info';
 import Desc from 'components/features/Group/Desc/Desc';
 // import { useGetDetailDummyDataQuery } from 'store/hooks';
 import { useParams } from 'react-router-dom';
-import { useGetDetailDataQuery } from 'store/hooks/groupDetail.hooks';
+// import { useGetDetailDataQuery } from 'store/hooks/groupDetail.hooks';
 import { AuthorData } from 'author-data';
+import { useGetDetailDataQuery } from 'store/hooks/group.hooks';
 
 interface DetailProps {
   userData?: AuthorData
@@ -17,11 +18,11 @@ const Detail = ({ userData }: DetailProps) => {
   const { id: groupId } = useParams();
   const { data } = useGetDetailDataQuery(groupId);
 
-  useEffect(() => {
-    console.log(userData?._id);
-  }, [userData]);
-
   const detailData = data?.data;
+
+  useEffect(() => {
+    // console.log(userData);
+  }, [userData]);
 
   if (detailData) {
     return (
@@ -35,6 +36,7 @@ const Detail = ({ userData }: DetailProps) => {
           wishCount={detailData.wishCount}
         />
         <Info
+          detailData={detailData}
           title={detailData.title}
           type={detailData.type}
           location={detailData.location}
@@ -50,6 +52,7 @@ const Detail = ({ userData }: DetailProps) => {
         <Desc
           contents={detailData.description}
           groupId={detailData._id}
+          userData={userData}
         />
       </DetailWrapper>
     );

@@ -9,13 +9,15 @@ import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import Prism from 'prismjs';
 import { useLocation } from 'react-router-dom';
 import DescFooter from 'components/common/DescFooter/DescFooter';
+import { AuthorData } from 'author-data';
 
 interface DescProps {
   contents?: string,
-  groupId: string
+  groupId: string,
+  userData?: AuthorData,
 }
 
-const Desc = ({ contents, groupId }: DescProps) => {
+const Desc = ({ contents, groupId, userData }: DescProps) => {
 
   const location = useLocation();
 
@@ -32,7 +34,7 @@ const Desc = ({ contents, groupId }: DescProps) => {
         initialValue={contents || ''}
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
       />
-      <DescFooter $url={fullURL} groupId={groupId} />
+      <DescFooter $url={fullURL} groupId={groupId} userData={userData} />
     </DescSection>
   );
 };

@@ -89,11 +89,12 @@ const UserInfo = styled.div`
   position: relative;
 
   img{
-    width: 30px;
+    width: 42px;
     aspect-ratio: 1/1;
     border-radius: 50%;
     border: 1px solid rgb(230,230,230);
     cursor: pointer;
+    box-sizing: border-box;
   }
 `;
 
