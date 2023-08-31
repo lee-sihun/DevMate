@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   GroupImg,
   InfoH3,
@@ -20,6 +20,7 @@ import { AuthorData } from 'author-data';
 import { useNavigate, useParams } from 'react-router-dom';
 import GroupDeleteModal from 'components/common/GroupDeleteModal/GroupDeleteModal';
 import { useGetJoinReqGroupQuery, useGroupJoinCancelRequestMutation } from 'store/hooks/group.hooks';
+import { THUMNAIL_BOX } from 'utils/const';
 
 interface InfoProps {
   detailData: any,
@@ -46,12 +47,15 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
 
   const userJoinInfo = joinData?.data.groupsInfo;
 
-
   const authorData = data?.data.foundUser;
 
   const navigate = useNavigate();
   const { id: groupId } = useParams();
 
+  const randomThumnail = useMemo(() => {
+    const randomIdx = Math.floor(Math.random() * THUMNAIL_BOX.length);
+    return THUMNAIL_BOX[randomIdx];
+  }, []);
 
   const [
     groupJoinCancelRequest,
@@ -69,7 +73,21 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
   //   }
   // }, [joinData]);
 
+  const imgErrorHandler = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = randomThumnail;
+  };
 
+  console.log(detailData);
+
+  const [participating, setParticipating] = useState(false);
+
+  useEffect(() => {
+    if (detailData.currentMembers.filter((memberId: string) => memberId === userData?._id).length > 0) {
+      setParticipating(true);
+    } else {
+      setParticipating(false);
+    }
+  }, [detailData]);
 
   return (
     <InfoSection>
@@ -92,7 +110,7 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
         <InfoWrap>
           <InfoH3>예상 기한</InfoH3>
           <Boundary height='20px' />
-          <InfoSpan>{dueDate}</InfoSpan>
+          <InfoSpan style={{ color: 'var(--disabled-text)', fontWeight: 400 }}>{dueDate || '예상 기한이 없습니다.'}</InfoSpan>
         </InfoWrap>
         <InfoWrap>
           <InfoH3>포지션</InfoH3>
@@ -107,21 +125,25 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
           <InfoH3>기술 스택</InfoH3>
           <Boundary height='20px' $alignSelf='flex-start' />
           <SkillImgWrap width='600px'>
-            {skills.map((item, i) => {
-              return (
-                <React.Fragment key={i}>
-                  <SkillImg
-                    src={`/assets/img/skills/${pascalToKebab(item)}.svg`}
-                  />
-                  <span>{item}</span>
-                </React.Fragment>
-              );
-            })}
+            {
+              skills.length > 0
+                ? skills.map((item, i) => {
+                  return (
+                    <React.Fragment key={i}>
+                      <SkillImg
+                        src={`/assets/img/skills/${pascalToKebab(item)}.svg`}
+                      />
+                      <span>{item}</span>
+                    </React.Fragment>
+                  );
+                })
+                : <span style={{ color: 'var(--disabled-text)' }}>요구되는 기술이 없습니다.</span>
+            }
           </SkillImgWrap>
         </InfoWrap>
       </InfoLeft>
       <InfoRight>
-        <GroupImg src={uploadsUrlParser(img)} />
+        <GroupImg src={uploadsUrlParser(img)} onError={imgErrorHandler} />
         {
           authorData?._id === userData?._id
             ? <>
@@ -139,18 +161,23 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
               }}>삭제하기</Button>
             </>
             :
-            userJoinInfo && userJoinInfo.filter((joinGroup: GroupData) => joinGroup._id === groupId).length > 0
-              ? <>
-                <Button color='var(--error)' height="38px" onClick={() => {
-                  groupJoinCancelRequest(groupId);
-                }}>지원 취소</Button>
-              </>
-              :
-              <>
-                <Button color='var(--success)' height="38px" onClick={() => {
-                  setModal(true);
-                }}>지원하러 가기!</Button>
-              </>
+            // participating
+            //   ? <>
+            //     <Button color='#ccc' height="38px" disabled={true}>참가 중</Button>
+            //   </>
+            //   :
+              userJoinInfo && userJoinInfo.filter((joinGroup: GroupData) => joinGroup._id === groupId).length > 0
+                ? <>
+                  <Button color='var(--error)' height="38px" onClick={() => {
+                    groupJoinCancelRequest(groupId);
+                  }}>지원 취소</Button>
+                </>
+                :
+                <>
+                  <Button color='var(--success)' height="38px" onClick={() => {
+                    setModal(true);
+                  }}>지원하러 가기!</Button>
+                </>
         }
 
       </InfoRight>

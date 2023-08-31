@@ -40,6 +40,14 @@ export const userApi = createApi({
       }),
       invalidatesTags: [{ type: 'User', id: 'User' }],
     }),
+    userDelete: builder.mutation({
+      query: (password) => ({
+        url: '',
+        method: 'DELETE',
+        body: { password },
+      }),
+      invalidatesTags: [{ type: 'User', id: 'User' }],
+    }),
     getProfile: builder.query<{ data: { foundUser: any }; error: 'string' | null }, void>({
       query: () => 'myProfile', // 실제 엔드포인트 경로에 맞게 설정
       providesTags: [{ type: 'User', id: 'User' }],
@@ -50,11 +58,12 @@ export const userApi = createApi({
   }),
 });
 
-export const { 
-  useSignInMutation, 
-  useSignUpMutation, 
-  useLogOutMutation, 
-  useProfileUpdateMutation, 
-  useGetProfileQuery, 
+export const {
+  useSignInMutation,
+  useSignUpMutation,
+  useLogOutMutation,
+  useUserDeleteMutation,
+  useProfileUpdateMutation,
+  useGetProfileQuery,
   useGetOtherProfileQuery,
- } = userApi; // API 호출 훅 생성
+} = userApi; // API 호출 훅 생성

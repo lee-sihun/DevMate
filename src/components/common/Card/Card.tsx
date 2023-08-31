@@ -13,11 +13,15 @@ import {
   CardLink,
   CardType,
   CardButton,
+  LabelLayout,
 } from './Card.styled';
 import { GroupData } from 'group-data';
 import { PositionLabel, PositionLabelWrap } from '../Label.styled';
 import { CntMaxView, pascalToKebab } from 'utils/parser';
 import { Link } from 'react-router-dom';
+import defaultGroupImg from 'assets/img/default-img.png';
+import { THUMNAIL_BOX } from 'utils/const';
+
 
 interface CardProps {
   data: GroupData;
@@ -30,15 +34,21 @@ interface CardProps {
 
 const Card = ({ data, hoverOn = false, red, btnTxt, id, onChange }: CardProps) => {
   const [hover, setHover] = useState(false);
+
+  const randomThumnail = useMemo(() => {
+    const randomIdx = Math.floor(Math.random() * THUMNAIL_BOX.length);
+    return THUMNAIL_BOX[randomIdx];
+  }, []);
+
   const CardLinkProps = hoverOn
     ? {
-        to: hover ? '' : `/detail/${data._id}`,
-        onMouseEnter: () => setHover(true),
-        onMouseLeave: () => setHover(false),
-      }
+      to: hover ? '' : `/detail/${data._id}`,
+      onMouseEnter: () => setHover(true),
+      onMouseLeave: () => setHover(false),
+    }
     : {
-        to: `/detail/${data._id}`,
-      };
+      to: `/detail/${data._id}`,
+    };
 
   const overPosition = useMemo(() => {
     return data.position.length > 2 ? data.position.length - 2 : undefined;
@@ -57,38 +67,48 @@ const Card = ({ data, hoverOn = false, red, btnTxt, id, onChange }: CardProps) =
     // console.log(data._id);
   }, [data]);
 
+  const imgErrorHandler = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = randomThumnail;
+  };
+
   return (
     <CardLink {...CardLinkProps}>
       <CardLayout $hoverOn={hoverOn}>
         <CardType type={data.type}>{data.type}</CardType>
-        <CardImg src={data.imageUrl} alt="CardImg" />
+        <CardImg src={data.imageUrl || defaultGroupImg} alt="CardImg"
+          onError={imgErrorHandler} />
         <CardTextLayout>
           <CardH3 title={data.title}>{data.title}</CardH3>
-          <CardH4>포지션</CardH4>
-          <PositionLabelWrap>
-            {data.position.map((item, i) => {
-              if (i < 2) {
-                return (
-                  <React.Fragment key={i}>
-                    <PositionLabel>{item}</PositionLabel>
-                  </React.Fragment>
-                );
-              }
-            })}
-            {overPosition && <PositionLabel>+{overPosition}</PositionLabel>}
-          </PositionLabelWrap>
-          <CardH4>기술 스택</CardH4>
-          <SkillImgWrap>
-            {data.skills.map((item, i) => {
-              if (i < 6) {
-                return (
-                  <React.Fragment key={i}>
-                    <SkillImg src={`/assets/img/skills/${pascalToKebab(item)}.svg`} />
-                  </React.Fragment>
-                );
-              }
-            })}
-          </SkillImgWrap>
+          <LabelLayout>
+            <CardH4>포지션</CardH4>
+            <PositionLabelWrap>
+              {data.position.map((item, i) => {
+                if (i < 2) {
+                  return (
+                    <React.Fragment key={i}>
+                      <PositionLabel>{item}</PositionLabel>
+                    </React.Fragment>
+                  );
+                }
+              })}
+              {overPosition && <PositionLabel>+{overPosition}</PositionLabel>}
+            </PositionLabelWrap>
+          </LabelLayout>
+          <LabelLayout>
+            {data.skills.length > 0 && <CardH4>기술 스택</CardH4>}
+            <SkillImgWrap>
+              {data.skills.map((item, i) => {
+                if (i < 6) {
+                  return (
+                    <React.Fragment key={i}>
+                      <SkillImg src={`/assets/img/skills/${pascalToKebab(item)}.svg`} />
+                    </React.Fragment>
+                  );
+                }
+              })}
+            </SkillImgWrap>
+          </LabelLayout>
+
           <CardFooter>
             <small>마감일: {data.dueDate}</small>
             <CardCntWrap>
