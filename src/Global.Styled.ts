@@ -267,7 +267,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--blue-light1);
     }
   ::-webkit-scrollbar-thumb {
-    background-color: var(--blue-regular1);
+    background-color: var(--blue-semi-light2);
     border-radius: 10px;
   }
   html{

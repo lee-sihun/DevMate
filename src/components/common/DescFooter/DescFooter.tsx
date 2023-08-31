@@ -6,12 +6,16 @@ import heart2 from '../../../assets/img/heart2.svg';
 import share from '../../../assets/img/share.svg';
 import { Boundary } from '../Boundary.styled';
 import { ToastAlert } from '../ToastAlert.styled';
+import { useWishControllerMutation } from 'store/hooks/group.hooks';
+import { AuthorData } from 'author-data';
 
-const DescFooter = ({ $url, groupId }: { $url: string, groupId: string }) => {
+const DescFooter = ({ $url, groupId, userData }: { $url: string, groupId: string, userData?: AuthorData }) => {
 
   const [imsiHeart, setImsiHeart] = React.useState(false);
 
   const [alert, setAlert] = React.useState(false);
+
+  const [wishController] = useWishControllerMutation();
 
   React.useEffect(() => {
     if (alert) {
@@ -20,9 +24,26 @@ const DescFooter = ({ $url, groupId }: { $url: string, groupId: string }) => {
     }
   }, [alert]);
 
+  React.useEffect(() => {
+    if (userData) {
+      const wishing = userData?.wishList.filter((wishGroupId) => wishGroupId === groupId);
+      // console.log(wishing);
+      wishing.length > 0 ? setImsiHeart(true) : setImsiHeart(false);
+    }
+  }, [userData]);
+
+  const wishHandler = () => {
+    setImsiHeart((curr) => !curr);
+    if (imsiHeart) {
+      wishController({ groupId: groupId, wishState: false });
+    } else {
+      wishController({ groupId: groupId, wishState: true });
+    }
+  };
+
   return (<>
     <DescFooterWrap>
-      <button onClick={() => setImsiHeart((curr) => !curr)}>
+      <button onClick={wishHandler}>
         {imsiHeart ? <LinkIcon src={heart2} /> : <LinkIcon src={heart1} />}
       </button>
       <Boundary height='100%' width='2.3px' />
@@ -32,7 +53,7 @@ const DescFooter = ({ $url, groupId }: { $url: string, groupId: string }) => {
     </DescFooterWrap>
     {
       alert && <ToastAlert>
-        <strong>신청이 완료되었습니다.</strong>
+        <strong>링크 복사 완료: {$url}</strong>
       </ToastAlert>
     }
   </>

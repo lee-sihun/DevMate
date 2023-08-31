@@ -37,6 +37,29 @@ export const groupApi = createApi({
       invalidatesTags: [{ type: 'Group', id: 'Group' }],
     }),
 
+    wishController: builder.mutation({
+      query: ({ groupId, wishState }) => ({
+        url: `groups/subscribe/${groupId}/${wishState}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    groupJoinRequest: builder.mutation({
+      query: ({ groupId, content }) => ({
+        url: `groups/joinRequests/${groupId}`,
+        method: 'POST',
+        body: { content },
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    groupJoinCancelRequest: builder.mutation({
+      query: (groupId) => ({
+        url: `groups/join/cancelReq/${groupId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+
     createGroup: builder.mutation({
       query: (groupFormData) => ({
         url: 'groups',
@@ -99,6 +122,9 @@ export const {
   useGetDetailDataQuery,
   useUpdateGroupMutation,
   useDeleteGroupMutation,
+  useWishControllerMutation,
+  useGroupJoinRequestMutation,
+  useGroupJoinCancelRequestMutation,
   useCreateGroupMutation,
   useCreatedGroupQuery,
   useGetReqMembersQuery,

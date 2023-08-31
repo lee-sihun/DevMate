@@ -56,7 +56,7 @@ const Title = (
   const closeModal = React.useCallback(() => setModal(false), []);
 
   if (authorData) {
-
+    console.log(authorData);
     return (
       <TitleSection>
         <TitleH2>{title}</TitleH2>

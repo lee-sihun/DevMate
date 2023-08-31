@@ -8,7 +8,7 @@ import {
   InfoSpan,
   InfoWrap,
 } from './Info.styled';
-import { GroupType, Location, Position, Skill } from 'group-data';
+import { GroupData, GroupType, Location, Position, Skill } from 'group-data';
 import Button from 'components/common/Button/Button';
 import { Boundary } from 'components/common/Boundary.styled';
 import { PositionLabel, PositionLabelWrap } from 'components/common/Label.styled';
@@ -17,8 +17,9 @@ import { pascalToKebab, uploadsUrlParser } from 'utils/parser';
 import SupportModal from 'components/common/SupportModal/SupportModal';
 import { useGetOtherProfileQuery } from 'store/hooks/user.hooks';
 import { AuthorData } from 'author-data';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import GroupDeleteModal from 'components/common/GroupDeleteModal/GroupDeleteModal';
+import { useGetJoinReqGroupQuery, useGroupJoinCancelRequestMutation } from 'store/hooks/group.hooks';
 
 interface InfoProps {
   detailData: any,
@@ -41,14 +42,34 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
   const [deleteModal, setDeleteModal] = React.useState(false);
 
   const { data } = useGetOtherProfileQuery(authorId as string);
+  const { data: joinData } = useGetJoinReqGroupQuery({ page: 1, perPage: 8, type: detailData.type });
+
+  const userJoinInfo = joinData?.data.groupsInfo;
+
 
   const authorData = data?.data.foundUser;
 
   const navigate = useNavigate();
+  const { id: groupId } = useParams();
 
-  useEffect(() => {
-    // console.log(title, type, location, currentMembers, maxMembers, dueDate, position, skills, img);
-  }, [title, type, location, currentMembers, maxMembers, dueDate, position, skills, img]);
+
+  const [
+    groupJoinCancelRequest,
+  ] = useGroupJoinCancelRequestMutation();
+
+  // useEffect(() => {
+  //   // console.log(userJoinInfo);
+  //   if (userJoinInfo) {
+  //     const joinCheck = userJoinInfo.filter((joinGroup: GroupData) => {
+  //       // console.log(joinGroup);
+  //       return joinGroup._id === groupId;
+  //     });
+
+  //     console.log(joinCheck);
+  //   }
+  // }, [joinData]);
+
+
 
   return (
     <InfoSection>
@@ -117,11 +138,19 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
                 // console.log('delete');
               }}>삭제하기</Button>
             </>
-            : <>
-              <Button color='var(--success)' height="38px" onClick={() => {
-                setModal(true);
-              }}>지원하러 가기!</Button>
-            </>
+            :
+            userJoinInfo && userJoinInfo.filter((joinGroup: GroupData) => joinGroup._id === groupId).length > 0
+              ? <>
+                <Button color='var(--error)' height="38px" onClick={() => {
+                  groupJoinCancelRequest(groupId);
+                }}>지원 취소</Button>
+              </>
+              :
+              <>
+                <Button color='var(--success)' height="38px" onClick={() => {
+                  setModal(true);
+                }}>지원하러 가기!</Button>
+              </>
         }
 
       </InfoRight>
