@@ -6,15 +6,16 @@ interface ButtonProps {
   children: React.ReactNode;
   color: string;
   height: string;
+  width?: string;
   reverse?: string; // '?'를 추가하여 선택적 프롭으로 설정
   onClick?: () => void;
   //  onClick?: (...args: any[]) => void;
 }
 
-const Button = ({ children, color, height, reverse, onClick }: ButtonProps) => {
+const Button = ({ children, color, height, width, reverse, onClick }: ButtonProps) => {
   return (
     <StyleSheetManager shouldForwardProp={(prop) => prop !== 'reverse'}>
-      <Btn color={color} height={height} reverse={reverse} onClick={onClick}>
+      <Btn color={color} height={height} reverse={reverse} onClick={onClick} width={width}>
         {children}
       </Btn>
     </StyleSheetManager>

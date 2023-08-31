@@ -19,6 +19,10 @@ export const groupApi = createApi({
       query: (groupId) => `groups/${groupId}`, // 실제 엔드포인트 경로에 맞게 설정
       providesTags: [{ type: 'Group', id: 'Group' }],
     }),
+    getNotification: builder.query<{ data: any; error: 'string' | null }, void>({
+      query: () => 'groups/notification/getAllUser', // 실제 엔드포인트 경로에 맞게 설정
+      providesTags: [{ type: 'Group', id: 'Group' }],
+    }),
 
     updateGroup: builder.mutation({
       query: ({ groupFormData, groupId }) => ({
@@ -55,6 +59,20 @@ export const groupApi = createApi({
     groupJoinCancelRequest: builder.mutation({
       query: (groupId) => ({
         url: `groups/join/cancelReq/${groupId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    groupExitRequest: builder.mutation({
+      query: (groupId) => ({
+        url: `groups/exitUserInGroup/${groupId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    groupChangeStatus: builder.mutation({
+      query: (groupId) => ({
+        url: `groups/changeStatus/${groupId}`,
         method: 'PATCH',
       }),
       invalidatesTags: [{ type: 'Group', id: 'Group' }],
@@ -134,4 +152,7 @@ export const {
   useGetOngoingGroupQuery,
   useGetJoinReqGroupQuery,
   useGetFavGroupQuery,
+  useGroupExitRequestMutation,
+  useGroupChangeStatusMutation,
+  useGetNotificationQuery,
 } = groupApi; // API 호출 훅 생성

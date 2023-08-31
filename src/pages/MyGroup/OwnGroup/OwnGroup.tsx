@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Wrapper, Inner, LeftSection, GroupList, RightSection, BtnGroup, TextWrap } from './OwnGroup.styled';
+import { Wrapper, Inner, LeftSection, GroupList, RightSection, BtnGroup, TextWrap, BtnComplete } from './OwnGroup.styled';
 import GroupItem from './GroupItem/GroupItem';
 import {
   useCreatedGroupQuery,
+  useGetDetailDataQuery,
   useGetReqMembersQuery,
+  useGroupChangeStatusMutation,
   usePatchDeleteAllReqMembersMutation,
   usePatchRejectReqMembersMutation,
   usePatchReqMembersMutation,
@@ -14,9 +16,13 @@ import Button from 'components/common/Button/Button';
 import CardSkeleton from 'components/common/Card/Card.skeleton';
 import JoinRequestModal from 'components/common/Modal/JoinRequestModal/JoinRequestModal';
 import NoData from 'components/common/NoData/NoData';
+import { useNavigate } from 'react-router-dom';
+import GroupDeleteModal from 'components/common/GroupDeleteModal/GroupDeleteModal';
 
 const OwnedGroup = () => {
+  const navigate = useNavigate();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
   const [modalData, setModalData] = useState({});
   const [joinId, setJoinId] = useState('');
@@ -26,6 +32,10 @@ const OwnedGroup = () => {
   const [approve] = usePatchReqMembersMutation();
   const [reject] = usePatchRejectReqMembersMutation();
   const [deleteAllReq] = usePatchDeleteAllReqMembersMutation();
+  const [groupStatus] = useGroupChangeStatusMutation();
+
+  const { data: detail } = useGetDetailDataQuery(createdGroup?.data?._id);
+  const detailData = detail?.data;
 
   const openModal = () => {
     setIsModalVisible(true);
@@ -77,18 +87,25 @@ const OwnedGroup = () => {
               <CardSkeleton />
             )}
             <BtnGroup>
-              <Button color="var(--success)" height="34px">
-                상세 페이지
-              </Button>
-              <Button color="var(--success)" height="34px">
+              <Button
+                color="var(--success)"
+                height="34px"
+                onClick={() => {
+                  navigate('/mygroup/update', { state: { beforeUrl: 'detail', detailData } });
+                }}
+              >
                 수정하기
               </Button>
-              <Button color="#41E3B6" height="34px">
-                모집 완료
-              </Button>
-              <Button color="var(--error)" height="34px">
+              <Button color="var(--error)" height="34px" onClick={() => setDeleteModal(true)}>
                 삭제
               </Button>
+              {createdGroup?.data?.status ? (
+                <Button color="#41E3B6" height="34px" width="250px" onClick={() => groupStatus(createdGroup?.data?._id)}>
+                  모집 완료
+                </Button>
+              ) : (
+                <BtnComplete>모집이 완료되었습니다</BtnComplete>
+              )}
             </BtnGroup>
           </LeftSection>
           <RightSection>
@@ -116,6 +133,9 @@ const OwnedGroup = () => {
             </GroupList>
           </RightSection>
         </Inner>
+        {
+          deleteModal && <GroupDeleteModal title={createdGroup?.data?.title} setModal={setDeleteModal} id={createdGroup?.data?._id} />
+        }
       </Wrapper>
     );
   } else {

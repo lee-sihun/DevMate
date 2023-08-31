@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 interface BtnProps {
   color: string;
   height: string;
+  width?: string;
   reverse?: string;
 }
 
@@ -27,12 +28,13 @@ export const Btn = styled.button<BtnProps>`
   font-size: 12px;
   padding: 11px 18px;
   height: ${({ height }) => height};
+  width: ${({ width }) => width};
   cursor: pointer;
   display: flex;
   align-items: center;
-  /* transition: all 0.4s ease 0s; */
+  transition: filter 0.4s ease;
   &:hover {
-    filter: brightness(0.8);
+    filter: brightness(1.2);
   }
   ${colorStyles}
 `;

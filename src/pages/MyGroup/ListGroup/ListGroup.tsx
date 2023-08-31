@@ -4,7 +4,13 @@ import { GroupData } from 'group-data';
 import React, { useEffect, useState } from 'react';
 import { useGetDummyDataQuery } from 'store/hooks';
 import { Wrapper, TypeSortTabs, Inner, GroupImg } from './ListGroup.styled';
-import { useCreatedGroupQuery, useGetJoinReqGroupQuery, useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
+import {
+  useCreatedGroupQuery,
+  useGetJoinReqGroupQuery,
+  useGetOngoingGroupQuery,
+  useGroupExitRequestMutation,
+  useGroupJoinCancelRequestMutation,
+} from 'store/hooks/group.hooks';
 import NoData from 'components/common/NoData/NoData';
 import { GroupWrap } from 'pages/Home/Home.styled';
 import Paging from 'components/common/Paging/Paging';
@@ -21,11 +27,21 @@ const ListGroup = () => {
   const { data: createdGroup } = useCreatedGroupQuery();
   const { data: onGroup } = useGetOngoingGroupQuery();
   const { data: joinGroup } = useGetJoinReqGroupQuery({ page: page, perPage: 8, type: type.toLocaleLowerCase() });
+  const [exitGroup] = useGroupExitRequestMutation();
+  const [joinCancel] = useGroupJoinCancelRequestMutation();
   const totalPage = joinGroup?.data.totalPage;
   const typeText = type === 'STUDY' ? '스터디' : '프로젝트';
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
+  };
+
+  const handleExitGroup = (groupId: string) => {
+    exitGroup(groupId);
+  };
+
+  const handleJoinCancel = (groupId: string) => {
+    joinCancel(groupId);
   };
 
   useEffect(() => {
@@ -45,12 +61,12 @@ const ListGroup = () => {
         <GroupWrap>
           {onGroup?.data.map((group: GroupData, i: number) => (
             <React.Fragment key={i}>
-              <Card data={group} hoverOn={true} red={true} btnTxt="탈퇴" id={createdGroup?.data._id} onChange={console.log}/>
+              <Card data={group} hoverOn={true} red={true} btnTxt="탈퇴" id={createdGroup?.data._id} onChange={handleExitGroup} />
             </React.Fragment>
           ))}
         </GroupWrap>
       )}
-      <GroupImg>
+      <GroupImg $marginTop='70px'>
         <h2>지원 현황</h2>
       </GroupImg>
       <TypeSortTabs>
@@ -66,7 +82,7 @@ const ListGroup = () => {
           <GroupWrap>
             {joinGroup?.data.groupsInfo.map((group: GroupData, i: number) => (
               <React.Fragment key={i}>
-                <Card data={group} hoverOn={true} btnTxt="지원 취소" red={true}/>
+                <Card data={group} hoverOn={true} btnTxt="지원 취소" red={true} onChange={handleJoinCancel} />
               </React.Fragment>
             ))}
           </GroupWrap>

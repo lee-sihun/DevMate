@@ -57,6 +57,9 @@ export const SelectWrap = styled.div`
   .optionContainer {
     font-size: 22px;
   }
+  .optionListContainer {
+    position: relative;
+  }
 
   .checkbox {
     width: 22px;
@@ -78,7 +81,7 @@ export const DropdownStyle = styled.div<DropProps>`
   display: flex;
 	position: absolute;
   min-width: 450px;
-  height: 367px;
+  height: auto;
 	top: 70px;
 	left: 0;
 	padding: 10px 10px;

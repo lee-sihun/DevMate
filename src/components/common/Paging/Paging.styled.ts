@@ -12,6 +12,7 @@ export const Container = styled.div`
   }
 
   li {
+    box-sizing: border-box;
     display: flex;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 70%;
@@ -21,6 +22,26 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     margin-right: 9px;
+    &:first-child, &:last-child, &:nth-child(2), &:nth-last-child(2) {
+      border: none;
+      width: 40px;
+      height: 40px;
+      background-color: transparent !important;
+      a {
+        color: rgb(128, 128, 128);
+        font-size: 40px;
+      }
+      &:hover > a {
+        color: var(--success) !important;
+      }
+    }
+    &:hover {
+      border: none;
+      background-color: var(--success);
+      a {
+        color: white;
+      }
+    }
   }
 
   a {
@@ -31,8 +52,6 @@ export const Container = styled.div`
   }
 
   .active {
-    width: 50px;
-    height: 50px;
     border: none;
     background-color: var(--success);
     a {
