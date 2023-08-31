@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   CardLayout,
   CardImg,
@@ -22,10 +22,13 @@ import { Link } from 'react-router-dom';
 interface CardProps {
   data: GroupData;
   hoverOn?: boolean; // '?'를 추가하여 선택적 프롭으로 설정
-  //  onClick?: (...args: any[]) => void;
+  red?: boolean;
+  btnTxt?: string;
+  id?: string;
+  onChange?: (value: string) => void;
 }
 
-const Card = ({ data, hoverOn = false }: CardProps) => {
+const Card = ({ data, hoverOn = false, red, btnTxt, id, onChange }: CardProps) => {
   const [hover, setHover] = useState(false);
   const CardLinkProps = hoverOn
     ? {
@@ -41,9 +44,22 @@ const Card = ({ data, hoverOn = false }: CardProps) => {
     return data.position.length > 2 ? data.position.length - 2 : undefined;
   }, []);
 
+  const handleClick = () => {
+    if (onChange) {
+      onChange(data._id || 'test');
+    } else {
+      console.log('No Find Event');
+    }
+  };
+
+  useEffect(() => {
+    // console.log(id);
+    // console.log(data._id);
+  }, [data]);
+
   return (
     <CardLink {...CardLinkProps}>
-      <CardLayout $hoverOn={hoverOn} >
+      <CardLayout $hoverOn={hoverOn}>
         <CardType type={data.type}>{data.type}</CardType>
         <CardImg src={data.imageUrl} alt="CardImg" />
         <CardTextLayout>
@@ -90,11 +106,15 @@ const Card = ({ data, hoverOn = false }: CardProps) => {
         {hoverOn && (
           <>
             <Link to={`/detail/${data._id}`}>
-              <CardButton bottom="216px">상세 페이지</CardButton>
+              <CardButton bottom={id !== data._id ? '216px' : '175px'} color="var(--success)">
+                상세 페이지
+              </CardButton>
             </Link>
-            <CardButton bottom="136px" onClick={() => console.log('test')}>
-              탈퇴
-            </CardButton>
+            {id !== data._id && (
+              <CardButton bottom="136px" color={red ? 'var(--error)' : 'var(--success)'} onClick={handleClick}>
+                {btnTxt}
+              </CardButton>
+            )}
           </>
         )}
       </CardLayout>

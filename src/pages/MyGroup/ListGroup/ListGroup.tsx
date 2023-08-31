@@ -4,7 +4,7 @@ import { GroupData } from 'group-data';
 import React, { useEffect, useState } from 'react';
 import { useGetDummyDataQuery } from 'store/hooks';
 import { Wrapper, TypeSortTabs, Inner, GroupImg } from './ListGroup.styled';
-import { useGetJoinReqGroupQuery, useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
+import { useCreatedGroupQuery, useGetJoinReqGroupQuery, useGetOngoingGroupQuery } from 'store/hooks/group.hooks';
 import NoData from 'components/common/NoData/NoData';
 import { GroupWrap } from 'pages/Home/Home.styled';
 import Paging from 'components/common/Paging/Paging';
@@ -18,6 +18,7 @@ const ListGroup = () => {
 
   const [page, setPage] = useState(1);
   const [type, setType] = useState('STUDY');
+  const { data: createdGroup } = useCreatedGroupQuery();
   const { data: onGroup } = useGetOngoingGroupQuery();
   const { data: joinGroup } = useGetJoinReqGroupQuery({ page: page, perPage: 8, type: type.toLocaleLowerCase() });
   const totalPage = joinGroup?.data.totalPage;
@@ -29,8 +30,8 @@ const ListGroup = () => {
 
   useEffect(() => {
     // console.log(createdGroup);
-    console.log(joinGroup);
     // console.log(joinGroup);
+    console.log(joinGroup);
   }, [onGroup, joinGroup]);
 
   return (
@@ -44,7 +45,7 @@ const ListGroup = () => {
         <GroupWrap>
           {onGroup?.data.map((group: GroupData, i: number) => (
             <React.Fragment key={i}>
-              <Card data={group} hoverOn={true} />
+              <Card data={group} hoverOn={true} red={true} btnTxt="탈퇴" id={createdGroup?.data._id} onChange={console.log}/>
             </React.Fragment>
           ))}
         </GroupWrap>
@@ -63,9 +64,9 @@ const ListGroup = () => {
       ) : (
         <>
           <GroupWrap>
-            {joinGroup?.data.map((group: GroupData, i: number) => (
+            {joinGroup?.data.groupsInfo.map((group: GroupData, i: number) => (
               <React.Fragment key={i}>
-                <Card data={group} hoverOn={true} />
+                <Card data={group} hoverOn={true} btnTxt="지원 취소" red={true}/>
               </React.Fragment>
             ))}
           </GroupWrap>

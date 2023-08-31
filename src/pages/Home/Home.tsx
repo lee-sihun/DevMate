@@ -9,6 +9,7 @@ import { Title, Intro, GroupWrap, Container } from './Home.styled';
 import Card from 'components/common/Card/Card';
 import { GroupData } from 'group-data';
 import Paging from 'components/common/Paging/Paging';
+import NoData from 'components/common/NoData/NoData';
 
 const Home = () => {
   const [page, setPage] = useState(1);
@@ -22,7 +23,7 @@ const Home = () => {
   };
 
   const convertQuery = (data: any[]): string => {
-    const type = data[0] === '전체' ? null : data[0];
+    const type = data[0] === '전체' ? null : data[0] === '스터디' ? 'study' : data[0] === '프로젝트' ? 'project' : null;
     const position = data[1] === '전체' ? null : data[1];
     const location = data[2] === '전체' ? null : data[2];
     const sort = data[3] === '최신순' ? 'true' : data[3] === '인기순' ? 'false' : null;
@@ -79,13 +80,17 @@ const Home = () => {
       <Title>🔍 그룹 찾기</Title>
       <Intro>마음에 드는 스터디/프로젝트를 찾아보세요</Intro>
       <SearchField handleFilterChange={handleFilterChange} />
-      <GroupWrap>
-        {Group?.data.groups.map((group: GroupData, i: number) => (
-          <React.Fragment key={i}>
-            <Card data={group} />
-          </React.Fragment>
-        ))}
-      </GroupWrap>
+      {Group?.data.groups.length === 0 ? (
+        <NoData msg="검색 결과가 없습니다" />
+      ) : (
+        <GroupWrap>
+          {Group?.data.groups.map((group: GroupData, i: number) => (
+            <React.Fragment key={i}>
+              <Card data={group} />
+            </React.Fragment>
+          ))}
+        </GroupWrap>
+      )}
       <Paging page={page} handlePageChange={handlePageChange} totalPage={totalPage} />
     </Container>
   );

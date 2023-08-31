@@ -3,6 +3,7 @@ import { styled, css } from 'styled-components';
 
 interface BtnProps {
   bottom: string;
+  color: string;
 }
 
 interface LayoutProps {
@@ -16,7 +17,7 @@ export const CardButton = styled.button<BtnProps>`
   font-size: 21px;
   width: 130px;
   height: 50px;
-  background-color: var(--success);
+  background-color: ${({ color }) => color};
   color: white;
   &:hover {
     filter: brightness(0.8);

@@ -41,7 +41,7 @@ const FavGroup = () => {
           <GroupWrap>
             {favGroup?.data.groupsInfo.map((group: GroupData, i: number) => (
               <React.Fragment key={i}>
-                <Card data={group} hoverOn={true} />
+                <Card data={group} hoverOn={true} red={true} btnTxt='삭제' onChange={console.log}/>
               </React.Fragment>
             ))}
           </GroupWrap>
