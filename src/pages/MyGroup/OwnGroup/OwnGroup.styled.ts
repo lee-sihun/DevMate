@@ -47,6 +47,19 @@ export const BtnGroup = styled.div`
   }
 `;
 
+export const BtnComplete = styled.div`
+  width: 250px;
+  height: 34px;
+  border: 0px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  /* padding: 11px 18px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const SectionTitle = styled.h3`
   margin-top: 12px;
   font-size: 18px;

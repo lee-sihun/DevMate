@@ -59,6 +59,20 @@ export const groupApi = createApi({
       }),
       invalidatesTags: [{ type: 'Group', id: 'Group' }],
     }),
+    groupExitRequest: builder.mutation({
+      query: (groupId) => ({
+        url: `groups/exitUserInGroup/${groupId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    groupChangeStatus: builder.mutation({
+      query: (groupId) => ({
+        url: `groups/changeStatus/${groupId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
 
     createGroup: builder.mutation({
       query: (groupFormData) => ({
@@ -134,4 +148,6 @@ export const {
   useGetOngoingGroupQuery,
   useGetJoinReqGroupQuery,
   useGetFavGroupQuery,
+  useGroupExitRequestMutation,
+  useGroupChangeStatusMutation,
 } = groupApi; // API 호출 훅 생성

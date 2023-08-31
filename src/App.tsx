@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Test from './pages/Test';
 import Home from './pages/Home/Home';
@@ -44,6 +44,9 @@ function App() {
     }
   }, [error, isFetching, isSuccess, pathname]);
 
+  const [activeTab, setActiveTab] = useState('그룹');
+  const [type, setType] = useState('STUDY');
+
   return (
     <>
       <Header isFetching={isFetching} isLoggedIn={isSuccess} userData={data?.data?.foundUser} />
@@ -58,7 +61,7 @@ function App() {
           <Route path="/create/success" element={<CreateSuccess />} />
           <Route path="/profile" element={<Profile userData={data?.data?.foundUser} />} />
           <Route path="/profile/edit" element={<ProfileEdit userData={data?.data?.foundUser} />} />
-          <Route path="/mygroup" element={<MyGroup />} />
+          <Route path="/mygroup" element={<MyGroup activeTab={activeTab} setActiveTab={setActiveTab} type={type} setType={setType} />} />
           <Route path="/mygroup/update" element={<Update />} />
           <Route path="/mygroup/update/success" element={<UpdateSuccess />} />
           <Route path="/test" element={<Test />} />

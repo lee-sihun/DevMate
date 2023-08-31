@@ -3,6 +3,7 @@ import groupImg from '../../../assets/img/groupImg.svg';
 
 export const Wrapper = styled.div`
   padding: 0 10px;
+
 `;
 
 export const TypeSortTabs = styled.div`
@@ -17,7 +18,7 @@ export const Inner = styled.div`
   gap: 30px 20px; 
 `;
 
-export const GroupImg = styled.div`
+export const GroupImg = styled.div<{ $marginTop?: string}>`
   width: 1200px;
   height: 140px;
   background-image: url(${groupImg});
@@ -28,6 +29,7 @@ export const GroupImg = styled.div`
   margin-right: 9px;
   display: flex;
   align-items: center;
+  margin-top: ${({$marginTop}) => $marginTop};
 
   h2 {
     margin-left: 38px;

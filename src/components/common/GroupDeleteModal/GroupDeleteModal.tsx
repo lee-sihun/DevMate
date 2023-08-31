@@ -17,18 +17,21 @@ import { useGetProfileQuery } from 'store/hooks/user.hooks';
 import { uploadsUrlParser } from 'utils/parser';
 import defaultProfile from 'assets/img/default-profile.svg';
 import { useDeleteGroupMutation } from 'store/hooks/group.hooks';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 interface GroupDeleteModalProps {
   title: string,
   setModal: React.Dispatch<React.SetStateAction<boolean>>,
+  id?: string,
+  // link?: string,
 }
 
-const GroupDeleteModal = ({ title, setModal }: GroupDeleteModalProps) => {
+const GroupDeleteModal = ({ title, setModal, id }: GroupDeleteModalProps) => {
 
   const { data } = useGetProfileQuery();
-  const { id: groupId } = useParams();
+  const { id: groupId } =  useParams();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const authorData = data?.data?.foundUser;
 
@@ -57,6 +60,7 @@ const GroupDeleteModal = ({ title, setModal }: GroupDeleteModalProps) => {
 
   React.useEffect(() => {
     if (isSuccess) {
+      pathname !== '/mygroup' && 
       setTimeout(() => navigate('/'), 2000);
     }
   }, [isSuccess]);
@@ -66,7 +70,8 @@ const GroupDeleteModal = ({ title, setModal }: GroupDeleteModalProps) => {
     // setGroupDelete(true);
     if (GroupDeleteContents === title) {
       setGroupDelete(true);
-      deleteGroup(groupId);
+      deleteGroup(groupId || id);
+      setModal(false);
     } else {
       setAlert(true);
     }
