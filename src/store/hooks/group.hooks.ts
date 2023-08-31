@@ -131,6 +131,22 @@ export const groupApi = createApi({
       }),
       invalidatesTags: [{ type: 'Group', id: 'Group' }],
     }),
+
+    DeleteNotification: builder.mutation({
+      query: (id) => ({
+        url: `groups/notification/delete/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
+    
+    DeleteAllNotification: builder.mutation({
+      query: () => ({
+        url: 'groups/notification/deleteAll',
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'Group', id: 'Group' }],
+    }),
   }),
 });
 
@@ -155,4 +171,6 @@ export const {
   useGroupExitRequestMutation,
   useGroupChangeStatusMutation,
   useGetNotificationQuery,
+  useDeleteNotificationMutation,
+  useDeleteAllNotificationMutation,
 } = groupApi; // API 호출 훅 생성
