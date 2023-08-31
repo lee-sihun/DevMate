@@ -22,7 +22,7 @@ const FavGroup = () => {
   };
 
   useEffect(() => {
-    console.log(favGroup?.data.totalPage);
+    console.log(favGroup);
   }, [favGroup]);
 
   return (
@@ -34,14 +34,14 @@ const FavGroup = () => {
         <TypeSortBtn type="STUDY" isActive={type === 'STUDY'} onClick={() => setType('STUDY')} />
         <TypeSortBtn type="PROJECT" isActive={type === 'PROJECT'} onClick={() => setType('PROJECT')} />
       </TypeSortTabs>
-      {favGroup?.data.length === 0 ? (
+      {favGroup?.data.groupsInfo.length === 0 ? (
         <NoData msg={`지원 중인 ${typeText}가 없습니다`} />
       ) : (
         <>
           <GroupWrap>
-            {favGroup?.data.map((group: GroupData, i: number) => (
+            {favGroup?.data.groupsInfo.map((group: GroupData, i: number) => (
               <React.Fragment key={i}>
-                <Card data={group} />
+                <Card data={group} hoverOn={true} red={true} btnTxt='삭제' onChange={console.log}/>
               </React.Fragment>
             ))}
           </GroupWrap>
