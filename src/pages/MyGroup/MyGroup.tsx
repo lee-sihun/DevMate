@@ -4,6 +4,7 @@ import PageTemplate from 'components/common/PageTemplate/PageTemplate';
 import OwnedGroup from './OwnGroup/OwnGroup';
 import ListGroup from './ListGroup/ListGroup';
 import FavGroup from './FavGroup/FavGroup';
+import Notification from './Notification/Notification';
 
 interface MyGroupProps {
   activeTab: string;
@@ -13,7 +14,7 @@ interface MyGroupProps {
 }
 
 const MyGroup = ({ activeTab, setActiveTab, type, setType }: MyGroupProps) => {
-  const tabs = ['그룹', '모집 관리', '관심 목록'];
+  const tabs = ['그룹', '모집 관리', '관심 목록', '알림'];
   
   let content;
   switch (activeTab) {
@@ -26,9 +27,9 @@ const MyGroup = ({ activeTab, setActiveTab, type, setType }: MyGroupProps) => {
     case '관심 목록':
       content = <FavGroup type={type} setType={setType} />;
       break;
-    // case '알림':
-    //   content = <Notifications />;
-    //   break;
+    case '알림':
+      content = <Notification />;
+      break;
     default:
       content = null;
   }

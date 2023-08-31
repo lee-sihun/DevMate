@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import groupImg from '../../../assets/img/groupImg.svg';
 
 export const Wrapper = styled.div`
-  padding: 0 10px;
-
+  padding: 0 0px;
 `;
 
 export const TypeSortTabs = styled.div`
@@ -23,10 +22,10 @@ export const GroupImg = styled.div<{ $marginTop?: string}>`
   height: 140px;
   background-image: url(${groupImg});
   background-color: #fafafa;
-  background-size: contain;
+  background-size: auto;
   background-repeat: no-repeat;
-  border: 0px;
-  margin-right: 9px;
+  border-radius: 10px;
+  /* margin-right: 9px; */
   display: flex;
   align-items: center;
   margin-top: ${({$marginTop}) => $marginTop};
