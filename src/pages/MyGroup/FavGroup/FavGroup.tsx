@@ -14,7 +14,8 @@ interface FavGroupProps {
   setType: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const FavGroup = ({ type, setType }: FavGroupProps) => {
+
+const FavGroup = ({ type, setType}: FavGroupProps) => {
   const [page, setPage] = useState(1);
   // const [type, setType] = useState('STUDY');
 
