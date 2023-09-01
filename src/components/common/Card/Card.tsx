@@ -110,7 +110,7 @@ const Card = ({ data, hoverOn = false, red, btnTxt, id, onChange }: CardProps) =
           </LabelLayout>
 
           <CardFooter>
-            <small>마감일: {data.dueDate}</small>
+            <small>진행 기간: {data.dueDate}</small>
             <CardCntWrap>
               <CardCntItem>
                 <img src="/assets/icon/eye.svg" alt="ViewCnt" />
