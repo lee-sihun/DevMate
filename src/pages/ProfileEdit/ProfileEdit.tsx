@@ -145,7 +145,6 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
   useEffect(() => {
     setNewUserData({ ...userData });
   }, [userData]);
-  // // console.log(newUserData);
 
   const handleFile = (e: React.ChangeEvent) => {
     const inputFile = e.target as HTMLInputElement;
@@ -155,7 +154,6 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        // console.log(e.target?.result);
         setNewUserData((curr) => {
           const newCurr = { ...curr };
           return {
@@ -239,16 +237,17 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
     newUserData.overview && formData.append('overview', newUserData.overview);
     file && formData.append('imageFile', file);
     newUserData.links && formData.append('links', JSON.stringify(newUserData.links));
-    // // console.log(newUserData.nickname);
-    // // console.log(JSON.stringify(newUserData.skills));
-    // // console.log(newUserData.overview);
-    // // console.log(file);
-    // // console.log(JSON.stringify(newUserData.links));
     profileUpdate(formData);
   };
   const cancelHandler = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/profile');
+    }
+  }, [isSuccess]);
 
   return (
     <PageTemplate subTitle="My Profile" mainTitle="내 프로필 수정">

@@ -14,11 +14,12 @@ interface FavGroupProps {
   setType: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const FavGroup = ({ type, setType }: FavGroupProps) => {
+
+const FavGroup = ({ type, setType}: FavGroupProps) => {
   const [page, setPage] = useState(1);
   // const [type, setType] = useState('STUDY');
 
-  const { data: favGroup } = useGetFavGroupQuery({ page: page, perPage: 8, type: type.toLocaleLowerCase() });
+  const { data: favGroup, refetch: favGroupRefectch } = useGetFavGroupQuery({ page: page, perPage: 8, type: type.toLocaleLowerCase() });
   const [wishControl] = useWishControllerMutation();
   const totalPage = favGroup?.data.totalPage;
   const typeText = type === 'STUDY' ? '스터디' : '프로젝트';
@@ -32,8 +33,9 @@ const FavGroup = ({ type, setType }: FavGroupProps) => {
   };
 
   useEffect(() => {
-    // // console.log(favGroup);
-  }, [favGroup]);
+    // console.log(favGroup);
+    favGroupRefectch();
+  }, []);
 
   return (
     <Wrapper>
@@ -51,7 +53,7 @@ const FavGroup = ({ type, setType }: FavGroupProps) => {
           <GroupWrap>
             {favGroup?.data.groupsInfo.map((group: GroupData, i: number) => (
               <React.Fragment key={i}>
-                <Card data={group} hoverOn={true} red={true} btnTxt="삭제" onChange={handleWishChange} />
+                <Card data={group} hoverOn={true} red={true} btnTxt='삭제' onChange={handleWishChange} />
               </React.Fragment>
             ))}
           </GroupWrap>

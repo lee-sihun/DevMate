@@ -42,11 +42,10 @@ const Home = () => {
 
   const { data: hotGroup } = useGetHotGroupQuery();
   const { data: Group } = useGetGroupDataQuery({ page: page, perPage: 8, filter: convertQuery(filter) });
-  const totalPage = Group?.data.totalPage;
+  const totalPage = Group?.data?.totalPage;
 
   useEffect(() => {
     setPage(1);
-    // // console.log(Group);
   }, [totalPage, hotGroup]);
 
   return (
@@ -55,9 +54,9 @@ const Home = () => {
         {pictures.map((slide, index) => (
           <Slide
             key={slide.id ? slide.id : index}
-            onClick={() => {
-              window.open(slide.link);
-            }}
+            // onClick={() => {
+            //   window.open(slide.link);
+            // }}
           >
             <img src={slide?.thumbnail} alt={slide?.title} />
           </Slide>

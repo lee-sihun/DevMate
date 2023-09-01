@@ -20,7 +20,7 @@ export const ToastAlert = styled.div<{ color?: string; backgroundColor?: string 
   background-color: ${({ backgroundColor }) => backgroundColor ?? 'var(--layout-bg)'};
   box-shadow: 0 2px 2px var(--box-shadow-light);
   animation: newAlert 0.25s ease-in-out;
-  font-size: 30px;
+  font-size: 20px;
   & > strong {
     font-weight: 400;
   }

@@ -144,7 +144,7 @@ export const CreatePositionSelect = () => {
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            height: '50px',
+            minHeight: '50px',
             border: '1px solid #D9D9D9',
           }),
         }}
@@ -280,7 +280,7 @@ export const CreateDescription = () => {
       <ReactEditor
         ref={editorRef}
         initialValue={createGroupDescription}
-        previewStyle="vertical"
+        previewStyle="tab"
         height="800px"
         initialEditType="markdown"
         useCommandShortcut={false}
