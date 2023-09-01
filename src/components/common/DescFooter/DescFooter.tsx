@@ -19,7 +19,9 @@ const DescFooter = ({ $url, groupId, userData }: { $url: string; groupId: string
 
   React.useEffect(() => {
     if (alert) {
-      navigator?.clipboard?.writeText($url);
+      (async () => {
+        await navigator?.clipboard?.writeText($url);
+      })();
       setTimeout(() => setAlert(false), 3000);
     }
   }, [alert]);
