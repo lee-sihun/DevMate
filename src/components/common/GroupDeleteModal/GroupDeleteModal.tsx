@@ -13,11 +13,12 @@ import down from '../../../assets/img/down.svg';
 import Button from '../Button/Button';
 import CheckAnimation from '../CheckAnimation/CheckAnimation';
 import { ToastAlert } from '../ToastAlert.styled';
-import { useGetProfileQuery } from 'store/hooks/user.hooks';
+import { useGetProfileQuery, userApi } from 'store/hooks/user.hooks';
 import { uploadsUrlParser } from 'utils/parser';
 import defaultProfile from 'assets/img/default-profile.svg';
 import { useDeleteGroupMutation } from 'store/hooks/group.hooks';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch } from 'store/hooks';
 
 interface GroupDeleteModalProps {
   title: string,
@@ -32,6 +33,7 @@ const GroupDeleteModal = ({ title, setModal, id }: GroupDeleteModalProps) => {
   const { id: groupId } =  useParams();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const dispatch = useAppDispatch();
 
   const authorData = data?.data?.foundUser;
 
@@ -61,6 +63,7 @@ const GroupDeleteModal = ({ title, setModal, id }: GroupDeleteModalProps) => {
   React.useEffect(() => {
     if (isSuccess) {
       // pathname !== '/mygroup' && 
+      dispatch(userApi.util.resetApiState());
       setTimeout(() => navigate('/'), 2000);
     }
   }, [isSuccess]);

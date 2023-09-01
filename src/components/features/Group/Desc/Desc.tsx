@@ -23,10 +23,6 @@ const Desc = ({ contents, groupId, userData }: DescProps) => {
   // 전체 URL 생성
   const fullURL = `${window.location.origin}${location.pathname}${location.search}`;
 
-  useEffect(() => {
-    // // console.log(contents, groupId);
-  }, [contents, groupId]);
-
   return (
     <DescSection>
       <Viewer initialValue={contents || ''} plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]} />

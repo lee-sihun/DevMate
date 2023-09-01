@@ -296,6 +296,7 @@ export const UpdateDescription = () => {
           previewStyle="tab"
           height="800px"
           initialEditType="markdown"
+          language='ko-KR'
           useCommandShortcut={false}
           plugins={[[codeSyntaxHighlightPlugin, { highlighter: Prism }]]}
           onChange={() => {

@@ -5,19 +5,13 @@ import { CreateSectionProps } from 'props-type';
 import { CreateDescription, CreateTitleInput } from 'components/common/CreateForm/CreateForm';
 import Button from 'components/common/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { ToastAlert } from 'components/common/ToastAlert.styled';
 import { validateDateRange } from 'utils/helper';
 import { useCreateGroupMutation } from 'store/hooks/group.hooks';
 import { Response } from 'response-data-type';
-import defaultThumbnail1 from '../../../assets/img/thumbnail/thumbnail-8.png';
-import defaultThumbnail2 from '../../../assets/img/thumbnail/thumbnail-9.png';
-import defaultThumbnail3 from '../../../assets/img/thumbnail/thumbnail-10.png';
-import defaultThumbnail4 from '../../../assets/img/thumbnail/thumbnail-11.png';
-import defaultThumbnail5 from '../../../assets/img/thumbnail/thumbnail-12.png';
-import defaultThumbnail6 from '../../../assets/img/thumbnail/thumbnail-13.png';
-import defaultThumbnail7 from '../../../assets/img/thumbnail/thumbnail-14.png';
-import defaultThumbnail8 from '../../../assets/img/thumbnail/thumbnail-15.png';
+import { userApi } from 'store/hooks/user.hooks';
+import { formInit } from 'store/slices/groupCreateSlice';
 
 const CreateSection2 = ({ number, title }: CreateSectionProps) => {
   const createGroupData = useAppSelector((state) => state.groupCreater);
@@ -28,6 +22,8 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
   const [alertMsg, setAlertMsg] = React.useState('');
 
   const [createGroup, { error, isError, isSuccess }] = useCreateGroupMutation();
+  const dispatch = useAppDispatch();
+
 
   const onHistoryBack = () => {
     navigate(-1);
@@ -75,6 +71,8 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
     }
     isSuccess &&
       (() => {
+        dispatch(userApi.util.resetApiState());
+        dispatch(formInit());
         navigate('/create/success', { state: { afterUrl: ['/', '/mygroup'], beforeUrl: 'create' } });
       })();
   }, [alert, error, isError, isSuccess]);

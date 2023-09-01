@@ -283,6 +283,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--blue-regular1);
     border-radius: 10px;
   }
+  .toastui-editor-main{
+  background-color: white;
+  } 
 `;
 
 // body, button {
