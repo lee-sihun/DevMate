@@ -21,24 +21,19 @@ import Update from 'pages/Group/Update';
 import UpdateSuccess from 'pages/Group/UpdateSuccess';
 
 function App() {
-
   const { data, error, isLoading, isFetching, isSuccess } = useGetProfileQuery();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // console.log(data, error, isLoading, isFetching, isSuccess);
+    // // console.log(data, error, isLoading, isFetching, isSuccess);
   }, [data, error, isLoading, isFetching, isSuccess]);
 
   React.useEffect(() => {
-    if (error && (
-      pathname === '/create'
-      || pathname === '/mygroup'
-      || pathname === '/profile'
-      || pathname === '/profile/edit')) {
+    if (error && (pathname === '/create' || pathname === '/mygroup' || pathname === '/profile' || pathname === '/profile/edit')) {
       navigate('/');
     }
-    // console.log(isSuccess);
+    // // console.log(isSuccess);
     if (!isFetching && isSuccess && (pathname === '/signin' || pathname === '/signup')) {
       navigate('/');
     }

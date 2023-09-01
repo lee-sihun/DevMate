@@ -67,3 +67,8 @@ export const TextWrap = styled.div`
     margin-left: auto;
   }
 `;
+
+export const NotiWrap = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+`;

@@ -45,9 +45,9 @@ const ListGroup = () => {
   };
 
   useEffect(() => {
-    // console.log(createdGroup);
-    // console.log(joinGroup);
-    console.log(joinGroup);
+    // // console.log(createdGroup);
+    // // console.log(joinGroup);
+    // // console.log(joinGroup);
   }, [onGroup, joinGroup]);
 
   return (
@@ -66,7 +66,7 @@ const ListGroup = () => {
           ))}
         </GroupWrap>
       )}
-      <GroupImg $marginTop='70px'>
+      <GroupImg $marginTop="70px">
         <h2>지원 현황</h2>
       </GroupImg>
       <TypeSortTabs>

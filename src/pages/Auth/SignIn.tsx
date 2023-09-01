@@ -37,7 +37,7 @@ const SignInForm = () => {
   };
 
   React.useEffect(() => {
-    // console.log(data, isLoading, isError, isSuccess);
+    // // console.log(data, isLoading, isError, isSuccess);
     // isError && setAlert(true);
     // alert && setTimeout(() => setAlert(false), 3000);
   }, [data, isLoading, isError, isSuccess, alert]);
@@ -51,7 +51,7 @@ const SignInForm = () => {
           label="이메일"
           id="email"
           type="email"
-          defaultValue='yun@yun.com'
+          defaultValue="yun@yun.com"
           registerOptions={register('email', {
             required: '이메일을 입력해주세요',
             pattern: {
@@ -66,7 +66,7 @@ const SignInForm = () => {
           label="비밀번호"
           id="password"
           type="password"
-          defaultValue='yun'
+          defaultValue="yun"
           registerOptions={register('password', {
             required: '비밀번호를 입력해주세요',
           })}
@@ -94,7 +94,7 @@ const SignInForm = () => {
           <p>깃허브 계정으로 로그인</p>
         </SocialBtn>
       </Fieldset> */}
-      {alert && <ToastAlert color='var(--error)'>로그인에 실패하였습니다</ToastAlert>}
+      {alert && <ToastAlert color="var(--error)">로그인에 실패하였습니다</ToastAlert>}
     </Form>
   );
 };

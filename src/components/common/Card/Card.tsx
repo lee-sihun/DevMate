@@ -58,13 +58,13 @@ const Card = ({ data, hoverOn = false, red, btnTxt, id, onChange }: CardProps) =
     if (onChange) {
       onChange(data._id || 'test');
     } else {
-      console.log('No Find Event');
+      // console.log('No Find Event');
     }
   };
 
   useEffect(() => {
-    // console.log(id);
-    // console.log(data._id);
+    // // console.log(id);
+    // // console.log(data._id);
   }, [data]);
 
   const imgErrorHandler = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {

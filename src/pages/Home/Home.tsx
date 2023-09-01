@@ -46,7 +46,7 @@ const Home = () => {
 
   useEffect(() => {
     setPage(1);
-    console.log(Group);
+    // // console.log(Group);
   }, [totalPage, hotGroup]);
 
   return (

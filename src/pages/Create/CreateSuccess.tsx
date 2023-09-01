@@ -5,7 +5,6 @@ import uuid from 'react-uuid';
 import CreateHeader from 'components/layout/Create/CreateHeader';
 
 const CreateSuccess = () => {
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,9 +13,8 @@ const CreateSuccess = () => {
 
   const createHeader = React.useMemo(() => <CreateHeader />, []);
 
-
   useEffect(() => {
-    // console.log(afterUrl);
+    // // console.log(afterUrl);
     beforeUrl !== 'create' && navigate('/');
   }, []);
   return (
@@ -24,21 +22,19 @@ const CreateSuccess = () => {
       {createHeader}
       <CreateSuccessWrapper>
         <h1>그룹을 성공적으로 생성하였습니다!</h1>
-        <div className='link_gr'>
-          {afterUrl && afterUrl.map((url) => {
-            return <Link to={url} key={uuid()}>
-              {url === '/'
-                ? '홈으로'
-                : '그룹 관리로'}
-            </Link>;
-          })}
+        <div className="link_gr">
+          {afterUrl &&
+            afterUrl.map((url) => {
+              return (
+                <Link to={url} key={uuid()}>
+                  {url === '/' ? '홈으로' : '그룹 관리로'}
+                </Link>
+              );
+            })}
         </div>
       </CreateSuccessWrapper>
     </>
-
   );
 };
-
-
 
 export default CreateSuccess;

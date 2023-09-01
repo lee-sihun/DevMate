@@ -59,9 +59,9 @@ const OwnedGroup = () => {
   };
 
   useEffect(() => {
-    console.log(createdGroup);
-    // console.log(reqMembers?.data.getData);
-    // console.log(modalData);
+    // console.log(createdGroup);
+    // // console.log(reqMembers?.data.getData);
+    // // console.log(modalData);
   }, [createdGroup, modalData]);
 
   if (createdGroup?.data) {
@@ -133,9 +133,7 @@ const OwnedGroup = () => {
             </GroupList>
           </RightSection>
         </Inner>
-        {
-          deleteModal && <GroupDeleteModal title={createdGroup?.data?.title} setModal={setDeleteModal} id={createdGroup?.data?._id} />
-        }
+        {deleteModal && <GroupDeleteModal title={createdGroup?.data?.title} setModal={setDeleteModal} id={createdGroup?.data?._id} />}
       </Wrapper>
     );
   } else {
