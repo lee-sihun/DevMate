@@ -4,7 +4,6 @@ import { useSignInMutation } from 'store/hooks/user.hooks';
 import { SignUpSuccessWrap } from './Auth.styled';
 
 const SignUpSuccess = () => {
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,7 +13,7 @@ const SignUpSuccess = () => {
   const data = location.state?.data;
 
   const signInHandler = () => {
-    // console.log(data, beforeUrl);
+    // // console.log(data, beforeUrl);
     singIn(data);
     navigate('/');
   };
@@ -25,9 +24,7 @@ const SignUpSuccess = () => {
 
   return (
     <SignUpSuccessWrap>
-      <div>
-        회원가입에 성공했습니다!!
-      </div>
+      <div>회원가입에 성공했습니다!!</div>
       <button onClick={signInHandler}>로그인하기</button>
     </SignUpSuccessWrap>
   );

@@ -14,8 +14,7 @@ interface FavGroupProps {
   setType: React.Dispatch<React.SetStateAction<string>>;
 }
 
-
-const FavGroup = ({ type, setType}: FavGroupProps) => {
+const FavGroup = ({ type, setType }: FavGroupProps) => {
   const [page, setPage] = useState(1);
   // const [type, setType] = useState('STUDY');
 
@@ -33,7 +32,7 @@ const FavGroup = ({ type, setType}: FavGroupProps) => {
   };
 
   useEffect(() => {
-    console.log(favGroup);
+    // // console.log(favGroup);
   }, [favGroup]);
 
   return (
@@ -52,7 +51,7 @@ const FavGroup = ({ type, setType}: FavGroupProps) => {
           <GroupWrap>
             {favGroup?.data.groupsInfo.map((group: GroupData, i: number) => (
               <React.Fragment key={i}>
-                <Card data={group} hoverOn={true} red={true} btnTxt='삭제' onChange={handleWishChange}/>
+                <Card data={group} hoverOn={true} red={true} btnTxt="삭제" onChange={handleWishChange} />
               </React.Fragment>
             ))}
           </GroupWrap>

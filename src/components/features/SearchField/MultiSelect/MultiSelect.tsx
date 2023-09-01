@@ -106,7 +106,7 @@ const MultiSelect = ({ label, onChange }: SelectButtonProps) => {
     const selectedItems = multiselectRef.current.getSelectedItems();
     handleValueChange(selectedItems);
     setIsSelected(true);
-    // console.log(selectedItems);
+    // // console.log(selectedItems);
     if (onChange) onChange([selectedItems]);
   };
 

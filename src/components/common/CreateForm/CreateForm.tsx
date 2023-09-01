@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  CreateFormItemWrap,
-  CreateImg,
-  CreateInput,
-  CreateLabel,
-  CreateValidateMsg,
-} from './CreateForm.styled';
+import { CreateFormItemWrap, CreateImg, CreateInput, CreateLabel, CreateValidateMsg } from './CreateForm.styled';
 import { GroupType, Location, Position, Skill } from 'group-data';
 import {
   titleChange,
@@ -35,9 +29,14 @@ export const CreateTypeSelect = () => {
   const dispatch = useAppDispatch();
   return (
     <CreateFormItemWrap>
-      <CreateLabel>타입<strong>*</strong></CreateLabel>
+      <CreateLabel>
+        타입<strong>*</strong>
+      </CreateLabel>
       <Select
-        options={[{ value: 'study', label: 'study' }, { value: 'project', label: 'project' }]}
+        options={[
+          { value: 'study', label: 'study' },
+          { value: 'project', label: 'project' },
+        ]}
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
@@ -60,12 +59,7 @@ export const CreateMemberInput = () => {
   return (
     <CreateFormItemWrap>
       <CreateLabel>모집 인원</CreateLabel>
-      <CreateInput
-        type='number'
-        value={createGroupMembers}
-        onChange={(e) => dispatch(maxMembersChange(Number(e.target.value)))}
-        min={1}
-      />
+      <CreateInput type="number" value={createGroupMembers} onChange={(e) => dispatch(maxMembersChange(Number(e.target.value)))} min={1} />
     </CreateFormItemWrap>
   );
 };
@@ -95,8 +89,10 @@ export const CreateSkillSelect = () => {
             border: '1px solid #D9D9D9',
           }),
         }}
-        value={createGroupSkills?.map((item) =>
-          ({ value: item as Skill, label: item as Skill })) as OptionsOrGroups<unknown, GroupBase<unknown>> | undefined
+        value={
+          createGroupSkills?.map((item) => ({ value: item as Skill, label: item as Skill })) as
+            | OptionsOrGroups<unknown, GroupBase<unknown>>
+            | undefined
         }
         onChange={(e) => dispatch(skillsChange(e as MultiValue<{ value: Skill; label: Skill }>))}
       />
@@ -110,15 +106,14 @@ export const CreateDueDateInput = () => {
     <CreateFormItemWrap>
       <CreateLabel>예상 기간</CreateLabel>
       <CreateInput
-        type='text'
+        type="text"
         value={createGroupDueDate}
         onChange={(e) => {
           dispatch(dueDateChange(e.target.value));
         }}
-        placeholder='n(일, 주, 개월, 년) 형식으로 작성해주세요. (ex: 1개월)'
+        placeholder="n(일, 주, 개월, 년) 형식으로 작성해주세요. (ex: 1개월)"
       />
       {!validateDateRange(createGroupDueDate) && <CreateValidateMsg>예상 기간을 형식에 맞춰 입력해주세요!!</CreateValidateMsg>}
-
     </CreateFormItemWrap>
   );
 };
@@ -133,12 +128,14 @@ export const CreatePositionSelect = () => {
   const animatedComponents = makeAnimated();
 
   // React.useEffect(() => {
-  //   console.log(createGroupPositions);
+  //   // console.log(createGroupPositions);
   // }, [createGroupPositions]);
 
   return (
     <CreateFormItemWrap>
-      <CreateLabel>포지션<strong>*</strong></CreateLabel>
+      <CreateLabel>
+        포지션<strong>*</strong>
+      </CreateLabel>
       <Select
         closeMenuOnSelect={false}
         components={animatedComponents}
@@ -151,8 +148,10 @@ export const CreatePositionSelect = () => {
             border: '1px solid #D9D9D9',
           }),
         }}
-        value={createGroupPositions?.map((item) =>
-          ({ value: item as Position, label: item as Position })) as OptionsOrGroups<unknown, GroupBase<unknown>> | undefined
+        value={
+          createGroupPositions?.map((item) => ({ value: item as Position, label: item as Position })) as
+            | OptionsOrGroups<unknown, GroupBase<unknown>>
+            | undefined
         }
         onChange={(e) => dispatch(positionChange(e as MultiValue<{ value: Position; label: Position }>))}
       />
@@ -164,13 +163,33 @@ export const CreateLocationSelect = () => {
   const createGroupLocation = useAppSelector((state) => state.groupCreater.location);
   const dispatch = useAppDispatch();
   const locations = React.useMemo(() => {
-    return ['전국', '서울', '부산', '대구', '인천', '광주', '대전', '울산', '강원', '경기', '경남', '경북', '전남', '전북', '충남', '충북', '제주'].map((item) => {
+    return [
+      '전국',
+      '서울',
+      '부산',
+      '대구',
+      '인천',
+      '광주',
+      '대전',
+      '울산',
+      '강원',
+      '경기',
+      '경남',
+      '경북',
+      '전남',
+      '전북',
+      '충남',
+      '충북',
+      '제주',
+    ].map((item) => {
       return { value: item, label: item };
     });
   }, []);
   return (
     <CreateFormItemWrap>
-      <CreateLabel>지역<strong>*</strong></CreateLabel>
+      <CreateLabel>
+        지역<strong>*</strong>
+      </CreateLabel>
       <Select
         options={locations}
         styles={{
@@ -218,7 +237,7 @@ export const CreateGroupImg = () => {
     <CreateFormItemWrap>
       <CreateLabel>대표 이미지</CreateLabel>
       <label htmlFor="CreateImg">
-        <input type="file" id='CreateImg' style={{ display: 'none' }} accept="image/*" onChange={handleFile} />
+        <input type="file" id="CreateImg" style={{ display: 'none' }} accept="image/*" onChange={handleFile} />
         <CreateImg ref={imgRef} src={defaultGroupImg} />
       </label>
     </CreateFormItemWrap>
@@ -231,12 +250,16 @@ export const CreateTitleInput = () => {
 
   return (
     <CreateFormItemWrap $maxWidth={'100%'}>
-      <CreateLabel>제목<strong>*</strong></CreateLabel>
+      <CreateLabel>
+        제목<strong>*</strong>
+      </CreateLabel>
       <CreateInput
-        type='text'
-        placeholder='글 제목을 입력해주세요.'
+        type="text"
+        placeholder="글 제목을 입력해주세요."
         value={createGroupTitle}
-        onChange={(e) => { dispatch(titleChange(e.target.value)); }}
+        onChange={(e) => {
+          dispatch(titleChange(e.target.value));
+        }}
       />
       {!createGroupTitle && <CreateValidateMsg>제목은 필수입니다!</CreateValidateMsg>}
     </CreateFormItemWrap>
@@ -251,7 +274,9 @@ export const CreateDescription = () => {
 
   return (
     <CreateFormItemWrap $maxWidth={'100%'}>
-      <CreateLabel>내용<strong>*</strong></CreateLabel>
+      <CreateLabel>
+        내용<strong>*</strong>
+      </CreateLabel>
       <ReactEditor
         ref={editorRef}
         initialValue={createGroupDescription}

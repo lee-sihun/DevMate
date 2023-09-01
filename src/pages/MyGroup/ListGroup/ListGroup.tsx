@@ -45,9 +45,9 @@ const ListGroup = () => {
   };
 
   useEffect(() => {
-    // console.log(createdGroup);
-    // console.log(joinGroup);
-    console.log(joinGroup);
+    // // console.log(createdGroup);
+    // // console.log(joinGroup);
+    // // console.log(joinGroup);
   }, [onGroup, joinGroup]);
 
   return (
@@ -61,12 +61,12 @@ const ListGroup = () => {
         <GroupWrap>
           {onGroup?.data.map((group: GroupData, i: number) => (
             <React.Fragment key={i}>
-              <Card data={group} hoverOn={true} red={true} btnTxt="탈퇴" id={createdGroup?.data._id} onChange={handleExitGroup} />
+              <Card data={group} hoverOn={true} red={true} btnTxt="탈퇴" id={createdGroup?.data?._id} onChange={handleExitGroup} />
             </React.Fragment>
           ))}
         </GroupWrap>
       )}
-      <GroupImg $marginTop='70px'>
+      <GroupImg $marginTop="70px">
         <h2>지원 현황</h2>
       </GroupImg>
       <TypeSortTabs>

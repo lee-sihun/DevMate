@@ -43,7 +43,7 @@ const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
   };
 
   const logout = () => {
-    console.log('logout');
+    // console.log('logout');
     logOutHandler('');
     // location.reload();
   };
@@ -67,13 +67,13 @@ const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
             <NavButton>공지사항</NavButton> */}
           </NavContainer>
           <UserInfo>
-            {isLoggedIn ?
-              isFetching
-                ? <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
+            {isLoggedIn ? (
+              isFetching ? (
+                <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
                   로그인
                 </Button>
-                :
-                (<>
+              ) : (
+                <>
                   {/* <Notification /> */}
                   <BtnWrap>
                     {' '}
@@ -84,15 +84,15 @@ const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
                   {/* <ProfileCircle size="42px" img={userData?.profileImage
                     ? `${process.env.REACT_APP_API_SERVER_URL}/${urlParser(userData?.profileImage)}`
                     : defaultProfile} onClick={handleToggle} /> */}
-                  <img src={userData?.profileImage
-                    ? `/${userData?.profileImage}`
-                    : defaultProfile} alt="사용자 이미지" onClick={handleToggle} />
+                  <img src={userData?.profileImage ? `/${userData?.profileImage}` : defaultProfile} alt="사용자 이미지" onClick={handleToggle} />
                   <DropdownStyle $isVisible={open}>
                     <UserInfoStyle>
-                      <div className='infoWrap'>
-                        <img src={userData?.profileImage
-                          ? `/${userData?.profileImage}`
-                          : defaultProfile} alt="사용자 이미지" onClick={() => navigateHandler('/profile')} />
+                      <div className="infoWrap">
+                        <img
+                          src={userData?.profileImage ? `/${userData?.profileImage}` : defaultProfile}
+                          alt="사용자 이미지"
+                          onClick={() => navigateHandler('/profile')}
+                        />
                         {/* <ProfileCircle size="42px" img={userData?.profileImage
                           ? `${process.env.REACT_APP_API_SERVER_URL}/${urlParser(userData?.profileImage)}`
                           : defaultProfile} onClick={() => navigateHandler('/profile')} /> */}
@@ -114,12 +114,13 @@ const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
                       </ShortCutLink>
                     </ShortCut>
                   </DropdownStyle>
-                </>)
-              : (
-                <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
-                  로그인
-                </Button>
-              )}
+                </>
+              )
+            ) : (
+              <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/signin')}>
+                로그인
+              </Button>
+            )}
           </UserInfo>
         </HeaderContainer>
       </Container>

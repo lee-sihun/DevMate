@@ -32,7 +32,7 @@ const SignUpForm = () => {
   const [autoSignInData, setAutoSignInData] = useState<IFormInput | undefined>(undefined);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    // console.log(data);
+    // // console.log(data);
     setAutoSignInData(data);
     const { email, nickname, password } = data;
     const newSignUpData = {
@@ -45,9 +45,10 @@ const SignUpForm = () => {
 
   useEffect(() => {
     isError && setAlert(true);
-    isSuccess && (() => {
-      navigate('/signup/success', { state: { data: autoSignInData, beforeUrl: 'signup' } });
-    })();
+    isSuccess &&
+      (() => {
+        navigate('/signup/success', { state: { data: autoSignInData, beforeUrl: 'signup' } });
+      })();
   }, [isError, isSuccess]);
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -112,8 +113,7 @@ const SignUpForm = () => {
         </FormBtn>
       </Fieldset>
 
-      {alert && <ToastAlert color='var(--error)'>회원가입에 실패하였습니다.</ToastAlert>}
-
+      {alert && <ToastAlert color="var(--error)">회원가입에 실패하였습니다.</ToastAlert>}
     </Form>
   );
 };

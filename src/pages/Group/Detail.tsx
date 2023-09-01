@@ -10,18 +10,17 @@ import { AuthorData } from 'author-data';
 import { useGetDetailDataQuery } from 'store/hooks/group.hooks';
 
 interface DetailProps {
-  userData?: AuthorData
+  userData?: AuthorData;
 }
 
 const Detail = ({ userData }: DetailProps) => {
-
   const { id: groupId } = useParams();
   const { data } = useGetDetailDataQuery(groupId);
 
   const detailData = data?.data;
 
   useEffect(() => {
-    // console.log(userData);
+    // // console.log(userData);
   }, [userData]);
 
   if (detailData) {
@@ -49,11 +48,7 @@ const Detail = ({ userData }: DetailProps) => {
           authorId={detailData.author._id}
           userData={userData}
         />
-        <Desc
-          contents={detailData.description}
-          groupId={detailData._id}
-          userData={userData}
-        />
+        <Desc contents={detailData.description} groupId={detailData._id} userData={userData} />
       </DetailWrapper>
     );
   }

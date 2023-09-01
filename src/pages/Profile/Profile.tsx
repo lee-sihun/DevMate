@@ -16,7 +16,7 @@ interface ProfileProps {
 const Profile = ({ userData }: ProfileProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  // console.log(userData);
+  // // console.log(userData);
 
   return (
     <>
@@ -39,25 +39,29 @@ const Profile = ({ userData }: ProfileProps) => {
               <dt>기술스택</dt>
               <dd>
                 {userData?.skills.map((skill) => {
-                  return <TechTags key={uuid()}>
-                    <SkillImg src={`/assets/img/skills/${pascalToKebab(skill)}.svg`} $size='16px' />{skill}
-                  </TechTags>;
+                  return (
+                    <TechTags key={uuid()}>
+                      <SkillImg src={`/assets/img/skills/${pascalToKebab(skill)}.svg`} $size="16px" />
+                      {skill}
+                    </TechTags>
+                  );
                 })}
               </dd>
             </InfoItem>
             <InfoItem>
               <dt>소개</dt>
-              <dd>
-                {userData?.overview}
-              </dd>
+              <dd>{userData?.overview}</dd>
             </InfoItem>
             <InfoItem>
               <dt>GitHub</dt>
               <dd>
-                <a href={userData?.links?.gitHub ?? '#'} style={{
-                  color: userData?.links?.gitHub ? '' : 'var(--disabled-text)',
-                  textDecoration: userData?.links?.gitHub ? '' : 'none',
-                }}>
+                <a
+                  href={userData?.links?.gitHub ?? '#'}
+                  style={{
+                    color: userData?.links?.gitHub ? '' : 'var(--disabled-text)',
+                    textDecoration: userData?.links?.gitHub ? '' : 'none',
+                  }}
+                >
                   {userData?.links?.gitHub ?? '등록된 깃허브 링크가 없습니다.'}
                 </a>
               </dd>
@@ -65,10 +69,13 @@ const Profile = ({ userData }: ProfileProps) => {
             <InfoItem>
               <dt>블로그</dt>
               <dd>
-                <a href={userData?.links?.blog ?? '#'} style={{
-                  color: userData?.links?.blog ? '' : 'var(--disabled-text)',
-                  textDecoration: userData?.links?.blog ? '' : 'none',
-                }}>
+                <a
+                  href={userData?.links?.blog ?? '#'}
+                  style={{
+                    color: userData?.links?.blog ? '' : 'var(--disabled-text)',
+                    textDecoration: userData?.links?.blog ? '' : 'none',
+                  }}
+                >
                   {userData?.links?.blog ?? '등록된 블로그 링크가 없습니다.'}
                 </a>
               </dd>

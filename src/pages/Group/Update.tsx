@@ -19,7 +19,6 @@ interface GroupUpdateState {
 }
 
 const Update = () => {
-
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,11 +27,11 @@ const Update = () => {
   const detailData: GroupData = location.state?.detailData;
 
   useEffect(() => {
-    (beforeUrl !== ('detail' || 'mygroup')) && navigate('/');
+    beforeUrl !== ('detail' || 'mygroup') && navigate('/');
   }, []);
 
   useEffect(() => {
-    // console.log(detailData);
+    // // console.log(detailData);
     if (detailData) {
       const initGroupData: GroupUpdateState = {
         title: detailData.title,
@@ -47,7 +46,6 @@ const Update = () => {
       };
       dispatch(groupDataInit(initGroupData));
     }
-
   }, [detailData]);
 
   const updateHeader = useMemo(() => <UpdateHeader />, []);

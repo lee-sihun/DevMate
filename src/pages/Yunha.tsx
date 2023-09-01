@@ -6,15 +6,14 @@ import CardSkeleton from '../components/common/Card/Card.skeleton';
 import { useGetDummyDataQuery } from 'store/hooks';
 
 const Yunha = () => {
-
   const {
     data,
-    // error, 
+    // error,
     // isLoading,
   } = useGetDummyDataQuery();
 
   React.useEffect(() => {
-    // console.log(data);
+    // // console.log(data);
   }, [data]);
 
   if (data) {
@@ -22,21 +21,27 @@ const Yunha = () => {
       <TestSection>
         {/* Your component code here */}
         {data?.data.map((item: GroupData, i: number) => {
-          return (<React.Fragment key={i}>
-            <Card data={item} />
-          </React.Fragment>);
+          return (
+            <React.Fragment key={i}>
+              <Card data={item} />
+            </React.Fragment>
+          );
         })}
       </TestSection>
     );
   }
 
-  return <TestSection>
-    {Array.from({ length: 8 }).map((item, i: number) => {
-      return <React.Fragment key={i}>
-        <CardSkeleton />
-      </React.Fragment>;
-    })}
-  </TestSection>;
+  return (
+    <TestSection>
+      {Array.from({ length: 8 }).map((item, i: number) => {
+        return (
+          <React.Fragment key={i}>
+            <CardSkeleton />
+          </React.Fragment>
+        );
+      })}
+    </TestSection>
+  );
 };
 
 export default Yunha;

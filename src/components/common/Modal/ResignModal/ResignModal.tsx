@@ -18,7 +18,7 @@ const ResignModal = ({ onClose }: ResignModalProps) => {
   } = useForm<{ passwordConfirm: string }>({ mode: 'onBlur' });
 
   const onSubmit = (data: { passwordConfirm: string }) => {
-    console.log(data.passwordConfirm);
+    // console.log(data.passwordConfirm);
   };
 
   return (

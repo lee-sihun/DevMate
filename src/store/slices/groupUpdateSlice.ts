@@ -74,7 +74,7 @@ export const groupUpdateSlice = createSlice({
       state.description = action.payload;
     },
     groupDataInit: (state, action: PayloadAction<GroupUpdateState>) => {
-      // console.log(action.payload);
+      // // console.log(action.payload);
       // state = action.payload;
       state.title = action.payload.title;
       state.type = action.payload.type;

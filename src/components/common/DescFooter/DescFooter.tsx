@@ -9,8 +9,7 @@ import { ToastAlert } from '../ToastAlert.styled';
 import { useWishControllerMutation } from 'store/hooks/group.hooks';
 import { AuthorData } from 'author-data';
 
-const DescFooter = ({ $url, groupId, userData }: { $url: string, groupId: string, userData?: AuthorData }) => {
-
+const DescFooter = ({ $url, groupId, userData }: { $url: string; groupId: string; userData?: AuthorData }) => {
   const [imsiHeart, setImsiHeart] = React.useState(false);
 
   const [alert, setAlert] = React.useState(false);
@@ -27,7 +26,7 @@ const DescFooter = ({ $url, groupId, userData }: { $url: string, groupId: string
   React.useEffect(() => {
     if (userData) {
       const wishing = userData?.wishList.filter((wishGroupId) => wishGroupId === groupId);
-      // console.log(wishing);
+      // // console.log(wishing);
       wishing.length > 0 ? setImsiHeart(true) : setImsiHeart(false);
     }
   }, [userData]);
@@ -41,23 +40,21 @@ const DescFooter = ({ $url, groupId, userData }: { $url: string, groupId: string
     }
   };
 
-  return (<>
-    <DescFooterWrap>
-      <button onClick={wishHandler}>
-        {imsiHeart ? <LinkIcon src={heart2} /> : <LinkIcon src={heart1} />}
-      </button>
-      <Boundary height='100%' width='2.3px' />
-      <button onClick={() => setAlert(true)}>
-        <LinkIcon src={share} />
-      </button>
-    </DescFooterWrap>
-    {
-      alert && <ToastAlert>
-        <strong>링크 복사 완료: {$url}</strong>
-      </ToastAlert>
-    }
-  </>
-
+  return (
+    <>
+      <DescFooterWrap>
+        <button onClick={wishHandler}>{imsiHeart ? <LinkIcon src={heart2} /> : <LinkIcon src={heart1} />}</button>
+        <Boundary height="100%" width="2.3px" />
+        <button onClick={() => setAlert(true)}>
+          <LinkIcon src={share} />
+        </button>
+      </DescFooterWrap>
+      {alert && (
+        <ToastAlert>
+          <strong>링크 복사 완료: {$url}</strong>
+        </ToastAlert>
+      )}
+    </>
   );
 };
 
