@@ -5,6 +5,7 @@ interface BtnProps {
   height: string;
   width?: string;
   reverse?: string;
+  disabled?: boolean;
 }
 
 const colorStyles = css<BtnProps>`
@@ -29,12 +30,12 @@ export const Btn = styled.button<BtnProps>`
   padding: 11px 18px;
   height: ${({ height }) => height};
   width: ${({ width }) => width};
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? '' : 'pointer')};
   display: flex;
   align-items: center;
   transition: filter 0.4s ease;
   &:hover {
-    filter: brightness(1.2);
+    filter: ${({ disabled }) => (disabled ? '' : 'brightness(1.2)')};
   }
   ${colorStyles}
 `;

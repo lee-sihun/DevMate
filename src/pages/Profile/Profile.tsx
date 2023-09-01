@@ -83,7 +83,7 @@ const Profile = ({ userData }: ProfileProps) => {
           </ProfileInfo>
         </ProfileContent>
       </PageTemplate>
-      {isModalVisible && <ResignModal onClose={() => setIsModalVisible(false)} />}
+      {isModalVisible && <ResignModal userData={userData} onClose={() => setIsModalVisible(false)} />}
     </>
   );
 };
