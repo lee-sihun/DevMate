@@ -14,7 +14,10 @@ const Notification = () => {
   };
 
   useEffect(() => {
-    // // console.log(notification);
+    refetch();
+  }, []);
+
+  useEffect(() => {
     if (isSuccess) refetch();
   }, [notification, isSuccess]);
 

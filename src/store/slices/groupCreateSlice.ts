@@ -73,6 +73,17 @@ export const groupCreateSlice = createSlice({
     descriptionChange: (state, action: PayloadAction<string>) => {
       state.description = action.payload;
     },
+    formInit: (state) => {
+      state.title = initialState.title;
+      state.type = initialState.type;
+      state.maxMembers = initialState.maxMembers;
+      state.skills = initialState.skills;
+      state.dueDate = initialState.dueDate;
+      state.position = initialState.position;
+      state.location = initialState.location;
+      state.imageFile = initialState.imageFile;
+      state.description = initialState.description;
+    },
   },
 });
 
@@ -86,6 +97,7 @@ export const {
   locationChange,
   imgFileChange,
   descriptionChange,
+  formInit,
 } = groupCreateSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

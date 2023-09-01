@@ -19,14 +19,14 @@ const DescFooter = ({ $url, groupId, userData }: { $url: string; groupId: string
 
   React.useEffect(() => {
     if (alert) {
-      navigator.clipboard.writeText($url);
+      navigator?.clipboard?.writeText($url);
       setTimeout(() => setAlert(false), 3000);
     }
   }, [alert]);
 
   React.useEffect(() => {
     if (userData) {
-      const wishing = userData?.wishList.filter((wishGroupId) => wishGroupId === groupId);
+      const wishing = userData?.wishList?.filter((wishGroupId) => wishGroupId === groupId);
       // // console.log(wishing);
       wishing.length > 0 ? setImsiHeart(true) : setImsiHeart(false);
     }
