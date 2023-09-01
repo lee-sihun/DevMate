@@ -59,7 +59,12 @@ export const CreateMemberInput = () => {
   return (
     <CreateFormItemWrap>
       <CreateLabel>모집 인원</CreateLabel>
-      <CreateInput type="number" value={createGroupMembers} onChange={(e) => dispatch(maxMembersChange(Number(e.target.value)))} min={1} />
+      <CreateInput
+        type="number"
+        value={createGroupMembers}
+        onChange={(e) => dispatch(maxMembersChange(Number(e.target.value)))} min={1}
+        onClick={(e) => e.currentTarget.select()}
+      />
     </CreateFormItemWrap>
   );
 };
@@ -91,8 +96,8 @@ export const CreateSkillSelect = () => {
         }}
         value={
           createGroupSkills?.map((item) => ({ value: item as Skill, label: item as Skill })) as
-            | OptionsOrGroups<unknown, GroupBase<unknown>>
-            | undefined
+          | OptionsOrGroups<unknown, GroupBase<unknown>>
+          | undefined
         }
         onChange={(e) => dispatch(skillsChange(e as MultiValue<{ value: Skill; label: Skill }>))}
       />
@@ -150,8 +155,8 @@ export const CreatePositionSelect = () => {
         }}
         value={
           createGroupPositions?.map((item) => ({ value: item as Position, label: item as Position })) as
-            | OptionsOrGroups<unknown, GroupBase<unknown>>
-            | undefined
+          | OptionsOrGroups<unknown, GroupBase<unknown>>
+          | undefined
         }
         onChange={(e) => dispatch(positionChange(e as MultiValue<{ value: Position; label: Position }>))}
       />
@@ -289,6 +294,7 @@ export const CreateDescription = () => {
         onChange={() => {
           dispatch(descriptionChange(editorRef.current?.editorInst.getMarkdown()));
         }}
+
       />
     </CreateFormItemWrap>
   );
