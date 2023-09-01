@@ -98,7 +98,7 @@ export const InputField2 = ({ validate, labelName, value, type = 'text', onChang
             onChange={(e) => {
               onChange?.(e, labelName);
             }}
-            placeholder={`${labelName} URL을 입력해주세요`}
+            placeholder={`${labelName}${labelName === '소개글' ? '' : ' URL'}을 입력해주세요`}
             autoComplete='off'
           />
         }
