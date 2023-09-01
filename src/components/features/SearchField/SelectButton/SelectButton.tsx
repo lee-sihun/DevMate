@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DropdownItem, DropdownStyle, ArrowLogo, ArrowLogoWhite, SelectContainer, SelectLabelButton } from './SelectButton.styled';
 
 interface SelectButtonProps {
@@ -11,6 +11,8 @@ const SelectButton = ({ label, values, onChange }: SelectButtonProps) => {
   const [currentValue, setCurrentValue] = useState('');
   const [open, setOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
 
   const handleToggle = () => {
     setOpen(!open);
@@ -28,8 +30,24 @@ const SelectButton = ({ label, values, onChange }: SelectButtonProps) => {
     handleClose();
   };
 
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [open]);
   return (
-    <SelectContainer>
+    <SelectContainer ref={modalRef}>
       <SelectLabelButton $isSelected={isSelected} onClick={handleToggle}>
         {currentValue !== '' ? currentValue : label}
         {!isSelected ? <ArrowLogo /> : <ArrowLogoWhite />}

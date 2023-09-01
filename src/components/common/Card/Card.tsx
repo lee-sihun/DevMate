@@ -58,7 +58,7 @@ const Card = ({ data, hoverOn = false, red, btnTxt, id, onChange }: CardProps) =
     if (onChange) {
       onChange(data._id || 'test');
     } else {
-      console.log('No Find Event');
+      // console.log('No Find Event');
     }
   };
 
@@ -76,7 +76,7 @@ const Card = ({ data, hoverOn = false, red, btnTxt, id, onChange }: CardProps) =
       <CardLayout $hoverOn={hoverOn}>
         <CardType type={data.type}>{data.type}</CardType>
         <CardImg src={data.imageUrl || defaultGroupImg} alt="CardImg"
-          onError={imgErrorHandler} />
+          onError={imgErrorHandler}  />
         <CardTextLayout>
           <CardH3 title={data.title}>{data.title}</CardH3>
           <LabelLayout>

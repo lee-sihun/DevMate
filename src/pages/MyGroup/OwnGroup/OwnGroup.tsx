@@ -27,15 +27,21 @@ const OwnedGroup = () => {
   const [modalData, setModalData] = useState({});
   const [joinId, setJoinId] = useState('');
 
-  const { data: createdGroup } = useCreatedGroupQuery();
-  const { data: reqMembers } = useGetReqMembersQuery({ groupId: createdGroup?.data?._id });
+  const { data: createdGroup, refetch: createdGroupRefetch } = useCreatedGroupQuery();
+  const { data: reqMembers, refetch: reqMembersRefetch } = useGetReqMembersQuery({ groupId: createdGroup?.data?._id });
   const [approve] = usePatchReqMembersMutation();
   const [reject] = usePatchRejectReqMembersMutation();
   const [deleteAllReq] = usePatchDeleteAllReqMembersMutation();
   const [groupStatus] = useGroupChangeStatusMutation();
 
-  const { data: detail } = useGetDetailDataQuery(createdGroup?.data?._id);
+  const { data: detail, refetch: detailRefetch } = useGetDetailDataQuery(createdGroup?.data?._id);
   const detailData = detail?.data;
+
+  useEffect(() => {
+    createdGroupRefetch();
+    reqMembersRefetch();
+    detailRefetch();
+  }, []);
 
   const openModal = () => {
     setIsModalVisible(true);
@@ -59,7 +65,7 @@ const OwnedGroup = () => {
   };
 
   useEffect(() => {
-    console.log(createdGroup);
+    // console.log(createdGroup);
     // console.log(reqMembers?.data.getData);
     // console.log(modalData);
   }, [createdGroup, modalData]);

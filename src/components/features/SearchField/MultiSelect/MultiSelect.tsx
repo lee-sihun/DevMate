@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Multiselect from 'multiselect-react-dropdown';
 import { DropdownStyle, SelectWrap } from './MultiSelect.styled';
 import { ArrowLogo, ArrowLogoWhite, SelectContainer, SelectLabelButton } from '../SelectButton/SelectButton.styled';
@@ -95,6 +95,7 @@ const MultiSelect = ({ label, onChange }: SelectButtonProps) => {
   const [open, setOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const multiselectRef = useRef<any>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   const handleToggle = () => {
     setOpen(!open);
@@ -110,8 +111,24 @@ const MultiSelect = ({ label, onChange }: SelectButtonProps) => {
     if (onChange) onChange([selectedItems]);
   };
 
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [open]);
   return (
-    <SelectContainer>
+    <SelectContainer ref={modalRef}>
       <SelectLabelButton $isSelected={isSelected} onClick={handleToggle}>
         {/* {currentValue[0] !== '' ? currentValue : label} */}
         {currentValue.length !== 0 ? (currentValue.length >= 2 ? `${currentValue[0]} 외 ${currentValue.length - 1}` : currentValue[0]) : label}

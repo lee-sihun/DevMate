@@ -16,16 +16,15 @@ interface DetailProps {
 const Detail = ({ userData }: DetailProps) => {
 
   const { id: groupId } = useParams();
-  const { data } = useGetDetailDataQuery(groupId);
+  const { data, refetch } = useGetDetailDataQuery(groupId);
 
   const detailData = data?.data;
 
   useEffect(() => {
-    // console.log(userData);
-  }, [userData]);
+    refetch();
+  }, []);
 
   if (detailData) {
-    // console.log(detailData);
     return (
       <DetailWrapper>
         <Title

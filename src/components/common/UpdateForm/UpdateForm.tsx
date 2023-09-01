@@ -269,7 +269,7 @@ export const UpdateDescription = () => {
         <ReactEditor
           ref={editorRef}
           initialValue={updateGroupDescription}
-          previewStyle="vertical"
+          previewStyle="tab"
           height="800px"
           initialEditType="markdown"
           useCommandShortcut={false}

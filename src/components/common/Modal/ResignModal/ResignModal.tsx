@@ -4,12 +4,13 @@ import defaultProfile from 'assets/img/default-profile.svg';
 import ModalLayout from '../ModalLayout/ModalLayout';
 import InputField from 'components/features/InputField/InputField';
 import { useForm } from 'react-hook-form';
-import { useUserDeleteMutation } from 'store/hooks/user.hooks';
+import { useUserDeleteMutation, userApi } from 'store/hooks/user.hooks';
 import { ToastAlert } from 'components/common/ToastAlert.styled';
 import { useNavigate } from 'react-router-dom';
 import { AuthorData } from 'author-data';
 import { uploadsUrlParser } from 'utils/parser';
 import { Error } from 'response-data-type';
+import { useAppDispatch } from 'store/hooks';
 
 interface ResignModalProps {
   userData?: AuthorData;
@@ -29,6 +30,7 @@ const ResignModal = ({ userData, onClose }: ResignModalProps) => {
     { error, isError, isSuccess },
   ] = useUserDeleteMutation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState<string | undefined>('');
@@ -46,6 +48,7 @@ const ResignModal = ({ userData, onClose }: ResignModalProps) => {
       setAlert(true);
     }
     if (isSuccess) {
+      dispatch(userApi.util.resetApiState());
       navigate('/');
     }
 

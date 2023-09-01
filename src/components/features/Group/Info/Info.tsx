@@ -20,7 +20,10 @@ import { AuthorData } from 'author-data';
 import { useNavigate, useParams } from 'react-router-dom';
 import GroupDeleteModal from 'components/common/GroupDeleteModal/GroupDeleteModal';
 import { useGetJoinReqGroupQuery, useGroupJoinCancelRequestMutation } from 'store/hooks/group.hooks';
+import defaultGroupImg from 'assets/img/default-img.png';
 import { THUMNAIL_BOX } from 'utils/const';
+import GroupExitModal from 'components/common/GroupExitModal/GroupExitModal';
+import { ToastAlert } from 'components/common/ToastAlert.styled';
 
 interface InfoProps {
   detailData: any,
@@ -41,6 +44,8 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
 
   const [modal, setModal] = React.useState(false);
   const [deleteModal, setDeleteModal] = React.useState(false);
+  const [groupExitModal, setGroupExitModal] = React.useState(false);
+  const [alert, setAlert] = React.useState(false);
 
   const { data } = useGetOtherProfileQuery(authorId as string);
   const { data: joinData } = useGetJoinReqGroupQuery({ page: 1, perPage: 8, type: detailData.type });
@@ -61,33 +66,26 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
     groupJoinCancelRequest,
   ] = useGroupJoinCancelRequestMutation();
 
-  // useEffect(() => {
-  //   // console.log(userJoinInfo);
-  //   if (userJoinInfo) {
-  //     const joinCheck = userJoinInfo.filter((joinGroup: GroupData) => {
-  //       // console.log(joinGroup);
-  //       return joinGroup._id === groupId;
-  //     });
-
-  //     console.log(joinCheck);
-  //   }
-  // }, [joinData]);
-
   const imgErrorHandler = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = randomThumnail;
   };
-
-  console.log(detailData);
-
   const [participating, setParticipating] = useState(false);
 
   useEffect(() => {
-    if (detailData.currentMembers.filter((memberId: string) => memberId === userData?._id).length > 0) {
-      setParticipating(true);
-    } else {
-      setParticipating(false);
+    if (detailData && userData) {
+      if (detailData.currentMembers.filter(({ _id }: { _id: string }) => _id === userData?._id).length > 0) {
+        setParticipating(true);
+      } else {
+        setParticipating(false);
+      }
     }
-  }, [detailData]);
+  }, [detailData, userData]);
+
+  React.useEffect(() => {
+    if (alert) {
+      setTimeout(() => setAlert(false), 3000);
+    }
+  }, [alert]);
 
   return (
     <InfoSection>
@@ -143,7 +141,7 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
         </InfoWrap>
       </InfoLeft>
       <InfoRight>
-        <GroupImg src={uploadsUrlParser(img)} onError={imgErrorHandler} />
+        <GroupImg src={uploadsUrlParser(img) || defaultGroupImg} onError={imgErrorHandler} />
         {
           authorData?._id === userData?._id
             ? <>
@@ -157,15 +155,16 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
                 // setModal(true);
                 // navigate('/mygroup/update');
                 setDeleteModal(true);
-                // console.log('delete');
               }}>삭제하기</Button>
             </>
             :
-            // participating
-            //   ? <>
-            //     <Button color='#ccc' height="38px" disabled={true}>참가 중</Button>
-            //   </>
-            //   :
+            participating
+              ? <>
+                <Button color='var(--error)' height="38px" onClick={() => {
+                  setGroupExitModal(true);
+                }}>그룹 탈퇴</Button>
+              </>
+              :
               userJoinInfo && userJoinInfo.filter((joinGroup: GroupData) => joinGroup._id === groupId).length > 0
                 ? <>
                   <Button color='var(--error)' height="38px" onClick={() => {
@@ -175,7 +174,11 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
                 :
                 <>
                   <Button color='var(--success)' height="38px" onClick={() => {
-                    setModal(true);
+                    if (userData) {
+                      setModal(true);
+                    } else {
+                      setAlert(true);
+                    }
                   }}>지원하러 가기!</Button>
                 </>
         }
@@ -188,6 +191,14 @@ const Info = ({ detailData, title, type, location, currentMembers, maxMembers, d
       {
         deleteModal &&
         <GroupDeleteModal title={title} setModal={setDeleteModal} />
+      }
+      {
+        groupExitModal &&
+        <GroupExitModal title={title} setModal={setGroupExitModal} />
+      }
+      {
+        alert &&
+        <ToastAlert color='var(--error)'>로그인 후 이용해주세요!</ToastAlert>
       }
     </InfoSection>
   );

@@ -5,7 +5,7 @@ export const groupApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: '/api/',
   }), // API 엔드포인트 설정
-  tagTypes: ['Group'],
+  tagTypes: ['Group', 'User'],
   endpoints: (builder) => ({
     getHotGroup: builder.query<{ data: any; error: 'string' | null }, void>({
       query: () => 'groups/main/hotGroup', // 실제 엔드포인트 경로에 맞게 설정

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   MainContainer,
   Container,
@@ -7,9 +7,7 @@ import {
   LogoImg,
   LogoText,
   NavContainer,
-  NavButton,
   UserInfo,
-  Notification,
   DropdownStyle,
   UserInfoStyle,
   ShortCut,
@@ -19,12 +17,12 @@ import {
   BtnWrap,
 } from './Header.styled';
 import Button from '../Button/Button';
-import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import { useNavigate } from 'react-router-dom';
 import { AuthorData } from 'author-data';
-import { useLogOutMutation } from 'store/hooks/user.hooks';
+import { useLogOutMutation, userApi } from 'store/hooks/user.hooks';
 import defaultProfile from 'assets/img/default-profile.svg';
-import { urlParser } from 'utils/parser';
+import { useAppDispatch } from 'store/hooks';
+
 
 interface HeaderProps {
   isFetching: boolean;
@@ -35,23 +33,48 @@ interface HeaderProps {
 const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
-  const [logOutHandler] = useLogOutMutation();
-
+  const [logOutHandler, { isSuccess }] = useLogOutMutation();
+  const dispatch = useAppDispatch();
   const handleToggle = () => {
     setOpen(!open);
   };
 
-  const logout = () => {
-    console.log('logout');
-    logOutHandler('');
-    // location.reload();
+  const logout = async () => {
+    await logOutHandler(userData?._id);
+    dispatch(userApi.util.resetApiState());
+    navigate('/');
   };
 
   const navigateHandler = React.useCallback((url: string) => {
     setOpen(false);
     navigate(url);
   }, []);
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      // console.log('success => refetch');
+      // refetch();
+    }
+  }, [isSuccess]);
 
   return (
     <MainContainer>
@@ -77,25 +100,31 @@ const Header = ({ isFetching, isLoggedIn, userData }: HeaderProps) => {
                   {/* <Notification /> */}
                   <BtnWrap>
                     {' '}
-                    <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/create')}>
-                      그룹 만들기
-                    </Button>
+                    {
+                      userData?.createdGroup
+                        ? <Button color="var(--success)" height="38px" onClick={() => navigateHandler(`/detail/${userData.createdGroup}`)}>
+                          내 그룹
+                        </Button>
+                        : <Button color="var(--success)" height="38px" onClick={() => navigateHandler('/create')}>
+                          그룹 만들기
+                        </Button>
+                    }
                   </BtnWrap>
-                  {/* <ProfileCircle size="42px" img={userData?.profileImage
-                    ? `${process.env.REACT_APP_API_SERVER_URL}/${urlParser(userData?.profileImage)}`
-                    : defaultProfile} onClick={handleToggle} /> */}
-                  <img src={userData?.profileImage
-                    ? `/${userData?.profileImage}`
-                    : defaultProfile} alt="사용자 이미지" onClick={handleToggle} />
-                  <DropdownStyle $isVisible={open}>
+                  <img
+                    src={
+                      userData?.profileImage
+                        ? `/${userData?.profileImage}`
+                        : defaultProfile
+                    }
+                    alt="사용자 이미지"
+                    onClick={handleToggle}
+                  />
+                  <DropdownStyle ref={modalRef} $isVisible={open}>
                     <UserInfoStyle>
                       <div className='infoWrap'>
                         <img src={userData?.profileImage
                           ? `/${userData?.profileImage}`
                           : defaultProfile} alt="사용자 이미지" onClick={() => navigateHandler('/profile')} />
-                        {/* <ProfileCircle size="42px" img={userData?.profileImage
-                          ? `${process.env.REACT_APP_API_SERVER_URL}/${urlParser(userData?.profileImage)}`
-                          : defaultProfile} onClick={() => navigateHandler('/profile')} /> */}
                         <p onClick={() => navigateHandler('/profile')}>{userData?.nickname}</p>
                       </div>
 
