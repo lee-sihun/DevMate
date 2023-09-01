@@ -43,7 +43,7 @@ const Notification = () => {
               <div className="wrap">
                 <div />
                 <h2>{notice.type === 'study' ? '스터디' : '프로젝트'}</h2>
-                <h3>{notice?.date?.split('T1')[0] + ' ' + notice?.date?.split('T1')[1]}</h3>
+                <h3>{notice?.date?.split('T')[0] + ' ' + notice?.date?.split('T1')[1]}</h3>
               </div>
               <h4>{notice.content}</h4>
             </div>
