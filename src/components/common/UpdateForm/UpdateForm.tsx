@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  UpdateFormItemWrap,
-  UpdateImg,
-  UpdateInput,
-  UpdateLabel,
-  UpdateValidateMsg,
-} from './UpdateForm.styled';
+import { UpdateFormItemWrap, UpdateImg, UpdateInput, UpdateLabel, UpdateValidateMsg } from './UpdateForm.styled';
 import { GroupData, GroupType, Location, Position, Skill } from 'group-data';
 import {
   titleChange,
@@ -37,9 +31,14 @@ export const UpdateTypeSelect = () => {
   const dispatch = useAppDispatch();
   return (
     <UpdateFormItemWrap>
-      <UpdateLabel>타입<strong>*</strong></UpdateLabel>
+      <UpdateLabel>
+        타입<strong>*</strong>
+      </UpdateLabel>
       <Select
-        options={[{ value: 'study', label: 'study' }, { value: 'project', label: 'project' }]}
+        options={[
+          { value: 'study', label: 'study' },
+          { value: 'project', label: 'project' },
+        ]}
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
@@ -62,12 +61,7 @@ export const UpdateMemberInput = () => {
   return (
     <UpdateFormItemWrap>
       <UpdateLabel>모집 인원</UpdateLabel>
-      <UpdateInput
-        type='number'
-        value={updateGroupMembers}
-        onChange={(e) => dispatch(maxMembersChange(Number(e.target.value)))}
-        min={1}
-      />
+      <UpdateInput type="number" value={updateGroupMembers} onChange={(e) => dispatch(maxMembersChange(Number(e.target.value)))} min={1} />
     </UpdateFormItemWrap>
   );
 };
@@ -97,8 +91,10 @@ export const UpdateSkillSelect = () => {
             border: '1px solid #D9D9D9',
           }),
         }}
-        value={updateGroupSkills?.map((item) =>
-          ({ value: item as Skill, label: item as Skill })) as OptionsOrGroups<unknown, GroupBase<unknown>> | undefined
+        value={
+          updateGroupSkills?.map((item) => ({ value: item as Skill, label: item as Skill })) as
+            | OptionsOrGroups<unknown, GroupBase<unknown>>
+            | undefined
         }
         onChange={(e) => dispatch(skillsChange(e as MultiValue<{ value: Skill; label: Skill }>))}
       />
@@ -112,15 +108,14 @@ export const UpdateDueDateInput = () => {
     <UpdateFormItemWrap>
       <UpdateLabel>예상 기간</UpdateLabel>
       <UpdateInput
-        type='text'
+        type="text"
         value={updateGroupDueDate}
         onChange={(e) => {
           dispatch(dueDateChange(e.target.value));
         }}
-        placeholder='n(일, 주, 개월, 년) 형식으로 작성해주세요. (ex: 1개월)'
+        placeholder="n(일, 주, 개월, 년) 형식으로 작성해주세요. (ex: 1개월)"
       />
       {!validateDateRange(updateGroupDueDate) && <UpdateValidateMsg>예상 기간을 형식에 맞춰 입력해주세요!!</UpdateValidateMsg>}
-
     </UpdateFormItemWrap>
   );
 };
@@ -135,12 +130,14 @@ export const UpdatePositionSelect = () => {
   const animatedComponents = makeAnimated();
 
   // React.useEffect(() => {
-  //   console.log(UpdateGroupPositions);
+  //   // console.log(UpdateGroupPositions);
   // }, [UpdateGroupPositions]);
 
   return (
     <UpdateFormItemWrap>
-      <UpdateLabel>포지션<strong>*</strong></UpdateLabel>
+      <UpdateLabel>
+        포지션<strong>*</strong>
+      </UpdateLabel>
       <Select
         closeMenuOnSelect={false}
         components={animatedComponents}
@@ -153,8 +150,10 @@ export const UpdatePositionSelect = () => {
             border: '1px solid #D9D9D9',
           }),
         }}
-        value={updateGroupPositions?.map((item) =>
-          ({ value: item as Position, label: item as Position })) as OptionsOrGroups<unknown, GroupBase<unknown>> | undefined
+        value={
+          updateGroupPositions?.map((item) => ({ value: item as Position, label: item as Position })) as
+            | OptionsOrGroups<unknown, GroupBase<unknown>>
+            | undefined
         }
         onChange={(e) => dispatch(positionChange(e as MultiValue<{ value: Position; label: Position }>))}
       />
@@ -166,13 +165,33 @@ export const UpdateLocationSelect = () => {
   const updateGroupLocation = useAppSelector((state) => state.groupUpdater.location);
   const dispatch = useAppDispatch();
   const locations = React.useMemo(() => {
-    return ['전국', '서울', '부산', '대구', '인천', '광주', '대전', '울산', '강원', '경기', '경남', '경북', '전남', '전북', '충남', '충북', '제주'].map((item) => {
+    return [
+      '전국',
+      '서울',
+      '부산',
+      '대구',
+      '인천',
+      '광주',
+      '대전',
+      '울산',
+      '강원',
+      '경기',
+      '경남',
+      '경북',
+      '전남',
+      '전북',
+      '충남',
+      '충북',
+      '제주',
+    ].map((item) => {
       return { value: item, label: item };
     });
   }, []);
   return (
     <UpdateFormItemWrap>
-      <UpdateLabel>지역<strong>*</strong></UpdateLabel>
+      <UpdateLabel>
+        지역<strong>*</strong>
+      </UpdateLabel>
       <Select
         options={locations}
         styles={{
@@ -196,7 +215,6 @@ export const UpdateGroupImg = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const detailData: GroupData = location.state?.detailData;
-
 
   const imgRef = React.useRef<HTMLImageElement>(null);
 
@@ -227,7 +245,7 @@ export const UpdateGroupImg = () => {
     <UpdateFormItemWrap>
       <UpdateLabel>대표 이미지</UpdateLabel>
       <label htmlFor="UpdateImg">
-        <input type="file" id='UpdateImg' style={{ display: 'none' }} accept="image/*" onChange={handleFile} />
+        <input type="file" id="UpdateImg" style={{ display: 'none' }} accept="image/*" onChange={handleFile} />
         <UpdateImg ref={imgRef} src={defaultGroupImg} />
       </label>
     </UpdateFormItemWrap>
@@ -240,12 +258,16 @@ export const UpdateTitleInput = () => {
 
   return (
     <UpdateFormItemWrap $maxWidth={'100%'}>
-      <UpdateLabel>제목<strong>*</strong></UpdateLabel>
+      <UpdateLabel>
+        제목<strong>*</strong>
+      </UpdateLabel>
       <UpdateInput
-        type='text'
-        placeholder='글 제목을 입력해주세요.'
+        type="text"
+        placeholder="글 제목을 입력해주세요."
         value={updateGroupTitle}
-        onChange={(e) => { dispatch(titleChange(e.target.value)); }}
+        onChange={(e) => {
+          dispatch(titleChange(e.target.value));
+        }}
       />
       {!updateGroupTitle && <UpdateValidateMsg>제목은 필수입니다!</UpdateValidateMsg>}
     </UpdateFormItemWrap>
@@ -259,17 +281,19 @@ export const UpdateDescription = () => {
   const editorRef = React.useRef<any>(null);
 
   useEffect(() => {
-    // console.log(updateGroupDescription);
+    // // console.log(updateGroupDescription);
   }, [updateGroupDescription]);
 
   if (updateGroupDescription) {
     return (
       <UpdateFormItemWrap $maxWidth={'100%'}>
-        <UpdateLabel>내용<strong>*</strong></UpdateLabel>
+        <UpdateLabel>
+          내용<strong>*</strong>
+        </UpdateLabel>
         <ReactEditor
           ref={editorRef}
           initialValue={updateGroupDescription}
-          previewStyle="vertical"
+          previewStyle="tab"
           height="800px"
           initialEditType="markdown"
           useCommandShortcut={false}
@@ -281,9 +305,5 @@ export const UpdateDescription = () => {
       </UpdateFormItemWrap>
     );
   }
-  return (
-    <>
-    </>
-  );
-
+  return <></>;
 };

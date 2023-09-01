@@ -55,6 +55,7 @@ export const CardLayout = styled.div<LayoutProps>`
   overflow: hidden;
   position: relative;
   overflow: hidden;
+  background-color: white;
 
   ${({ $hoverOn }) =>
     $hoverOn &&

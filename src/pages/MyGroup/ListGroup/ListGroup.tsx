@@ -16,21 +16,27 @@ import { GroupWrap } from 'pages/Home/Home.styled';
 import Paging from 'components/common/Paging/Paging';
 
 const ListGroup = () => {
-  const {
-    data,
-    // error,
-    // isLoading,
-  } = useGetDummyDataQuery();
+  // const {
+  //   data,
+  //   // error,
+  //   // isLoading,
+  // } = useGetDummyDataQuery();
 
   const [page, setPage] = useState(1);
   const [type, setType] = useState('STUDY');
-  const { data: createdGroup } = useCreatedGroupQuery();
-  const { data: onGroup } = useGetOngoingGroupQuery();
-  const { data: joinGroup } = useGetJoinReqGroupQuery({ page: page, perPage: 8, type: type.toLocaleLowerCase() });
+  const { data: createdGroup, refetch: createdGroupRefetch } = useCreatedGroupQuery();
+  const { data: onGroup, refetch: onGroupRefetch } = useGetOngoingGroupQuery();
+  const { data: joinGroup, refetch: joinGroupRefetch } = useGetJoinReqGroupQuery({ page: page, perPage: 8, type: type.toLocaleLowerCase() });
   const [exitGroup] = useGroupExitRequestMutation();
   const [joinCancel] = useGroupJoinCancelRequestMutation();
   const totalPage = joinGroup?.data.totalPage;
   const typeText = type === 'STUDY' ? '스터디' : '프로젝트';
+
+  useEffect(() => {
+    createdGroupRefetch();
+    onGroupRefetch();
+    joinGroupRefetch();
+  }, []);
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
@@ -47,7 +53,7 @@ const ListGroup = () => {
   useEffect(() => {
     // console.log(createdGroup);
     // console.log(joinGroup);
-    console.log(joinGroup);
+    // console.log(joinGroup);
   }, [onGroup, joinGroup]);
 
   return (
@@ -66,7 +72,7 @@ const ListGroup = () => {
           ))}
         </GroupWrap>
       )}
-      <GroupImg $marginTop='70px'>
+      <GroupImg $marginTop="70px">
         <h2>지원 현황</h2>
       </GroupImg>
       <TypeSortTabs>

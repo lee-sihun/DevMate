@@ -13,23 +13,17 @@ import { Response } from 'response-data-type';
 import { GroupData } from 'group-data';
 import { useUpdateGroupMutation } from 'store/hooks/group.hooks';
 
-
 const UpdateSection2 = ({ number, title }: CreateSectionProps) => {
-
   const UpdateGroupData = useAppSelector((state) => state.groupUpdater);
 
   const navigate = useNavigate();
   const location = useLocation();
   const detailData: GroupData = location.state?.detailData;
 
-
   const [alert, setAlert] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState('');
 
-  const [
-    UpdateGroup,
-    { error, isError, isSuccess },
-  ] = useUpdateGroupMutation();
+  const [UpdateGroup, { error, isError, isSuccess }] = useUpdateGroupMutation();
 
   const onHistoryBack = () => {
     navigate(-1);
@@ -37,19 +31,15 @@ const UpdateSection2 = ({ number, title }: CreateSectionProps) => {
 
   const onSubmit = async () => {
     const data = { ...UpdateGroupData };
-    if (data.title
-      && data.type
-      && data.position.length !== 0
-      && data.location
-      && data.description) {
+    if (data.title && data.type && data.position.length !== 0 && data.location && data.description) {
       if (!validateDateRange(data.dueDate)) {
-        console.log('예상 기간 형식 오류');
+        // console.log('예상 기간 형식 오류');
         setAlert(true);
         setAlertMsg('입력 형식을 맞춰 작성해주세요!');
         return;
       }
       if (!data.imageFile) {
-        // console.log(data);
+        // // console.log(data);
       }
       const formData = new FormData();
       for (const [key, value] of Object.entries(data)) {
@@ -62,11 +52,11 @@ const UpdateSection2 = ({ number, title }: CreateSectionProps) => {
         }
       }
       try {
-        console.log(data);
+        // console.log(data);
 
         await UpdateGroup({ groupFormData: formData, groupId: detailData._id });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
       return;
     } else {
@@ -80,24 +70,24 @@ const UpdateSection2 = ({ number, title }: CreateSectionProps) => {
     if (alert) {
       setTimeout(() => setAlert(false), 3000);
     }
-    isSuccess && (() => {
-      navigate(
-        '/mygroup/update/success',
-        {
-          state:
-          {
+    isSuccess &&
+      (() => {
+        navigate('/mygroup/update/success', {
+          state: {
             afterUrl: [`/detail/${detailData._id}`, '/mygroup', '/'],
             beforeUrl: 'mygroup/update',
           },
-        }
-      );
-    })();
+        });
+      })();
   }, [alert, error, isError, isSuccess]);
 
   React.useEffect(() => {
     isError &&
-      (error as Response).data.error === 'GROUP_EXISTS'
-      && (() => { setAlert(true); setAlertMsg('하나의 그룹만 생성할 수 있습니다!'); })();
+      (error as Response).data.error === 'GROUP_EXISTS' &&
+      (() => {
+        setAlert(true);
+        setAlertMsg('하나의 그룹만 생성할 수 있습니다!');
+      })();
   }, [error, isError]);
 
   return (
@@ -108,18 +98,24 @@ const UpdateSection2 = ({ number, title }: CreateSectionProps) => {
         <UpdateDescription />
       </UpdateInfoWrap>
       <UpdateButtonWrap>
-        <Button color='#fafafa' height='40px' onClick={onHistoryBack}>취소</Button>
-        <Button color='var(--blue-semi-dark1)' height='40px' onClick={
-          () => {
+        <Button color="#fafafa" height="40px" onClick={onHistoryBack}>
+          취소
+        </Button>
+        <Button
+          color="var(--blue-semi-dark1)"
+          height="40px"
+          onClick={() => {
             onSubmit();
-          }
-        }>수정 완료</Button>
+          }}
+        >
+          수정 완료
+        </Button>
       </UpdateButtonWrap>
-      {
-        alert && <ToastAlert color='var(--error)'>
+      {alert && (
+        <ToastAlert color="var(--error)">
           <strong>{alertMsg}</strong>
         </ToastAlert>
-      }
+      )}
     </UpdateSection>
   );
 };

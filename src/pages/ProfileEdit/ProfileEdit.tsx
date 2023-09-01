@@ -8,7 +8,6 @@
 // import PageTemplate from 'components/common/PageTemplate/PageTemplate';
 // import { AuthorData, OptionType } from 'author-data';
 
-
 // interface IFormInput {
 //   nickName: string;
 //   skills?: Array<OptionType>;
@@ -32,10 +31,10 @@
 //   } = useForm<IFormInput>({ mode: 'onBlur' });
 
 //   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-//     console.log(data);
+//     // console.log(data);
 //   };
 
-//   // console.log(userData?.skills);
+//   // // console.log(userData?.skills);
 
 //   return (
 //     <PageTemplate subTitle="Edit Profile" mainTitle="내 정보 수정">
@@ -135,8 +134,6 @@ import uuid from 'react-uuid';
 import { useProfileUpdateMutation } from 'store/hooks/user.hooks';
 import { uploadsUrlParser } from 'utils/parser';
 
-
-
 const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
   const [newUserData, setNewUserData] = useState({ ...userData });
   const [file, setFile] = useState<File | undefined>();
@@ -145,11 +142,9 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
 
   const [profileUpdate, { data, isLoading, isError, isSuccess }] = useProfileUpdateMutation();
 
-
   useEffect(() => {
     setNewUserData({ ...userData });
   }, [userData]);
-  // console.log(newUserData);
 
   const handleFile = (e: React.ChangeEvent) => {
     const inputFile = e.target as HTMLInputElement;
@@ -159,7 +154,6 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        console.log(e.target?.result);
         setNewUserData((curr) => {
           const newCurr = { ...curr };
           return {
@@ -214,13 +208,13 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
               blog: e.target.value,
             },
           };
-        default: return newCurr;
+        default:
+          return newCurr;
       }
     });
   };
 
-  const SkillsChange = (
-    newValue: MultiValue<{ value: Skill; label: Skill }>) => {
+  const SkillsChange = (newValue: MultiValue<{ value: Skill; label: Skill }>) => {
     setNewUserData((curr) => {
       const newCurr = { ...curr };
       return {
@@ -236,23 +230,24 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
     if (newUserData.nickname === '') {
       return setNicknameValidate(uuid());
     }
-    // console.log(file);
+    // // console.log(file);
     const formData = new FormData();
     newUserData.nickname && formData.append('nickname', newUserData.nickname);
     newUserData.skills && formData.append('skills', JSON.stringify(newUserData.skills));
     newUserData.overview && formData.append('overview', newUserData.overview);
     file && formData.append('imageFile', file);
     newUserData.links && formData.append('links', JSON.stringify(newUserData.links));
-    // console.log(newUserData.nickname);
-    // console.log(JSON.stringify(newUserData.skills));
-    // console.log(newUserData.overview);
-    // console.log(file);
-    // console.log(JSON.stringify(newUserData.links));
     profileUpdate(formData);
   };
   const cancelHandler = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/profile');
+    }
+  }, [isSuccess]);
 
   return (
     <PageTemplate subTitle="My Profile" mainTitle="내 프로필 수정">
@@ -262,24 +257,29 @@ const ProfileEdit = ({ userData }: { userData?: AuthorData }) => {
           {/* <img src={newUserData?.profileImage
             ? `/${newUserData?.profileImage}`
             : defaultProfile} alt="사용자 이미지" /> */}
-          <div className='edit_btn'>
-            <label htmlFor="edit"><img src={changeImg} alt="edit" /></label>
-            <input type="file" id='edit' accept="image/*" onChange={handleFile} />
+          <div className="edit_btn">
+            <label htmlFor="edit">
+              <img src={changeImg} alt="edit" />
+            </label>
+            <input type="file" id="edit" accept="image/*" onChange={handleFile} />
           </div>
         </ProfileTop>
         <ProfileInfoWrap>
-          <InputField2 validate={nicknameValidate} labelName='닉네임' value={newUserData?.nickname} onChange={onChange} />
-          <InputField2 labelName='이메일' type='email' value={newUserData?.email} onChange={onChange} />
-          <InputField2 labelName='사용 기술' value={newUserData.skills} skillChange={SkillsChange} />
-          <InputField2 labelName='소개글' value={newUserData?.overview} onChange={onChange} />
-          <InputField2 labelName='Github' value={newUserData?.links?.gitHub} onChange={onChange} />
-          <InputField2 labelName='Blog' value={newUserData?.links?.blog} onChange={onChange} />
+          <InputField2 validate={nicknameValidate} labelName="닉네임" value={newUserData?.nickname} onChange={onChange} />
+          <InputField2 labelName="이메일" type="email" value={newUserData?.email} onChange={onChange} />
+          <InputField2 labelName="사용 기술" value={newUserData.skills} skillChange={SkillsChange} />
+          <InputField2 labelName="소개글" value={newUserData?.overview} onChange={onChange} />
+          <InputField2 labelName="Github" value={newUserData?.links?.gitHub} onChange={onChange} />
+          <InputField2 labelName="Blog" value={newUserData?.links?.blog} onChange={onChange} />
         </ProfileInfoWrap>
         <ProfileBtnWrap>
-          <button className='save' onClick={saveHandler}>저장</button>
-          <button className='cancel' onClick={cancelHandler}>취소</button>
+          <button className="save" onClick={saveHandler}>
+            저장
+          </button>
+          <button className="cancel" onClick={cancelHandler}>
+            취소
+          </button>
         </ProfileBtnWrap>
-
       </ProfileContent>
     </PageTemplate>
   );

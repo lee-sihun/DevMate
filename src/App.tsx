@@ -21,7 +21,6 @@ import Update from 'pages/Group/Update';
 import UpdateSuccess from 'pages/Group/UpdateSuccess';
 
 function App() {
-
   const { data, error, isLoading, isFetching, isSuccess } = useGetProfileQuery();
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -30,15 +29,11 @@ function App() {
     // console.log(data, error, isLoading, isFetching, isSuccess);
   }, [data, error, isLoading, isFetching, isSuccess]);
 
+
   React.useEffect(() => {
-    if (error && (
-      pathname === '/create'
-      || pathname === '/mygroup'
-      || pathname === '/profile'
-      || pathname === '/profile/edit')) {
+    if (error && (pathname === '/create' || pathname === '/mygroup' || pathname === '/profile' || pathname === '/profile/edit')) {
       navigate('/');
     }
-    // console.log(isSuccess);
     if (!isFetching && isSuccess && (pathname === '/signin' || pathname === '/signup')) {
       navigate('/');
     }
@@ -49,7 +44,7 @@ function App() {
 
   return (
     <>
-      <Header isFetching={isFetching} isLoggedIn={isSuccess} userData={data?.data?.foundUser} />
+      <Header isFetching={isFetching} isLoggedIn={isSuccess} userData={data?.data?.foundUser}/>
       <Main>
         <Routes>
           <Route path="/" element={<Home />} />

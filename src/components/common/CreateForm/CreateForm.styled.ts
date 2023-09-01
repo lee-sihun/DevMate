@@ -40,5 +40,3 @@ export const CreateValidateMsg = styled.small`
   font-size: 10px;
   color: var(--error);
 `;
-
-export const CreateContentsWrap = styled.div``;

@@ -12,28 +12,24 @@ import DescFooter from 'components/common/DescFooter/DescFooter';
 import { AuthorData } from 'author-data';
 
 interface DescProps {
-  contents?: string,
-  groupId: string,
-  userData?: AuthorData,
+  contents?: string;
+  groupId: string;
+  userData?: AuthorData;
 }
 
 const Desc = ({ contents, groupId, userData }: DescProps) => {
-
   const location = useLocation();
 
   // 전체 URL 생성
   const fullURL = `${window.location.origin}${location.pathname}${location.search}`;
 
   useEffect(() => {
-    // console.log(contents, groupId);
+    // // console.log(contents, groupId);
   }, [contents, groupId]);
 
   return (
     <DescSection>
-      <Viewer
-        initialValue={contents || ''}
-        plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
-      />
+      <Viewer initialValue={contents || ''} plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]} />
       <DescFooter $url={fullURL} groupId={groupId} userData={userData} />
     </DescSection>
   );

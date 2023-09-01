@@ -30,7 +30,7 @@ export const Btn = styled.button<BtnProps>`
   padding: 11px 18px;
   height: ${({ height }) => height};
   width: ${({ width }) => width};
-  cursor: ${({ disabled }) => (disabled ? '' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   align-items: center;
   transition: filter 0.4s ease;

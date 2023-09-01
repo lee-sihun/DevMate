@@ -9,11 +9,11 @@ import { ToastAlert } from '../ToastAlert.styled';
 import { useWishControllerMutation } from 'store/hooks/group.hooks';
 import { AuthorData } from 'author-data';
 
-const DescFooter = ({ $url, groupId, userData }: { $url: string, groupId: string, userData?: AuthorData }) => {
-
+const DescFooter = ({ $url, groupId, userData }: { $url: string; groupId: string; userData?: AuthorData }) => {
   const [imsiHeart, setImsiHeart] = React.useState(false);
 
   const [alert, setAlert] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState('');
 
   const [wishController] = useWishControllerMutation();
 
@@ -27,13 +27,18 @@ const DescFooter = ({ $url, groupId, userData }: { $url: string, groupId: string
   React.useEffect(() => {
     if (userData) {
       const wishing = userData?.wishList.filter((wishGroupId) => wishGroupId === groupId);
-      // console.log(wishing);
+      // // console.log(wishing);
       wishing.length > 0 ? setImsiHeart(true) : setImsiHeart(false);
     }
   }, [userData]);
 
   const wishHandler = () => {
-    setImsiHeart((curr) => !curr);
+    if (userData) {
+      setImsiHeart((curr) => !curr);
+    } else {
+      setAlert(true);
+      setAlertMsg('로그인 후 이용해주세요!');
+    }
     if (imsiHeart) {
       wishController({ groupId: groupId, wishState: false });
     } else {
@@ -47,13 +52,19 @@ const DescFooter = ({ $url, groupId, userData }: { $url: string, groupId: string
         {imsiHeart ? <LinkIcon src={heart2} /> : <LinkIcon src={heart1} />}
       </button>
       <Boundary height='100%' width='2.3px' />
-      <button onClick={() => setAlert(true)}>
+      <button onClick={() => {
+        setAlert(true);
+        setAlertMsg(`링크 복사 완료: ${$url}`);
+      }}>
         <LinkIcon src={share} />
       </button>
     </DescFooterWrap>
     {
-      alert && <ToastAlert>
-        <strong>링크 복사 완료: {$url}</strong>
+      alert && <ToastAlert
+        color={
+          alertMsg === '로그인 후 이용해주세요!' ? 'var(--error)' : ''
+        }>
+        <strong>{alertMsg}</strong>
       </ToastAlert>
     }
   </>

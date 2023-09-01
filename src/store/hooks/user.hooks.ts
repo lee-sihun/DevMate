@@ -1,13 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import uuid from 'react-uuid';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: '/api/users/',
-    // baseUrl: `${process.env.REACT_APP_API_SERVER_URL}/api/users/`,
     credentials: 'include',
-  }), // API 엔드포인트 설정
+  }),
   tagTypes: ['User'],
   endpoints: (builder) => ({
     signIn: builder.mutation({
@@ -38,7 +36,17 @@ export const userApi = createApi({
         url: 'logout',
         method: 'POST',
       }),
-      invalidatesTags: [{ type: 'User', id: 'User' }],
+      invalidatesTags: (result, error, arg) => {
+        // console.log(result, error, arg);
+        if (result) {
+          return [
+            { type: 'User', id: arg },
+            { type: 'User', id: 'User' },
+          ];
+        } else {
+          return [{ type: 'User', id: 'User' }];
+        }
+      },
     }),
     userDelete: builder.mutation({
       query: (password) => ({
@@ -50,7 +58,17 @@ export const userApi = createApi({
     }),
     getProfile: builder.query<{ data: { foundUser: any }; error: 'string' | null }, void>({
       query: () => 'myProfile', // 실제 엔드포인트 경로에 맞게 설정
-      providesTags: [{ type: 'User', id: 'User' }],
+      providesTags: (result, error, arg) => {
+        // console.log(result, error, arg);
+        if (result) {
+          return [
+            { type: 'User', id: result.data.foundUser._id },
+            { type: 'User', id: 'User' },
+          ];
+        } else {
+          return [{ type: 'User', id: 'User' }];
+        }
+      },
     }),
     getOtherProfile: builder.query<{ data: any; error: 'string' | null }, string>({
       query: (userId) => `profile/${userId}`, // 실제 엔드포인트 경로에 맞게 설정

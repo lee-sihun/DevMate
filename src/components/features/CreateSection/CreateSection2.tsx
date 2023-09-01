@@ -20,7 +20,6 @@ import defaultThumbnail7 from '../../../assets/img/thumbnail/thumbnail-14.png';
 import defaultThumbnail8 from '../../../assets/img/thumbnail/thumbnail-15.png';
 
 const CreateSection2 = ({ number, title }: CreateSectionProps) => {
-
   const createGroupData = useAppSelector((state) => state.groupCreater);
 
   const navigate = useNavigate();
@@ -28,10 +27,7 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
   const [alert, setAlert] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState('');
 
-  const [
-    createGroup,
-    { error, isError, isSuccess },
-  ] = useCreateGroupMutation();
+  const [createGroup, { error, isError, isSuccess }] = useCreateGroupMutation();
 
   const onHistoryBack = () => {
     navigate(-1);
@@ -39,21 +35,17 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
 
   const onSubmit = async () => {
     const data = { ...createGroupData };
-    if (data.title
-      && data.type
-      && data.position.length !== 0
-      && data.location
-      && data.description) {
+    if (data.title && data.type && data.position.length !== 0 && data.location && data.description) {
       if (!validateDateRange(data.dueDate)) {
-        console.log('예상 기간 형식 오류');
+        // console.log('예상 기간 형식 오류');
         setAlert(true);
         setAlertMsg('입력 형식을 맞춰 작성해주세요!');
         return;
       }
       if (!data.imageFile) {
-        console.log(data);
+        // console.log(data);
       }
-      console.log(data);
+      // console.log(data);
       const formData = new FormData();
       for (const [key, value] of Object.entries(data)) {
         if (value instanceof Array) {
@@ -67,7 +59,7 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
       try {
         await createGroup(formData);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
       return;
     } else {
@@ -81,15 +73,19 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
     if (alert) {
       setTimeout(() => setAlert(false), 3000);
     }
-    isSuccess && (() => {
-      navigate('/create/success', { state: { afterUrl: ['/', '/mygroup'], beforeUrl: 'create' } });
-    })();
+    isSuccess &&
+      (() => {
+        navigate('/create/success', { state: { afterUrl: ['/', '/mygroup'], beforeUrl: 'create' } });
+      })();
   }, [alert, error, isError, isSuccess]);
 
   React.useEffect(() => {
     isError &&
-      (error as Response).data.error === 'GROUP_EXISTS'
-      && (() => { setAlert(true); setAlertMsg('하나의 그룹만 생성할 수 있습니다!'); })();
+      (error as Response).data.error === 'GROUP_EXISTS' &&
+      (() => {
+        setAlert(true);
+        setAlertMsg('하나의 그룹만 생성할 수 있습니다!');
+      })();
   }, [error, isError]);
 
   return (
@@ -100,18 +96,24 @@ const CreateSection2 = ({ number, title }: CreateSectionProps) => {
         <CreateDescription />
       </CreateInfoWrap>
       <CreateButtonWrap>
-        <Button color='#fafafa' height='40px' onClick={onHistoryBack}>취소</Button>
-        <Button color='var(--blue-regular1)' height='40px' onClick={
-          () => {
+        <Button color="#fafafa" height="40px" onClick={onHistoryBack}>
+          취소
+        </Button>
+        <Button
+          color="var(--blue-regular1)"
+          height="40px"
+          onClick={() => {
             onSubmit();
-          }
-        }>글 등록</Button>
+          }}
+        >
+          글 등록
+        </Button>
       </CreateButtonWrap>
-      {
-        alert && <ToastAlert color='var(--error)'>
+      {alert && (
+        <ToastAlert color="var(--error)">
           <strong>{alertMsg}</strong>
         </ToastAlert>
-      }
+      )}
     </CreateSection>
   );
 };
