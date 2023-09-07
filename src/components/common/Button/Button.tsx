@@ -13,10 +13,10 @@ interface ButtonProps {
   //  onClick?: (...args: any[]) => void;
 }
 
-const Button = ({ children, color, height, reverse, disabled, onClick }: ButtonProps) => {
+const Button = ({ children, color, height, width, reverse, disabled, onClick }: ButtonProps) => {
   return (
     <StyleSheetManager shouldForwardProp={(prop) => prop !== 'reverse'}>
-      <Btn color={color} height={height} reverse={reverse} disabled={disabled} onClick={onClick}>
+      <Btn color={color} height={height} reverse={reverse} disabled={disabled} onClick={onClick} width={width}>
         {children}
       </Btn>
     </StyleSheetManager>
